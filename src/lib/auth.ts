@@ -3,7 +3,8 @@ import { getServerSession } from "next-auth";
 // Helper function to get server session safely
 export async function getAuthSession() {
   try {
-    return await getServerSession();
+    const session = await getServerSession();
+    return session;
   } catch (error) {
     console.error("Erro ao obter sessão:", error);
     return null;
