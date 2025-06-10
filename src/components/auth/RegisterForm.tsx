@@ -44,7 +44,7 @@ export default function RegisterForm() {
         throw new Error(data.error || 'Erro ao criar conta');
       }
 
-      router.push('/auth/login?registered=true');
+      router.push('/login?registered=true');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -57,94 +57,96 @@ export default function RegisterForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto p-6">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="p-3 text-sm text-red-500 bg-red-50 dark:bg-red-900/20 rounded-lg">
-            {error}
-          </div>
-        )}
-
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Nome
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-            className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-aurora-accent dark:focus:ring-nox-accent focus:border-aurora-accent dark:focus:border-nox-accent"
-          />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="p-4 text-sm text-red-600 bg-red-50 rounded-xl border border-red-200">
+          {error}
         </div>
+      )}
 
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-aurora-accent dark:focus:ring-nox-accent focus:border-aurora-accent dark:focus:border-nox-accent"
-          />
-        </div>
+      <div>
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium text-[#1d1d1f] mb-2"
+        >
+          Nome
+        </label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+          className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
+          placeholder="Seu nome completo"
+        />
+      </div>
 
-        <div>
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Senha
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            required
-            minLength={6}
-            className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-aurora-accent dark:focus:ring-nox-accent focus:border-aurora-accent dark:focus:border-nox-accent"
-          />
-        </div>
+      <div>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-[#1d1d1f] mb-2"
+        >
+          Email
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
+          placeholder="seu@email.com"
+        />
+      </div>
 
-        <div>
-          <label
-            htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Confirmar Senha
-          </label>
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            autoComplete="new-password"
-            required
-            minLength={6}
-            className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-aurora-accent dark:focus:ring-nox-accent focus:border-aurora-accent dark:focus:border-nox-accent"
-          />
-        </div>
+      <div>
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-[#1d1d1f] mb-2"
+        >
+          Senha
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autoComplete="new-password"
+          required
+          minLength={6}
+          className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
+          placeholder="Mínimo 6 caracteres"
+        />
+      </div>
 
-        <div>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-aurora-accent dark:bg-nox-accent hover:bg-aurora-accent/90 dark:hover:bg-nox-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-aurora-accent dark:focus:ring-nox-accent disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? 'Criando conta...' : 'Criar conta'}
-          </button>
-        </div>
-      </form>
-    </div>
+      <div>
+        <label
+          htmlFor="confirmPassword"
+          className="block text-sm font-medium text-[#1d1d1f] mb-2"
+        >
+          Confirmar Senha
+        </label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          autoComplete="new-password"
+          required
+          minLength={6}
+          className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
+          placeholder="Confirme sua senha"
+        />
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl text-sm font-medium text-white bg-[#0071e3] hover:bg-[#0077ED] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0071e3] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+        >
+          {isLoading ? 'Criando conta...' : 'Criar conta'}
+        </button>
+      </div>
+    </form>
   );
-} 
+}

@@ -1,24 +1,42 @@
 import LoginForm from "@/components/auth/LoginForm";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-aurora-background">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
-        <div className="text-center">
-          <h1 className="text-3xl font-serif font-bold text-aurora-primary">
+    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <Image
+            src="/images/logo.png"
+            alt="Schola Juris Logo"
+            width={80}
+            height={80}
+            className="mx-auto mb-6 drop-shadow-lg"
+            priority
+          />
+          <h1 className="text-4xl font-bold tracking-tight mb-4 bg-gradient-to-r from-[#FF2D55] via-[#5856D6] to-[#007AFF] bg-clip-text text-transparent">
             Schola Juris
           </h1>
-          <p className="mt-2 text-aurora-text">
+          <p className="text-lg text-[#86868b]">
             Entre com suas credenciais para acessar sua conta
           </p>
         </div>
-        <LoginForm />
-        <div className="text-center text-sm text-aurora-text">
-          Não tem uma conta?{" "}
-          <Link href="/register" className="text-aurora-primary hover:underline">
-            Registre-se
-          </Link>
+
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <LoginForm />
+          
+          <div className="mt-6 text-center">
+            <p className="text-sm text-[#86868b]">
+              Não tem uma conta?{" "}
+              <Link 
+                href="/register" 
+                className="text-[#0071e3] hover:text-[#0077ED] font-medium transition-colors duration-200"
+              >
+                Registre-se
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
