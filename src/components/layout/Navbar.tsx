@@ -21,6 +21,9 @@ export default function Navbar() {
             <Link href="/biblioteca" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
               Biblioteca
             </Link>
+            <Link href="/rede-neural" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
+              Rede Neural
+            </Link>
             <Link href="/glossario" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
               Glossário
             </Link>

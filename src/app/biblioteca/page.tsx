@@ -20,7 +20,9 @@ import {
   Award,
   TrendingUp,
   Eye,
-  Filter
+  Filter,
+  Brain,
+  Network
 } from 'lucide-react';
 import Link from 'next/link';
 import { mockFormations, getAllPills, MockPill, mockBooks, MockBook } from '@/lib/mockData';
@@ -144,7 +146,7 @@ export default function BibliotecaPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Biblioteca Jurídica</h1>
           <p className="text-xl text-[#86868b]">
-            Explore pílulas de conhecimento e livros jurídicos especializados.
+            Explore pílulas de conhecimento, livros jurídicos e conexões conceituais.
           </p>
         </div>
       </div>
@@ -176,6 +178,15 @@ export default function BibliotecaPage() {
             <BookOpen className="mr-2 h-4 w-4" />
             Livros ({filteredBooks.length})
           </Button>
+          <Link href="/rede-neural">
+            <Button
+              variant="outline"
+              className="border-purple-200 text-purple-700 hover:bg-purple-50"
+            >
+              <Brain className="mr-2 h-4 w-4" />
+              Rede Neural
+            </Button>
+          </Link>
         </div>
 
         {/* Search and Filters */}
@@ -247,6 +258,33 @@ export default function BibliotecaPage() {
             ))}
           </div>
         )}
+
+        {/* Neural Network CTA */}
+        <div className="mb-8">
+          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+                    <Network className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">Explore a Rede Neural Jurídica</h3>
+                    <p className="text-purple-100">
+                      Visualize as conexões entre conceitos jurídicos em uma interface 3D interativa.
+                    </p>
+                  </div>
+                </div>
+                <Link href="/rede-neural">
+                  <Button className="bg-white text-purple-600 hover:bg-gray-50 font-semibold">
+                    <Brain className="w-5 h-5 mr-2" />
+                    Explorar Rede
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Content Grid */}
         <div className="space-y-12">
