@@ -10,10 +10,10 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center space-x-6">
-            <Link href="/modulos" className="nav-link">
+            <Link href="#modulos" className="nav-link">
               Módulos
             </Link>
-            <Link href="/pilulas" className="nav-link">
+            <Link href="#pilulas" className="nav-link">
               Pílulas
             </Link>
             <Link href="/login" className="nav-link">
@@ -27,4 +27,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-} 
+}
