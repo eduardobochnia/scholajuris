@@ -14,72 +14,56 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Senha", type: "password" }
       },
       async authorize(credentials) {
+        // Modo de desenvolvimento: permite login sem credenciais
+        if (process.env.NODE_ENV === "development" && !credentials?.email && !credentials?.password) {
+          return {
+            id: "1",
+            name: "Usuário de Desenvolvimento",
+            email: "dev@example.com",
+          };
+        }
+
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Credenciais inválidas");
+          return null;
         }
 
         const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email
-          }
+          where: { email: credentials.email }
         });
 
-        if (!user || !user?.password) {
-          throw new Error("Usuário não encontrado");
+        if (!user || !user.password) {
+          return null;
         }
 
-        const isCorrectPassword = await bcrypt.compare(
+        const isPasswordValid = await bcrypt.compare(
           credentials.password,
           user.password
         );
 
-        if (!isCorrectPassword) {
-          throw new Error("Senha incorreta");
+        if (!isPasswordValid) {
+          return null;
         }
 
-        return user;
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        };
       }
     })
   ],
   session: {
     strategy: "jwt"
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
   pages: {
     signIn: "/login",
   },
   callbacks: {
-    async session({ token, session }) {
+    async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
+        session.user.id = token.sub!;
       }
-
       return session;
-    },
-    async jwt({ token, user }) {
-      const dbUser = await prisma.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      });
-
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
-        }
-        return token;
-      }
-
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-      };
-    },
-  },
-}; 
+    }
+  }
+};

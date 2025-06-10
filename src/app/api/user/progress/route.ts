@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/authOptions';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
@@ -196,5 +196,3 @@ export async function GET() {
     );
   }
 }
-
-// Adicionar outras funções para GET (buscar progresso do usuário) se necessário

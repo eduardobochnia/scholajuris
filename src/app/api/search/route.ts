@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/authOptions';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: Request) {
@@ -30,7 +30,6 @@ export async function GET(request: Request) {
           select: {
             id: true,
             title: true,
-            description: true,
           },
         },
       },
@@ -41,8 +40,6 @@ export async function GET(request: Request) {
       where: {
         OR: [
           { title: { contains: query, mode: 'insensitive' } },
-          { description: { contains: query, mode: 'insensitive' } },
-          { content: { contains: query, mode: 'insensitive' } },
         ],
       },
       include: {
@@ -91,7 +88,6 @@ export async function GET(request: Request) {
       pills: pills.map(pill => ({
         id: pill.id,
         title: pill.title,
-        description: pill.description,
         type: 'pill',
         module: pill.module,
       })),
