@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { signIn, getSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
@@ -31,16 +31,8 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        // Aguardar um pouco para garantir que a sessão foi criada
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Verificar se a sessão foi criada corretamente
-        const session = await getSession();
-        if (session) {
-          window.location.href = '/dashboard';
-        } else {
-          setError('Erro ao criar sessão. Tente novamente.');
-        }
+        router.push('/dashboard');
+        router.refresh();
       }
     } catch (error) {
       console.error('Erro no login:', error);
@@ -65,16 +57,8 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        // Aguardar um pouco para garantir que a sessão foi criada
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Verificar se a sessão foi criada corretamente
-        const session = await getSession();
-        if (session) {
-          window.location.href = '/dashboard';
-        } else {
-          setError('Erro ao criar sessão de desenvolvimento. Tente novamente.');
-        }
+        router.push('/dashboard');
+        router.refresh();
       }
     } catch (error) {
       console.error('Erro no login de desenvolvimento:', error);
@@ -128,7 +112,6 @@ export default function LoginForm() {
             name="email"
             type="email"
             autoComplete="email"
-            required
             className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
             placeholder="seu@email.com"
           />
@@ -146,7 +129,6 @@ export default function LoginForm() {
             name="password"
             type="password"
             autoComplete="current-password"
-            required
             className="w-full px-4 py-3 bg-[#f5f5f7] border border-gray-200 rounded-xl text-[#1d1d1f] placeholder-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent transition-all duration-200"
             placeholder="Sua senha"
           />
