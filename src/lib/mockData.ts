@@ -1,10 +1,36 @@
-// Dados simulados para desenvolvimento
+// Dados simulados para desenvolvimento com nova estrutura
+export interface MockFormation {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  duration: string;
+  level: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
+  price: number;
+  imageUrl: string;
+  order: number;
+  modules: MockModule[];
+}
+
 export interface MockModule {
   id: string;
   title: string;
   slug: string;
   description: string;
   order: number;
+  formationId: string;
+  subjects: MockSubject[];
+}
+
+export interface MockSubject {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  color: string;
+  iconUrl: string;
+  order: number;
+  moduleId: string;
   pills: MockPill[];
 }
 
@@ -13,13 +39,19 @@ export interface MockPill {
   title: string;
   slug: string;
   content: any[];
+  estimatedTime: number;
+  difficulty: 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED';
+  tags: string[];
   order: number;
-  moduleId: string;
+  subjectId: string;
+  prerequisites: string[];
+  relatedPills: string[];
   quizzes: MockQuiz[];
-  module?: {
+  subject?: {
     id: string;
     title: string;
     slug: string;
+    color: string;
   };
 }
 
@@ -39,248 +71,286 @@ export interface MockQuestion {
   explanation: string;
 }
 
-export const mockModules: MockModule[] = [
+export const mockFormations: MockFormation[] = [
   {
     id: '1',
-    title: 'Introdução ao Direito',
-    slug: 'introducao-ao-direito',
-    description: 'Conceitos fundamentais do Direito e sua importância na sociedade.',
+    title: 'Formação Completa em Direito Civil',
+    slug: 'formacao-direito-civil',
+    description: 'Formação completa e aprofundada em Direito Civil, desde os conceitos fundamentais até os temas mais avançados da área.',
+    duration: '8 meses',
+    level: 'INTERMEDIATE',
+    price: 1497,
+    imageUrl: '/images/formations/direito-civil.jpg',
     order: 1,
-    pills: [
+    modules: [
       {
         id: '1',
-        title: 'Conceitos Básicos',
-        slug: 'conceitos-basicos',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'O que é Direito?'
-          },
-          {
-            type: 'paragraph',
-            text: 'O Direito é um conjunto de normas que regulam a vida em sociedade, estabelecendo direitos e deveres para os indivíduos e organizações. É uma ciência social aplicada que busca organizar a convivência humana de forma justa e harmoniosa.'
-          },
-          {
-            type: 'paragraph',
-            text: 'Essas normas têm como objetivo principal manter a ordem social, garantir a justiça e proteger os direitos fundamentais de todos os cidadãos. O Direito evolui constantemente para acompanhar as transformações da sociedade.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Características Fundamentais do Direito'
-          },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Bilateralidade: estabelece direitos e deveres recíprocos',
-              'Imperatividade: suas normas são obrigatórias e vinculantes',
-              'Coercibilidade: pode ser imposto pela força do Estado',
-              'Heteronomia: vem de uma autoridade externa ao indivíduo',
-              'Generalidade: aplica-se a todos de forma igual',
-              'Abstração: regula situações em tese, não casos específicos'
-            ]
-          },
-          {
-            type: 'quote',
-            text: 'O Direito é a arte do bom e do justo.',
-            author: 'Ulpiano, jurista romano'
-          }
-        ],
+        title: 'Módulo 1 - Fundamentos do Direito Civil',
+        slug: 'fundamentos-direito-civil',
+        description: 'Base sólida nos conceitos fundamentais do Direito Civil brasileiro.',
         order: 1,
-        moduleId: '1',
-        quizzes: [
+        formationId: '1',
+        subjects: [
           {
             id: '1',
-            questions: [
+            title: 'Teoria Geral do Direito Civil',
+            slug: 'teoria-geral-direito-civil',
+            description: 'Conceitos fundamentais e princípios basilares do Direito Civil.',
+            color: '#3B82F6',
+            iconUrl: '/icons/teoria-geral.svg',
+            order: 1,
+            moduleId: '1',
+            pills: [
               {
                 id: '1',
-                text: 'O que é Direito?',
-                options: [
-                  { text: 'Um conjunto de normas que regulam a vida em sociedade', isCorrect: true },
-                  { text: 'Apenas leis escritas pelo governo', isCorrect: false },
-                  { text: 'Regras criadas pelos juízes', isCorrect: false },
-                  { text: 'Costumes antigos da sociedade', isCorrect: false }
+                title: 'Art. 1º do Código Civil - Conceito de Pessoa',
+                slug: 'art-1-codigo-civil-conceito-pessoa',
+                content: [
+                  {
+                    type: 'heading',
+                    level: 2,
+                    text: 'Art. 1º do Código Civil - Conceito de Pessoa'
+                  },
+                  {
+                    type: 'quote',
+                    text: 'Toda pessoa é capaz de direitos e deveres na ordem civil.',
+                    author: 'Art. 1º do Código Civil Brasileiro'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Análise Doutrinária'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'O artigo 1º do Código Civil estabelece o princípio fundamental da capacidade jurídica universal. Segundo Maria Helena Diniz, "este dispositivo consagra o princípio da dignidade da pessoa humana, reconhecendo que todo ser humano, pelo simples fato de existir, possui personalidade jurídica".'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Elementos Essenciais'
+                  },
+                  {
+                    type: 'list',
+                    ordered: false,
+                    items: [
+                      'Capacidade de direito (capacidade de gozo): aptidão para ser titular de direitos',
+                      'Capacidade de fato (capacidade de exercício): aptidão para exercer pessoalmente os atos da vida civil',
+                      'Personalidade jurídica: atributo inerente a todo ser humano',
+                      'Universalidade: aplica-se a todas as pessoas sem distinção'
+                    ]
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Jurisprudência Relevante'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STJ, REsp 1.159.242/SP: "A personalidade civil da pessoa começa do nascimento com vida; mas a lei põe a salvo, desde a concepção, os direitos do nascituro, conforme dispõe o art. 2º do Código Civil."'
+                  }
                 ],
-                type: 'MULTIPLE_CHOICE',
-                explanation: 'O Direito é um conjunto de normas que regulam a vida em sociedade, estabelecendo direitos e deveres para manter a ordem social e garantir a justiça.'
+                estimatedTime: 15,
+                difficulty: 'BEGINNER',
+                tags: ['personalidade', 'capacidade', 'direitos fundamentais'],
+                order: 1,
+                subjectId: '1',
+                prerequisites: [],
+                relatedPills: ['2', '3'],
+                quizzes: [
+                  {
+                    id: '1',
+                    questions: [
+                      {
+                        id: '1',
+                        text: 'Segundo o art. 1º do Código Civil, toda pessoa é:',
+                        options: [
+                          { text: 'Capaz de direitos e deveres na ordem civil', isCorrect: true },
+                          { text: 'Capaz apenas de direitos na ordem civil', isCorrect: false },
+                          { text: 'Capaz apenas de deveres na ordem civil', isCorrect: false },
+                          { text: 'Incapaz até atingir a maioridade', isCorrect: false }
+                        ],
+                        type: 'MULTIPLE_CHOICE',
+                        explanation: 'O art. 1º estabelece que toda pessoa é capaz de direitos E deveres na ordem civil, consagrando a capacidade jurídica universal.'
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 id: '2',
-                text: 'Qual das seguintes é uma característica fundamental do Direito?',
-                options: [
-                  { text: 'Opcional', isCorrect: false },
-                  { text: 'Imperativo', isCorrect: true },
-                  { text: 'Sugestivo', isCorrect: false },
-                  { text: 'Temporário', isCorrect: false }
+                title: 'Art. 2º do Código Civil - Nascituro',
+                slug: 'art-2-codigo-civil-nascituro',
+                content: [
+                  {
+                    type: 'heading',
+                    level: 2,
+                    text: 'Art. 2º do Código Civil - Proteção do Nascituro'
+                  },
+                  {
+                    type: 'quote',
+                    text: 'A personalidade civil da pessoa começa do nascimento com vida; mas a lei põe a salvo, desde a concepção, os direitos do nascituro.',
+                    author: 'Art. 2º do Código Civil Brasileiro'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Teorias sobre o Nascituro'
+                  },
+                  {
+                    type: 'list',
+                    ordered: true,
+                    items: [
+                      'Teoria Natalista: personalidade inicia com o nascimento com vida',
+                      'Teoria da Personalidade Condicional: personalidade desde a concepção, condicionada ao nascimento',
+                      'Teoria Concepcionista: personalidade desde a concepção'
+                    ]
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Direitos do Nascituro'
+                  },
+                  {
+                    type: 'list',
+                    ordered: false,
+                    items: [
+                      'Direito à vida e à integridade física',
+                      'Direito sucessório (herança)',
+                      'Direito a alimentos',
+                      'Direito ao reconhecimento de paternidade',
+                      'Direito a danos morais'
+                    ]
+                  }
                 ],
-                type: 'MULTIPLE_CHOICE',
-                explanation: 'A imperatividade é uma característica fundamental do Direito, tornando suas normas obrigatórias e vinculantes para todos.'
+                estimatedTime: 12,
+                difficulty: 'BEGINNER',
+                tags: ['nascituro', 'personalidade', 'concepção'],
+                order: 2,
+                subjectId: '1',
+                prerequisites: ['1'],
+                relatedPills: ['1', '3'],
+                quizzes: []
               }
             ]
-          }
-        ]
-      },
-      {
-        id: '2',
-        title: 'Fontes do Direito',
-        slug: 'fontes-do-direito',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Fontes do Direito'
           },
-          {
-            type: 'paragraph',
-            text: 'As fontes do Direito são os meios pelos quais as normas jurídicas se manifestam e se tornam conhecidas na sociedade. Elas representam a origem e o fundamento das regras que governam nossa vida em comunidade.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Classificação das Fontes'
-          },
-          {
-            type: 'paragraph',
-            text: 'As fontes do Direito podem ser classificadas em formais e materiais:'
-          },
-          {
-            type: 'heading',
-            level: 4,
-            text: 'Fontes Formais'
-          },
-          {
-            type: 'list',
-            ordered: true,
-            items: [
-              'Lei: norma escrita emanada do Poder Legislativo, seguindo processo específico',
-              'Costume: prática reiterada e aceita como obrigatória pela sociedade',
-              'Jurisprudência: decisões reiteradas dos tribunais sobre casos similares',
-              'Doutrina: opinião e interpretação dos estudiosos e especialistas do Direito',
-              'Princípios Gerais do Direito: valores fundamentais que orientam o ordenamento'
-            ]
-          }
-        ],
-        order: 2,
-        moduleId: '1',
-        quizzes: [
           {
             id: '2',
-            questions: [
+            title: 'Direito das Obrigações',
+            slug: 'direito-obrigacoes',
+            description: 'Estudo completo das obrigações civis e seus elementos.',
+            color: '#10B981',
+            iconUrl: '/icons/obrigacoes.svg',
+            order: 2,
+            moduleId: '1',
+            pills: [
               {
                 id: '3',
-                text: 'Qual é a principal fonte formal do Direito no Brasil?',
-                options: [
-                  { text: 'Costume', isCorrect: false },
-                  { text: 'Lei', isCorrect: true },
-                  { text: 'Jurisprudência', isCorrect: false },
-                  { text: 'Doutrina', isCorrect: false }
+                title: 'Princípio do Pacta Sunt Servanda',
+                slug: 'principio-pacta-sunt-servanda',
+                content: [
+                  {
+                    type: 'heading',
+                    level: 2,
+                    text: 'Princípio do Pacta Sunt Servanda'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'O princípio do pacta sunt servanda (os pactos devem ser cumpridos) é um dos pilares fundamentais do direito contratual, estabelecendo que os contratos fazem lei entre as partes.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Fundamento Legal'
+                  },
+                  {
+                    type: 'quote',
+                    text: 'O contrato tem força de lei entre as partes.',
+                    author: 'Princípio derivado do art. 421 do Código Civil'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Características'
+                  },
+                  {
+                    type: 'list',
+                    ordered: false,
+                    items: [
+                      'Força obrigatória dos contratos',
+                      'Intangibilidade do conteúdo contratual',
+                      'Impossibilidade de alteração unilateral',
+                      'Execução específica das obrigações'
+                    ]
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Limitações Modernas'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'O princípio sofre limitações pela função social do contrato, boa-fé objetiva e pela teoria da imprevisão (rebus sic stantibus).'
+                  }
                 ],
-                type: 'MULTIPLE_CHOICE',
-                explanation: 'A lei é a principal fonte formal do Direito no Brasil, sendo norma escrita emanada do Poder Legislativo seguindo processo específico.'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        id: '3',
-        title: 'Aplicação das Normas',
-        slug: 'aplicacao-das-normas',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Aplicação das Normas Jurídicas'
-          },
-          {
-            type: 'paragraph',
-            text: 'A aplicação das normas jurídicas é o processo pelo qual as regras abstratas do Direito são concretizadas em situações específicas. Este processo envolve interpretação, subsunção e decisão.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Elementos da Aplicação'
-          },
-          {
-            type: 'list',
-            ordered: true,
-            items: [
-              'Identificação da norma aplicável ao caso',
-              'Interpretação do conteúdo e alcance da norma',
-              'Análise dos fatos relevantes',
-              'Subsunção dos fatos à norma',
-              'Decisão e suas consequências jurídicas'
-            ]
-          }
-        ],
-        order: 3,
-        moduleId: '1',
-        quizzes: []
-      },
-      {
-        id: '4',
-        title: 'Interpretação Jurídica',
-        slug: 'interpretacao-juridica',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Métodos de Interpretação Jurídica'
-          },
-          {
-            type: 'paragraph',
-            text: 'A interpretação jurídica é a atividade intelectual que busca determinar o sentido e o alcance das normas jurídicas. É fundamental para a correta aplicação do Direito aos casos concretos.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Métodos Clássicos de Interpretação'
-          },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Interpretação Literal ou Gramatical: análise do texto da norma',
-              'Interpretação Lógica ou Sistemática: consideração do contexto normativo',
-              'Interpretação Histórica: investigação da intenção do legislador',
-              'Interpretação Teleológica: busca da finalidade da norma',
-              'Interpretação Sociológica: adaptação às necessidades sociais atuais'
-            ]
-          }
-        ],
-        order: 4,
-        moduleId: '1',
-        quizzes: []
-      },
-      {
-        id: '5',
-        title: 'Quiz de Revisão',
-        slug: 'quiz-revisao',
-        content: [
-          {
-            type: 'paragraph',
-            text: 'Teste seus conhecimentos sobre os conceitos fundamentais do Direito. Este quiz aborda os principais temas estudados no módulo de Introdução ao Direito.'
-          }
-        ],
-        order: 5,
-        moduleId: '1',
-        quizzes: [
-          {
-            id: '3',
-            questions: [
+                estimatedTime: 18,
+                difficulty: 'INTERMEDIATE',
+                tags: ['contratos', 'obrigações', 'princípios'],
+                order: 1,
+                subjectId: '2',
+                prerequisites: [],
+                relatedPills: ['4', '5'],
+                quizzes: []
+              },
               {
                 id: '4',
-                text: 'A interpretação que busca a finalidade da norma é chamada de:',
-                options: [
-                  { text: 'Literal', isCorrect: false },
-                  { text: 'Histórica', isCorrect: false },
-                  { text: 'Teleológica', isCorrect: true },
-                  { text: 'Sistemática', isCorrect: false }
+                title: 'Cláusula Rebus Sic Stantibus',
+                slug: 'clausula-rebus-sic-stantibus',
+                content: [
+                  {
+                    type: 'heading',
+                    level: 2,
+                    text: 'Cláusula Rebus Sic Stantibus'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A cláusula rebus sic stantibus (estando as coisas assim) permite a revisão ou resolução de contratos quando ocorrem mudanças imprevisíveis que tornam excessivamente oneroso o cumprimento da obrigação.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Fundamento Legal'
+                  },
+                  {
+                    type: 'quote',
+                    text: 'Nos contratos de execução continuada ou diferida, se a prestação de uma das partes se tornar excessivamente onerosa, com extrema vantagem para a outra, em virtude de acontecimentos extraordinários e imprevisíveis, poderá o devedor pedir a resolução do contrato.',
+                    author: 'Art. 478 do Código Civil'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Requisitos para Aplicação'
+                  },
+                  {
+                    type: 'list',
+                    ordered: true,
+                    items: [
+                      'Contrato de execução continuada ou diferida',
+                      'Onerosidade excessiva superveniente',
+                      'Extrema vantagem para a outra parte',
+                      'Acontecimentos extraordinários e imprevisíveis',
+                      'Nexo causal entre o fato e a onerosidade'
+                    ]
+                  }
                 ],
-                type: 'MULTIPLE_CHOICE',
-                explanation: 'A interpretação teleológica busca identificar a finalidade, o objetivo que a norma pretende alcançar.'
+                estimatedTime: 20,
+                difficulty: 'ADVANCED',
+                tags: ['contratos', 'revisão', 'onerosidade excessiva'],
+                order: 2,
+                subjectId: '2',
+                prerequisites: ['3'],
+                relatedPills: ['3', '5'],
+                quizzes: []
               }
             ]
           }
@@ -290,233 +360,144 @@ export const mockModules: MockModule[] = [
   },
   {
     id: '2',
-    title: 'Direito Constitucional',
-    slug: 'direito-constitucional',
-    description: 'Estudo da Constituição Federal e seus princípios fundamentais.',
+    title: 'Formação em Direito Constitucional',
+    slug: 'formacao-direito-constitucional',
+    description: 'Formação especializada em Direito Constitucional, abordando desde os princípios fundamentais até o controle de constitucionalidade.',
+    duration: '6 meses',
+    level: 'INTERMEDIATE',
+    price: 1297,
+    imageUrl: '/images/formations/direito-constitucional.jpg',
     order: 2,
-    pills: [
+    modules: [
       {
-        id: '6',
-        title: 'Princípios Constitucionais',
+        id: '2',
+        title: 'Módulo 1 - Princípios Constitucionais',
         slug: 'principios-constitucionais',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Princípios Fundamentais da Constituição'
-          },
-          {
-            type: 'paragraph',
-            text: 'Os princípios constitucionais são as bases fundamentais que orientam todo o ordenamento jurídico brasileiro. Eles representam os valores mais importantes da nossa sociedade e servem como diretrizes para a interpretação e aplicação de todas as normas.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Princípios Fundamentais (Arts. 1º a 4º da CF/88)'
-          },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Soberania: poder supremo do Estado brasileiro',
-              'Cidadania: participação ativa na vida política',
-              'Dignidade da pessoa humana: valor supremo do ser humano',
-              'Valores sociais do trabalho e da livre iniciativa',
-              'Pluralismo político: diversidade de ideias e partidos'
-            ]
-          }
-        ],
+        description: 'Estudo dos princípios fundamentais da Constituição Federal.',
         order: 1,
-        moduleId: '2',
-        quizzes: []
-      },
-      {
-        id: '7',
-        title: 'Direitos Fundamentais',
-        slug: 'direitos-fundamentais',
-        content: [
+        formationId: '2',
+        subjects: [
           {
-            type: 'heading',
-            level: 2,
-            text: 'Direitos e Garantias Fundamentais'
-          },
-          {
-            type: 'paragraph',
-            text: 'Os direitos fundamentais são direitos básicos e essenciais de todos os cidadãos, protegidos pela Constituição Federal. Eles representam conquistas históricas da humanidade na luta pela dignidade e liberdade.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Classificação dos Direitos Fundamentais'
-          },
-          {
-            type: 'list',
-            ordered: false,
-            items: [
-              'Direitos Individuais: vida, liberdade, igualdade, segurança, propriedade',
-              'Direitos Coletivos: direitos de grupos e comunidades',
-              'Direitos Sociais: educação, saúde, trabalho, moradia',
-              'Direitos de Nacionalidade: vínculo jurídico com o Estado',
-              'Direitos Políticos: participação na vida política do país'
-            ]
+            id: '3',
+            title: 'Princípios Fundamentais',
+            slug: 'principios-fundamentais',
+            description: 'Análise dos princípios fundamentais da República Federativa do Brasil.',
+            color: '#8B5CF6',
+            iconUrl: '/icons/principios.svg',
+            order: 1,
+            moduleId: '2',
+            pills: []
           }
-        ],
-        order: 2,
-        moduleId: '2',
-        quizzes: []
-      }
-    ]
-  },
-  {
-    id: '3',
-    title: 'Direito Civil',
-    slug: 'direito-civil',
-    description: 'Relações jurídicas entre particulares e seus direitos.',
-    order: 3,
-    pills: [
-      {
-        id: '8',
-        title: 'Pessoas Naturais',
-        slug: 'pessoas-naturais',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Conceito de Pessoa Natural'
-          },
-          {
-            type: 'paragraph',
-            text: 'Pessoa natural é o ser humano considerado como sujeito de direitos e obrigações. Todo ser humano tem personalidade jurídica, que é a aptidão para ser titular de direitos e deveres na ordem civil.'
-          },
-          {
-            type: 'heading',
-            level: 3,
-            text: 'Início da Personalidade'
-          },
-          {
-            type: 'paragraph',
-            text: 'A personalidade civil da pessoa começa do nascimento com vida. No entanto, a lei põe a salvo, desde a concepção, os direitos do nascituro.'
-          }
-        ],
-        order: 1,
-        moduleId: '3',
-        quizzes: []
-      },
-      {
-        id: '9',
-        title: 'Capacidade Civil',
-        slug: 'capacidade-civil',
-        content: [
-          {
-            type: 'heading',
-            level: 2,
-            text: 'Capacidade de Direito e de Fato'
-          },
-          {
-            type: 'paragraph',
-            text: 'A capacidade civil divide-se em capacidade de direito (ou de gozo) e capacidade de fato (ou de exercício). A primeira é a aptidão para ser titular de direitos, enquanto a segunda é a aptidão para exercer pessoalmente os atos da vida civil.'
-          }
-        ],
-        order: 2,
-        moduleId: '3',
-        quizzes: []
+        ]
       }
     ]
   }
 ];
 
-// Adicionar referência do módulo em cada pílula
-mockModules.forEach(module => {
-  module.pills.forEach(pill => {
-    pill.module = {
-      id: module.id,
-      title: module.title,
-      slug: module.slug
-    };
+// Adicionar referências cruzadas
+mockFormations.forEach(formation => {
+  formation.modules.forEach(module => {
+    module.subjects.forEach(subject => {
+      subject.pills.forEach(pill => {
+        pill.subject = {
+          id: subject.id,
+          title: subject.title,
+          slug: subject.slug,
+          color: subject.color
+        };
+      });
+    });
   });
 });
 
 export const mockGlossaryTerms = [
   {
     id: '1',
-    term: 'Direito',
-    definition: 'Conjunto de normas que regulam a vida em sociedade, estabelecendo direitos e deveres para os indivíduos e organizações.',
-    category: 'Conceitos Fundamentais',
-    relatedTerms: ['Lei', 'Norma', 'Ordenamento Jurídico']
+    term: 'Pacta Sunt Servanda',
+    definition: 'Princípio fundamental do direito contratual que estabelece que os contratos fazem lei entre as partes e devem ser cumpridos.',
+    category: 'Princípios Contratuais',
+    relatedTerms: ['Rebus Sic Stantibus', 'Força Obrigatória', 'Boa-fé Objetiva']
   },
   {
     id: '2',
-    term: 'Lei',
-    definition: 'Norma jurídica escrita, emanada do Poder Legislativo, que estabelece regras de conduta obrigatórias para todos.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Direito', 'Norma', 'Legislação']
+    term: 'Rebus Sic Stantibus',
+    definition: 'Cláusula que permite a revisão ou resolução de contratos quando ocorrem mudanças imprevisíveis que tornam excessivamente oneroso o cumprimento.',
+    category: 'Teoria da Imprevisão',
+    relatedTerms: ['Pacta Sunt Servanda', 'Onerosidade Excessiva', 'Caso Fortuito']
   },
   {
     id: '3',
-    term: 'Constituição',
-    definition: 'Lei fundamental de um Estado, que estabelece a organização política, os direitos fundamentais e os princípios básicos da ordem jurídica.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Direitos Fundamentais', 'Estado', 'Supremacia Constitucional']
+    term: 'Nascituro',
+    definition: 'Ser humano já concebido, mas que ainda não nasceu. A lei protege seus direitos desde a concepção.',
+    category: 'Personalidade Civil',
+    relatedTerms: ['Personalidade', 'Capacidade', 'Concepção']
   },
   {
     id: '4',
-    term: 'Jurisprudência',
-    definition: 'Conjunto de decisões reiteradas dos tribunais sobre casos similares, que serve como orientação para casos futuros.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Tribunal', 'Precedente', 'Decisão Judicial']
-  },
-  {
-    id: '5',
-    term: 'Doutrina',
-    definition: 'Opinião e interpretação dos estudiosos e especialistas do Direito sobre questões jurídicas.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Jurista', 'Interpretação', 'Ciência Jurídica']
-  },
-  {
-    id: '6',
-    term: 'Princípios Gerais do Direito',
-    definition: 'Valores fundamentais que orientam o ordenamento jurídico, servindo como base para a interpretação e aplicação das normas.',
-    category: 'Conceitos Fundamentais',
-    relatedTerms: ['Valores', 'Interpretação', 'Ordenamento Jurídico']
-  },
-  {
-    id: '7',
-    term: 'Direitos Fundamentais',
-    definition: 'Direitos básicos e essenciais de todos os cidadãos, protegidos pela Constituição Federal.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Constituição', 'Dignidade Humana', 'Cidadania']
-  },
-  {
-    id: '8',
-    term: 'Estado de Direito',
-    definition: 'Forma de organização política em que o poder estatal está limitado pelo Direito e pela Constituição.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Constituição', 'Legalidade', 'Separação de Poderes']
-  },
-  {
-    id: '9',
-    term: 'Hermenêutica Jurídica',
-    definition: 'Arte e ciência de interpretar as normas jurídicas, buscando determinar seu sentido e alcance.',
-    category: 'Interpretação',
-    relatedTerms: ['Interpretação', 'Métodos Interpretativos', 'Aplicação do Direito']
-  },
-  {
-    id: '10',
-    term: 'Subsunção',
-    definition: 'Processo lógico de aplicação da norma jurídica ao caso concreto, verificando se os fatos se enquadram na hipótese normativa.',
-    category: 'Aplicação do Direito',
-    relatedTerms: ['Aplicação', 'Norma', 'Caso Concreto']
+    term: 'Personalidade Jurídica',
+    definition: 'Aptidão para ser sujeito de direitos e obrigações na ordem civil. Todo ser humano possui personalidade jurídica.',
+    category: 'Teoria Geral',
+    relatedTerms: ['Capacidade', 'Pessoa Natural', 'Direitos Fundamentais']
   }
 ];
 
+export function findFormationBySlug(slug: string): MockFormation | undefined {
+  return mockFormations.find(formation => formation.slug === slug);
+}
+
 export function findModuleBySlug(slug: string): MockModule | undefined {
-  return mockModules.find(module => module.slug === slug);
+  for (const formation of mockFormations) {
+    const module = formation.modules.find(module => module.slug === slug);
+    if (module) return module;
+  }
+  return undefined;
+}
+
+export function findSubjectBySlug(slug: string): MockSubject | undefined {
+  for (const formation of mockFormations) {
+    for (const module of formation.modules) {
+      const subject = module.subjects.find(subject => subject.slug === slug);
+      if (subject) return subject;
+    }
+  }
+  return undefined;
 }
 
 export function findPillBySlug(slug: string): MockPill | undefined {
-  for (const module of mockModules) {
-    const pill = module.pills.find(pill => pill.slug === slug);
-    if (pill) return pill;
+  for (const formation of mockFormations) {
+    for (const module of formation.modules) {
+      for (const subject of module.subjects) {
+        const pill = subject.pills.find(pill => pill.slug === slug);
+        if (pill) return pill;
+      }
+    }
+  }
+  return undefined;
+}
+
+export function getAllPills(): MockPill[] {
+  const pills: MockPill[] = [];
+  for (const formation of mockFormations) {
+    for (const module of formation.modules) {
+      for (const subject of module.subjects) {
+        pills.push(...subject.pills);
+      }
+    }
+  }
+  return pills;
+}
+
+export function getPillsBySubject(subjectId: string): MockPill[] {
+  const subject = findSubjectById(subjectId);
+  return subject ? subject.pills : [];
+}
+
+export function findSubjectById(id: string): MockSubject | undefined {
+  for (const formation of mockFormations) {
+    for (const module of formation.modules) {
+      const subject = module.subjects.find(subject => subject.id === id);
+      if (subject) return subject;
+    }
   }
   return undefined;
 }

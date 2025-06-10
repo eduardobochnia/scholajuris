@@ -24,6 +24,7 @@ model User {
   sessions      Session[]
   userProgress  UserProgress[]
   userAchievements UserAchievement[]
+  enrollments   Enrollment[]
 }
 
 enum UserRole {
@@ -69,33 +70,87 @@ model VerificationToken {
 }
 // Fim NextAuth.js
 
-model Module {
+// Nova estrutura hierárquica
+model Formation {
   id          String   @id @default(cuid())
   title       String   @unique
   slug        String   @unique
   description String?
-  order       Int?     @unique // Ordem de exibição dos módulos
+  duration    String?  // Ex: "6 meses", "1 ano"
+  level       Level    @default(BEGINNER)
+  price       Decimal? // Preço da formação
   imageUrl    String?
-  pills       Pill[]
+  order       Int?     @unique
+  isActive    Boolean  @default(true)
+  modules     Module[]
+  enrollments Enrollment[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
-model Pill { // Lição / Pílula
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Module {
   id          String   @id @default(cuid())
   title       String
   slug        String   @unique
-  content     Json     // Armazena JSON para conteúdo rico (texto, links, referências a imagens/vídeos)
-  videoUrl    String?
-  order       Int      // Ordem da pílula dentro do módulo
+  description String?
+  order       Int      // Ordem dentro da formação
+  formationId String
+  formation   Formation @relation(fields: [formationId], references: [id])
+  subjects    Subject[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([formationId, order])
+}
+
+model Subject {
+  id          String   @id @default(cuid())
+  title       String   // Ex: "Direito Civil", "Direito Constitucional"
+  slug        String   @unique
+  description String?
+  color       String?  // Cor para identificação visual
+  iconUrl     String?  // Ícone da matéria
+  order       Int      // Ordem dentro do módulo
   moduleId    String
   module      Module   @relation(fields: [moduleId], references: [id])
-  quizzes     Quiz[]
-  userProgress UserProgress[]
+  pills       Pill[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@unique([moduleId, order])
+}
+
+model Pill {
+  id          String   @id @default(cuid())
+  title       String   // Ex: "Art. 1º do Código Civil", "Princípio do pacta sunt servanda"
+  slug        String   @unique
+  content     Json     // Conteúdo rico: lei, doutrina, infográficos
+  videoUrl    String?
+  estimatedTime Int?   // Tempo estimado em minutos
+  difficulty  Level    @default(BEGINNER)
+  tags        String[] // Tags para interconexão
+  order       Int      // Ordem dentro da matéria
+  subjectId   String
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+  
+  // Relacionamentos para interconexão
+  prerequisites Pill[] @relation("PillPrerequisites")
+  dependents    Pill[] @relation("PillPrerequisites")
+  relatedPills  Pill[] @relation("RelatedPills")
+  relatedTo     Pill[] @relation("RelatedPills")
+  
+  quizzes      Quiz[]
+  userProgress UserProgress[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([subjectId, order])
 }
 
 model Quiz {
@@ -113,7 +168,7 @@ model Question {
   quizId    String
   quiz      Quiz     @relation(fields: [quizId], references: [id])
   options   Json     // Ex: [{text: "Opção A", isCorrect: true}, {text: "Opção B", isCorrect: false}]
-  type      QuestionType @default(MULTIPLE_CHOICE) // MULTIPLE_CHOICE, TRUE_FALSE, FILL_IN_THE_BLANK
+  type      QuestionType @default(MULTIPLE_CHOICE)
   explanation String? // Explicação para a resposta correta
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -125,6 +180,19 @@ enum QuestionType {
   FILL_IN_THE_BLANK
 }
 
+model Enrollment {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  formationId String
+  formation   Formation @relation(fields: [formationId], references: [id])
+  enrolledAt  DateTime @default(now())
+  completedAt DateTime?
+  progress    Float    @default(0) // Percentual de conclusão
+
+  @@unique([userId, formationId])
+}
+
 model UserProgress {
   id          String   @id @default(cuid())
   userId      String
@@ -132,18 +200,19 @@ model UserProgress {
   pillId      String
   pill        Pill     @relation(fields: [pillId], references: [id])
   completedAt DateTime @default(now())
-  score       Int?     // Pontuação no quiz associado à pílula, se houver
-  streakCount Int      @default(0) // Controlar streak aqui ou no User?
+  score       Int?     // Pontuação no quiz associado à pílula
+  timeSpent   Int?     // Tempo gasto em minutos
+  streakCount Int      @default(0)
 
-  @@unique([userId, pillId]) // Usuário só completa uma pílula uma vez
+  @@unique([userId, pillId])
 }
 
 model Achievement {
   id          String   @id @default(cuid())
-  name        String   @unique // Ex: "Jurista Iniciante", "Mestre das Leis"
+  name        String   @unique
   description String
-  iconUrl     String?  // URL do ícone da láurea
-  criteria    Json     // Ex: {type: "pillsCompleted", count: 10} ou {type: "streak", days: 7}
+  iconUrl     String?
+  criteria    Json     // Critérios para desbloqueio
   userAchievements UserAchievement[]
   createdAt   DateTime @default(now())
 }

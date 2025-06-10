@@ -4,67 +4,46 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Book, BookOpen, Bookmark, AlertCircle } from 'lucide-react';
+import { Search, Book, BookOpen, Bookmark, AlertCircle, Target, Clock, Tag } from 'lucide-react';
 import Link from 'next/link';
-
-interface Module {
-  id: string;
-  title: string;
-  description: string;
-  order: number;
-  slug: string;
-  pills: {
-    id: string;
-    title: string;
-    slug: string;
-    order: number;
-  }[];
-}
+import { mockFormations, getAllPills, MockPill } from '@/lib/mockData';
 
 export default function BibliotecaPage() {
-  const [modules, setModules] = useState<Module[]>([]);
+  const [formations, setFormations] = useState(mockFormations);
+  const [pills, setPills] = useState<MockPill[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedModule, setSelectedModule] = useState<string | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchModules = async () => {
-      try {
-        console.log('🔄 Carregando biblioteca...');
-        
-        const response = await fetch('/api/content/modules');
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.details || errorData.error || 'Erro ao carregar módulos');
-        }
-        const data = await response.json();
-        
-        console.log('✅ Biblioteca carregada:', data);
-        setModules(data);
-      } catch (err) {
-        console.error('❌ Erro ao carregar biblioteca:', err);
-        setError(err instanceof Error ? err.message : 'Erro desconhecido');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchModules();
+    try {
+      console.log('🔄 Carregando biblioteca...');
+      
+      const allPills = getAllPills();
+      setPills(allPills);
+      setFormations(mockFormations);
+      
+      console.log('✅ Biblioteca carregada:', { formations: mockFormations.length, pills: allPills.length });
+    } catch (err) {
+      console.error('❌ Erro ao carregar biblioteca:', err);
+      setError(err instanceof Error ? err.message : 'Erro desconhecido');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const filteredModules = modules.filter(module => {
-    const matchesSearch = module.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      module.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      module.pills.some(pill => 
-        pill.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  const allSubjects = formations.flatMap(formation => 
+    formation.modules.flatMap(module => module.subjects)
+  );
 
-    if (selectedModule) {
-      return matchesSearch && module.id === selectedModule;
-    }
+  const filteredPills = pills.filter(pill => {
+    const matchesSearch = pill.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      pill.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
 
-    return matchesSearch;
+    const matchesSubject = selectedSubject === null || pill.subjectId === selectedSubject;
+
+    return matchesSearch && matchesSubject;
   });
 
   if (loading) {
@@ -101,9 +80,9 @@ export default function BibliotecaPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Biblioteca</h1>
+          <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Biblioteca de Pílulas</h1>
           <p className="text-xl text-[#86868b]">
-            Explore todo o conteúdo disponível e encontre o que você precisa.
+            Explore todas as pílulas de conhecimento disponíveis organizadas por matéria.
           </p>
         </div>
       </div>
@@ -115,7 +94,7 @@ export default function BibliotecaPage() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#86868b] w-5 h-5" />
             <Input
               type="text"
-              placeholder="Buscar por título, descrição ou conteúdo..."
+              placeholder="Buscar por título, tags ou conteúdo..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-12 bg-white border-gray-200 focus:border-[#0071e3] focus:ring-[#0071e3]"
@@ -123,95 +102,147 @@ export default function BibliotecaPage() {
           </div>
           <Button
             variant="outline"
-            onClick={() => setSelectedModule(null)}
-            className={`h-12 px-6 ${!selectedModule ? 'bg-[#0071e3] text-white border-[#0071e3]' : 'border-gray-200'}`}
+            onClick={() => setSelectedSubject(null)}
+            className={`h-12 px-6 ${!selectedSubject ? 'bg-[#0071e3] text-white border-[#0071e3]' : 'border-gray-200'}`}
           >
             <Book className="mr-2 h-4 w-4" />
-            Todos
+            Todas as Matérias
           </Button>
         </div>
 
-        {/* Content Grid */}
+        {/* Subject Filter */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {allSubjects.map((subject) => (
+            <Button
+              key={subject.id}
+              variant="outline"
+              onClick={() => setSelectedSubject(subject.id)}
+              className={`${selectedSubject === subject.id ? 'bg-[#0071e3] text-white border-[#0071e3]' : 'border-gray-200'}`}
+            >
+              <div 
+                className="w-3 h-3 rounded-full mr-2"
+                style={{ backgroundColor: subject.color }}
+              ></div>
+              {subject.title}
+            </Button>
+          ))}
+        </div>
+
+        {/* Pills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredModules.map((module) => (
-            <Card key={module.id} className="bg-white shadow-sm hover:shadow-lg transition-shadow duration-300">
+          {filteredPills.map((pill) => (
+            <Card key={pill.id} className="bg-white shadow-sm hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-[#1d1d1f]">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-lg flex items-center justify-center">
-                    <BookOpen className="h-5 w-5 text-white" />
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center space-x-2">
+                    {pill.subject && (
+                      <div 
+                        className="w-4 h-4 rounded-full"
+                        style={{ backgroundColor: pill.subject.color }}
+                      ></div>
+                    )}
+                    <span className="text-sm text-[#86868b]">{pill.subject?.title}</span>
                   </div>
-                  {module.title}
+                  <span className="text-xs bg-[#f5f5f7] px-2 py-1 rounded-full text-[#86868b]">
+                    {pill.difficulty}
+                  </span>
+                </div>
+                <CardTitle className="text-lg font-bold text-[#1d1d1f] leading-tight">
+                  {pill.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-[#86868b] mb-4 line-clamp-2">
-                  {module.description}
-                </p>
-                <div className="space-y-2">
-                  <h4 className="font-medium text-[#1d1d1f] text-sm">Pílulas disponíveis:</h4>
-                  {module.pills.slice(0, 3).map((pill) => (
-                    <Link
-                      key={pill.id}
-                      href={`/pilulas/${pill.slug}`}
-                      className="block p-2 hover:bg-[#f5f5f7] rounded-md transition-colors"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Bookmark className="h-4 w-4 text-[#86868b]" />
-                        <span className="text-sm text-[#1d1d1f]">{pill.title}</span>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm text-[#86868b]">
+                    <div className="flex items-center space-x-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{pill.estimatedTime} min</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Target className="w-4 h-4" />
+                      <span>Ordem {pill.order}</span>
+                    </div>
+                  </div>
+
+                  {pill.tags.length > 0 && (
+                    <div>
+                      <div className="flex items-center space-x-1 mb-2">
+                        <Tag className="w-4 h-4 text-[#86868b]" />
+                        <span className="text-sm font-medium text-[#1d1d1f]">Tags:</span>
                       </div>
-                    </Link>
-                  ))}
-                  {module.pills.length > 3 && (
-                    <Link
-                      href={`/modulos/${module.slug}`}
-                      className="block p-2 text-[#0071e3] hover:text-[#0077ED] text-sm font-medium transition-colors"
-                    >
-                      Ver todas as {module.pills.length} pílulas →
-                    </Link>
+                      <div className="flex flex-wrap gap-1">
+                        {pill.tags.slice(0, 3).map((tag, index) => (
+                          <span
+                            key={index}
+                            className="text-xs text-[#0071e3] bg-blue-50 px-2 py-1 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {pill.tags.length > 3 && (
+                          <span className="text-xs text-[#86868b] px-2 py-1">
+                            +{pill.tags.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   )}
+
+                  <Link href={`/pilulas/${pill.slug}`}>
+                    <Button className="w-full bg-[#0071e3] hover:bg-[#0077ED] text-white font-medium">
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      Estudar Pílula
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {filteredModules.length === 0 && (
+        {filteredPills.length === 0 && (
           <div className="text-center py-12">
             <Book className="h-16 w-16 text-[#86868b] mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">
-              Nenhum conteúdo encontrado
+              Nenhuma pílula encontrada
             </h3>
             <p className="text-[#86868b]">
               {searchQuery 
                 ? `Nenhum resultado para "${searchQuery}".`
-                : 'Nenhum conteúdo disponível no momento.'
+                : 'Nenhuma pílula disponível com os filtros aplicados.'
               }
             </p>
           </div>
         )}
 
         {/* Statistics */}
-        {modules.length > 0 && (
+        {pills.length > 0 && (
           <div className="mt-12 bg-white rounded-2xl p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-[#1d1d1f] mb-6">Estatísticas da Biblioteca</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#0071e3] mb-2">
-                  {modules.length}
+                  {formations.length}
                 </div>
-                <div className="text-[#86868b]">Módulos Disponíveis</div>
+                <div className="text-[#86868b]">Formações</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#34C759] mb-2">
-                  {modules.reduce((acc, module) => acc + module.pills.length, 0)}
+                  {allSubjects.length}
+                </div>
+                <div className="text-[#86868b]">Matérias</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#FF9500] mb-2">
+                  {pills.length}
                 </div>
                 <div className="text-[#86868b]">Total de Pílulas</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-[#FF9500] mb-2">
-                  {Math.round(modules.reduce((acc, module) => acc + module.pills.length, 0) / modules.length)}
+                <div className="text-3xl font-bold text-[#FF2D55] mb-2">
+                  {filteredPills.length}
                 </div>
-                <div className="text-[#86868b]">Média por Módulo</div>
+                <div className="text-[#86868b]">Resultados Filtrados</div>
               </div>
             </div>
           </div>
