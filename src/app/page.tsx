@@ -1,12 +1,31 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { 
+  BookOpen, 
+  Trophy, 
+  Users, 
+  Star, 
+  CheckCircle, 
+  ArrowRight, 
+  Play,
+  Clock,
+  Target,
+  Zap,
+  Shield,
+  Smartphone,
+  Globe,
+  Award,
+  TrendingUp,
+  Heart,
+  MessageCircle
+} from 'lucide-react';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f5f5f7]">
       {/* Hero Section */}
       <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <div className="mb-16">
             <Image
               src="/images/logo.png"
@@ -22,30 +41,132 @@ export default function Home() {
             Schola Juris
           </h1>
           
-          <p className="text-xl md:text-2xl text-[#1d1d1f]/90 max-w-xl mx-auto mb-16 leading-relaxed font-normal">
-            Transforme sua jornada jurídica com nossa plataforma inovadora de aprendizado.
-            Conecte-se com especialistas, acesse conteúdo exclusivo e evolua sua carreira.
+          <p className="text-xl md:text-2xl text-[#1d1d1f]/90 max-w-2xl mx-auto mb-8 leading-relaxed font-normal">
+            A plataforma de microlearning jurídico mais avançada do Brasil.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <p className="text-lg text-[#86868b] max-w-xl mx-auto mb-16 leading-relaxed">
+            Transforme sua carreira jurídica com trilhas personalizadas, gamificação inteligente e conteúdo de alta qualidade.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <Link 
               href="/trilhas" 
-              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200"
+              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-all duration-200 transform hover:scale-105 shadow-lg"
             >
-              Explorar Trilhas
+              Começar Gratuitamente
             </Link>
             <Link 
-              href="#modulos" 
-              className="border-2 border-[#0071e3] text-[#0071e3] text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0071e3]/10 transition-colors duration-200"
+              href="#demo" 
+              className="border-2 border-[#0071e3] text-[#0071e3] text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0071e3]/10 transition-all duration-200 flex items-center justify-center"
             >
-              Ver Conteúdo
+              <Play className="mr-2 h-5 w-5" />
+              Ver Demo
             </Link>
+          </div>
+
+          {/* Social Proof */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-[#86868b]">
+            <div className="flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              <span>+10.000 estudantes</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="h-5 w-5 text-yellow-500 fill-current" />
+              <span>4.9/5 avaliação</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Trophy className="h-5 w-5 text-yellow-600" />
+              <span>Premiado 2024</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefícios Principais */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              Por que escolher a Schola Juris?
+            </h2>
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+              Uma plataforma completa que revoluciona o ensino jurídico com tecnologia de ponta.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Benefício 1 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#007AFF] flex items-center justify-center">
+                <Zap className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Aprendizado Acelerado</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Metodologia de microlearning que acelera a absorção de conhecimento em até 3x.
+              </p>
+            </div>
+
+            {/* Benefício 2 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#34C759] to-[#30D158] flex items-center justify-center">
+                <Target className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Trilhas Personalizadas</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                IA que adapta o conteúdo ao seu nível e objetivos profissionais específicos.
+              </p>
+            </div>
+
+            {/* Benefício 3 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#FF9500] to-[#FFCC02] flex items-center justify-center">
+                <Trophy className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Gamificação Avançada</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Sistema de conquistas e rankings que mantém você motivado e engajado.
+              </p>
+            </div>
+
+            {/* Benefício 4 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#5856D6] to-[#8B7CF6] flex items-center justify-center">
+                <Shield className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Conteúdo Certificado</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Material desenvolvido por especialistas e validado por instituições renomadas.
+              </p>
+            </div>
+
+            {/* Benefício 5 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] flex items-center justify-center">
+                <Smartphone className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Multiplataforma</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Estude onde quiser: web, mobile, tablet. Sincronização automática em tempo real.
+              </p>
+            </div>
+
+            {/* Benefício 6 */}
+            <div className="text-center p-8 rounded-2xl bg-[#f5f5f7] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#007AFF] to-[#40A9FF] flex items-center justify-center">
+                <Globe className="w-10 h-10 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Acesso Global</h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Estude offline, sincronize online. Acesso 24/7 de qualquer lugar do mundo.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Trilhas Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
@@ -58,50 +179,68 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Trilha 1 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                <CheckCircle className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Fundamentos do Direito</h3>
-              <p className="text-[#86868b] mb-4">
-                Trilha completa para iniciantes, cobrindo todos os conceitos fundamentais.
+              <p className="text-[#86868b] mb-6">
+                Trilha completa para iniciantes, cobrindo todos os conceitos fundamentais do direito brasileiro.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                8 semanas • Nível Iniciante
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">8 semanas • Nível Iniciante</span>
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                  <span className="text-sm text-[#86868b]">4.9</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-[#86868b]">1.247 estudantes</span>
+                <span className="text-sm font-medium text-green-600">Gratuito</span>
               </div>
             </div>
 
             {/* Trilha 2 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#34C759] to-[#30D158] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+                <Award className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Empresarial</h3>
-              <p className="text-[#86868b] mb-4">
-                Especialização em direito empresarial com foco em aplicações práticas.
+              <p className="text-[#86868b] mb-6">
+                Especialização em direito empresarial com foco em aplicações práticas e casos reais.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                10 semanas • Nível Intermediário
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">10 semanas • Nível Intermediário</span>
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                  <span className="text-sm text-[#86868b]">4.8</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-[#86868b]">892 estudantes</span>
+                <span className="text-sm font-medium text-[#0071e3]">R$ 197/mês</span>
               </div>
             </div>
 
             {/* Trilha 3 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+                <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Penal Avançado</h3>
-              <p className="text-[#86868b] mb-4">
-                Aprofundamento em direito penal com análise de casos complexos.
+              <p className="text-[#86868b] mb-6">
+                Aprofundamento em direito penal com análise de casos complexos e jurisprudência atual.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                12 semanas • Nível Avançado
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">12 semanas • Nível Avançado</span>
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                  <span className="text-sm text-[#86868b]">4.9</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-[#86868b]">634 estudantes</span>
+                <span className="text-sm font-medium text-[#0071e3]">R$ 297/mês</span>
               </div>
             </div>
           </div>
@@ -112,10 +251,159 @@ export default function Home() {
             </p>
             <Link 
               href="/trilhas" 
-              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
+              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-flex items-center"
             >
               Ver Todas as Trilhas
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Planos e Preços */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              Planos e Preços
+            </h2>
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+              Escolha o plano ideal para acelerar sua carreira jurídica.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Plano Gratuito */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-[#1d1d1f] mb-2">Gratuito</h3>
+                <div className="text-4xl font-bold text-[#1d1d1f] mb-2">R$ 0</div>
+                <p className="text-[#86868b]">Para sempre</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Acesso a trilha básica</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">5 pílulas por semana</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Quizzes básicos</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Certificado de conclusão</span>
+                </li>
+              </ul>
+              
+              <Link 
+                href="/trilhas"
+                className="w-full bg-[#86868b] text-white py-3 px-6 rounded-xl font-medium hover:bg-[#6d6d70] transition-colors duration-200 text-center block"
+              >
+                Começar Gratuitamente
+              </Link>
+            </div>
+
+            {/* Plano Pro */}
+            <div className="bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl p-8 text-white relative transform scale-105 shadow-xl">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-[#FF9500] text-white px-4 py-2 rounded-full text-sm font-medium">
+                  Mais Popular
+                </span>
+              </div>
+              
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold mb-2">Pro</h3>
+                <div className="text-4xl font-bold mb-2">R$ 197</div>
+                <p className="text-blue-100">por mês</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>Acesso a todas as trilhas</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>Pílulas ilimitadas</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>IA personalizada</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>Mentoria em grupo</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>Certificados profissionais</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                  <span>Suporte prioritário</span>
+                </li>
+              </ul>
+              
+              <Link 
+                href="/trilhas"
+                className="w-full bg-white text-[#0071e3] py-3 px-6 rounded-xl font-medium hover:bg-gray-50 transition-colors duration-200 text-center block"
+              >
+                Começar Teste Gratuito
+              </Link>
+            </div>
+
+            {/* Plano Premium */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-[#1d1d1f] mb-2">Premium</h3>
+                <div className="text-4xl font-bold text-[#1d1d1f] mb-2">R$ 397</div>
+                <p className="text-[#86868b]">por mês</p>
+              </div>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Tudo do plano Pro</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Mentoria individual</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Acesso antecipado</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Networking exclusivo</span>
+                </li>
+                <li className="flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-[#1d1d1f]">Consultoria de carreira</span>
+                </li>
+              </ul>
+              
+              <Link 
+                href="/trilhas"
+                className="w-full bg-[#1d1d1f] text-white py-3 px-6 rounded-xl font-medium hover:bg-[#2d2d2f] transition-colors duration-200 text-center block"
+              >
+                Falar com Especialista
+              </Link>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-[#86868b] mb-4">
+              💳 Todos os planos incluem 7 dias de teste gratuito • Cancele a qualquer momento
+            </p>
+            <p className="text-sm text-[#86868b]">
+              🔒 Pagamento seguro • 🎓 Garantia de satisfação de 30 dias
+            </p>
           </div>
         </div>
       </section>
@@ -128,71 +416,202 @@ export default function Home() {
               Módulos de Estudo
             </h2>
             <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
-              Explore nossos módulos estruturados de Direito Romano, organizados de forma progressiva 
+              Explore nossos módulos estruturados de Direito, organizados de forma progressiva 
               para maximizar seu aprendizado.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Módulo 1 */}
-            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+                <BookOpen className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Introdução ao Direito</h3>
-              <p className="text-[#86868b] mb-4">
+              <p className="text-[#86868b] mb-6">
                 Conceitos fundamentais do Direito e sua importância na sociedade moderna.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                5 pílulas • Nível Iniciante
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">5 pílulas • Nível Iniciante</span>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4 text-[#86868b]" />
+                  <span className="text-sm text-[#86868b]">2h</span>
+                </div>
               </div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div className="bg-gradient-to-r from-[#FF2D55] to-[#FF6B6B] h-2 rounded-full" style={{width: '60%'}}></div>
+              </div>
+              <p className="text-sm text-[#86868b]">60% dos estudantes completaram</p>
             </div>
 
             {/* Módulo 2 */}
-            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#5856D6] to-[#8B7CF6] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
+                <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Constitucional</h3>
-              <p className="text-[#86868b] mb-4">
+              <p className="text-[#86868b] mb-6">
                 Estudo da Constituição Federal e seus princípios fundamentais.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                8 pílulas • Nível Intermediário
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">8 pílulas • Nível Intermediário</span>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4 text-[#86868b]" />
+                  <span className="text-sm text-[#86868b]">4h</span>
+                </div>
               </div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div className="bg-gradient-to-r from-[#5856D6] to-[#8B7CF6] h-2 rounded-full" style={{width: '45%'}}></div>
+              </div>
+              <p className="text-sm text-[#86868b]">45% dos estudantes completaram</p>
             </div>
 
             {/* Módulo 3 */}
-            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#40A9FF] rounded-2xl flex items-center justify-center mb-6">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+                <Users className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Civil</h3>
-              <p className="text-[#86868b] mb-4">
+              <p className="text-[#86868b] mb-6">
                 Relações jurídicas entre particulares e seus direitos fundamentais.
               </p>
-              <div className="text-sm text-[#0071e3] font-medium">
-                12 pílulas • Nível Avançado
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm text-[#0071e3] font-medium">12 pílulas • Nível Avançado</span>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4 text-[#86868b]" />
+                  <span className="text-sm text-[#86868b]">6h</span>
+                </div>
               </div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div className="bg-gradient-to-r from-[#007AFF] to-[#40A9FF] h-2 rounded-full" style={{width: '30%'}}></div>
+              </div>
+              <p className="text-sm text-[#86868b]">30% dos estudantes completaram</p>
             </div>
           </div>
 
           <div className="text-center">
             <p className="text-lg text-[#86868b] mb-8">
-              Acesse todos os módulos e acompanhe seu progresso.
+              Acesse todos os módulos e acompanhe seu progresso em tempo real.
             </p>
             <Link 
               href="/modulos" 
-              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
+              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-flex items-center"
             >
               Explorar Módulos
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Depoimentos */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              O que nossos estudantes dizem
+            </h2>
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+              Histórias reais de transformação profissional através da Schola Juris.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Depoimento 1 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                ))}
+              </div>
+              <p className="text-[#1d1d1f] mb-6 leading-relaxed">
+                "A Schola Juris revolucionou minha forma de estudar. Em 3 meses, consegui a aprovação no concurso que sonhava!"
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">MC</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-[#1d1d1f]">Maria Clara</p>
+                  <p className="text-sm text-[#86868b]">Aprovada no TJ-SP</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Depoimento 2 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                ))}
+              </div>
+              <p className="text-[#1d1d1f] mb-6 leading-relaxed">
+                "O método de microlearning é genial! Consigo estudar no metrô e aproveitar cada minuto livre."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#34C759] to-[#30D158] rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">RS</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-[#1d1d1f]">Rafael Santos</p>
+                  <p className="text-sm text-[#86868b]">Advogado Empresarial</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Depoimento 3 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                ))}
+              </div>
+              <p className="text-[#1d1d1f] mb-6 leading-relaxed">
+                "A gamificação me mantém motivada todos os dias. Já conquistei 15 badges e não pretendo parar!"
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">AL</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-[#1d1d1f]">Ana Luiza</p>
+                  <p className="text-sm text-[#86868b]">Estudante de Direito</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Estatísticas */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              Números que impressionam
+            </h2>
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+              Resultados comprovados de uma plataforma que realmente funciona.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[#0071e3] mb-2">+10k</div>
+              <p className="text-[#86868b]">Estudantes Ativos</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[#34C759] mb-2">95%</div>
+              <p className="text-[#86868b]">Taxa de Satisfação</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[#FF9500] mb-2">500+</div>
+              <p className="text-[#86868b]">Pílulas de Conteúdo</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-[#FF2D55] mb-2">3x</div>
+              <p className="text-[#86868b]">Mais Rápido</p>
+            </div>
           </div>
         </div>
       </section>
@@ -208,9 +627,7 @@ export default function Home() {
             {/* Microlearning */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-[#f5f5f7] flex items-center justify-center shadow-sm">
-                <svg className="w-8 h-8 text-[#1d1d1f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+                <BookOpen className="w-8 h-8 text-[#1d1d1f]" />
               </div>
               <h3 className="text-xl font-['Inter'] font-semibold mb-4 text-[#1d1d1f]">Microlearning</h3>
               <p className="text-[#86868b] font-['Inter']">
@@ -221,9 +638,7 @@ export default function Home() {
             {/* Gamificação */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-[#f5f5f7] flex items-center justify-center shadow-sm">
-                <svg className="w-8 h-8 text-[#1d1d1f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+                <Trophy className="w-8 h-8 text-[#1d1d1f]" />
               </div>
               <h3 className="text-xl font-['Inter'] font-semibold mb-4 text-[#1d1d1f]">Gamificação</h3>
               <p className="text-[#86868b] font-['Inter']">
@@ -234,9 +649,7 @@ export default function Home() {
             {/* Biblioteca Virtual */}
             <div className="text-center">
               <div className="w-16 h-16 mx-auto mb-8 rounded-full bg-[#f5f5f7] flex items-center justify-center shadow-sm">
-                <svg className="w-8 h-8 text-[#1d1d1f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
+                <Globe className="w-8 h-8 text-[#1d1d1f]" />
               </div>
               <h3 className="text-xl font-['Inter'] font-semibold mb-4 text-[#1d1d1f]">Biblioteca Virtual</h3>
               <p className="text-[#86868b] font-['Inter']">
@@ -247,19 +660,98 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* FAQ */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-3xl font-['Inter'] font-semibold mb-6 text-[#1d1d1f]">
-              Comece Sua Jornada Hoje
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              Perguntas Frequentes
             </h2>
-            <p className="text-lg text-[#86868b] mb-10 max-w-xl mx-auto font-['Inter']">
-              Junte-se a milhares de profissionais do direito que já transformaram suas carreiras com a Schola Juris.
+            <p className="text-xl text-[#86868b]">
+              Tire suas dúvidas sobre a plataforma.
             </p>
-            <Link href="/trilhas" className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block">
-              Explorar Trilhas
+          </div>
+          
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-4">
+                Como funciona o método de microlearning?
+              </h3>
+              <p className="text-[#86868b] leading-relaxed">
+                O microlearning divide o conteúdo em pequenas "pílulas" de conhecimento que podem ser consumidas em 5-15 minutos. Isso facilita a retenção e permite estudar em qualquer momento livre.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-4">
+                Posso cancelar minha assinatura a qualquer momento?
+              </h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Sim! Você pode cancelar sua assinatura a qualquer momento sem taxas ou multas. Seu acesso continuará até o final do período pago.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-4">
+                Os certificados são reconhecidos?
+              </h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Nossos certificados são emitidos em parceria com instituições renomadas e são válidos para comprovação de horas complementares e desenvolvimento profissional.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8">
+              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-4">
+                Funciona offline?
+              </h3>
+              <p className="text-[#86868b] leading-relaxed">
+                Sim! Você pode baixar as pílulas para estudar offline e sincronizar seu progresso quando voltar a ter conexão com a internet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-gradient-to-br from-[#0071e3] to-[#007AFF]">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Transforme sua carreira jurídica hoje
+          </h2>
+          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+            Junte-se a mais de 10.000 profissionais que já revolucionaram seus estudos com a Schola Juris.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+            <Link 
+              href="/trilhas" 
+              className="bg-white text-[#0071e3] text-lg font-medium px-8 py-4 rounded-full hover:bg-gray-50 transition-colors duration-200 inline-flex items-center justify-center"
+            >
+              Começar Teste Gratuito
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
+            <Link 
+              href="#demo" 
+              className="border-2 border-white text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-white/10 transition-colors duration-200 inline-flex items-center justify-center"
+            >
+              <Play className="mr-2 h-5 w-5" />
+              Assistir Demo
+            </Link>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-blue-100">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5" />
+              <span>7 dias grátis</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5" />
+              <span>Sem compromisso</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5" />
+              <span>Cancele quando quiser</span>
+            </div>
           </div>
         </div>
       </section>
