@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Book, Plus, BookOpen } from 'lucide-react';
+import { Search, Book, BookOpen } from 'lucide-react';
+import { mockGlossaryTerms } from '@/lib/mockData';
 
 interface GlossaryTerm {
   id: string;
@@ -13,80 +14,6 @@ interface GlossaryTerm {
   category: string;
   relatedTerms?: string[];
 }
-
-// Dados simulados do glossário
-const mockGlossaryTerms: GlossaryTerm[] = [
-  {
-    id: '1',
-    term: 'Direito',
-    definition: 'Conjunto de normas que regulam a vida em sociedade, estabelecendo direitos e deveres para os indivíduos e organizações.',
-    category: 'Conceitos Fundamentais',
-    relatedTerms: ['Lei', 'Norma', 'Ordenamento Jurídico']
-  },
-  {
-    id: '2',
-    term: 'Lei',
-    definition: 'Norma jurídica escrita, emanada do Poder Legislativo, que estabelece regras de conduta obrigatórias para todos.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Direito', 'Norma', 'Legislação']
-  },
-  {
-    id: '3',
-    term: 'Constituição',
-    definition: 'Lei fundamental de um Estado, que estabelece a organização política, os direitos fundamentais e os princípios básicos da ordem jurídica.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Direitos Fundamentais', 'Estado', 'Supremacia Constitucional']
-  },
-  {
-    id: '4',
-    term: 'Jurisprudência',
-    definition: 'Conjunto de decisões reiteradas dos tribunais sobre casos similares, que serve como orientação para casos futuros.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Tribunal', 'Precedente', 'Decisão Judicial']
-  },
-  {
-    id: '5',
-    term: 'Doutrina',
-    definition: 'Opinião e interpretação dos estudiosos e especialistas do Direito sobre questões jurídicas.',
-    category: 'Fontes do Direito',
-    relatedTerms: ['Jurista', 'Interpretação', 'Ciência Jurídica']
-  },
-  {
-    id: '6',
-    term: 'Princípios Gerais do Direito',
-    definition: 'Valores fundamentais que orientam o ordenamento jurídico, servindo como base para a interpretação e aplicação das normas.',
-    category: 'Conceitos Fundamentais',
-    relatedTerms: ['Valores', 'Interpretação', 'Ordenamento Jurídico']
-  },
-  {
-    id: '7',
-    term: 'Direitos Fundamentais',
-    definition: 'Direitos básicos e essenciais de todos os cidadãos, protegidos pela Constituição Federal.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Constituição', 'Dignidade Humana', 'Cidadania']
-  },
-  {
-    id: '8',
-    term: 'Estado de Direito',
-    definition: 'Forma de organização política em que o poder estatal está limitado pelo Direito e pela Constituição.',
-    category: 'Direito Constitucional',
-    relatedTerms: ['Constituição', 'Legalidade', 'Separação de Poderes']
-  },
-  {
-    id: '9',
-    term: 'Hermenêutica Jurídica',
-    definition: 'Arte e ciência de interpretar as normas jurídicas, buscando determinar seu sentido e alcance.',
-    category: 'Interpretação',
-    relatedTerms: ['Interpretação', 'Métodos Interpretativos', 'Aplicação do Direito']
-  },
-  {
-    id: '10',
-    term: 'Subsunção',
-    definition: 'Processo lógico de aplicação da norma jurídica ao caso concreto, verificando se os fatos se enquadram na hipótese normativa.',
-    category: 'Aplicação do Direito',
-    relatedTerms: ['Aplicação', 'Norma', 'Caso Concreto']
-  }
-];
 
 export default function GlossarioPage() {
   const [terms, setTerms] = useState<GlossaryTerm[]>([]);
@@ -100,7 +27,7 @@ export default function GlossarioPage() {
     setTimeout(() => {
       setTerms(mockGlossaryTerms);
       setLoading(false);
-    }, 500);
+    }, 300);
   }, []);
 
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');

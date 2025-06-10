@@ -1,32 +1,16 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { mockModules } from '@/lib/mockData';
 
 export async function GET() {
   try {
-    console.log('🔍 Buscando módulos...');
+    console.log('🔍 Buscando módulos (dados mockados)...');
     
-    const modules = await prisma.module.findMany({
-      include: {
-        pills: {
-          select: {
-            id: true,
-            title: true,
-            slug: true,
-            order: true,
-          },
-          orderBy: {
-            order: 'asc',
-          },
-        },
-      },
-      orderBy: {
-        order: 'asc',
-      },
-    });
-
-    console.log(`✅ ${modules.length} módulos encontrados`);
+    // Simular delay de rede
+    await new Promise(resolve => setTimeout(resolve, 300));
     
-    return NextResponse.json(modules);
+    console.log(`✅ ${mockModules.length} módulos encontrados`);
+    
+    return NextResponse.json(mockModules);
   } catch (error) {
     console.error('❌ Erro ao buscar módulos:', error);
     return NextResponse.json(

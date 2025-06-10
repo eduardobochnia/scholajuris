@@ -1,97 +1,24 @@
 import { NextResponse } from 'next/server';
-import { getAuthSession } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
   try {
-    const session = await getAuthSession();
-    
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Não autorizado' },
-        { status: 401 }
-      );
-    }
-
     const body = await request.json();
     const { pillId, score } = body;
 
-    if (!pillId) {
-      return NextResponse.json(
-        { error: 'ID da pílula é obrigatório' },
-        { status: 400 }
-      );
-    }
+    console.log(`📈 Registrando progresso: Pílula ${pillId}, Score: ${score}`);
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email }
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Usuário não encontrado' },
-        { status: 404 }
-      );
-    }
-
-    // Verifica se a pílula existe
-    const pill = await prisma.pill.findUnique({
-      where: { id: pillId }
-    });
-
-    if (!pill) {
-      return NextResponse.json(
-        { error: 'Pílula não encontrada' },
-        { status: 404 }
-      );
-    }
-
-    // Registra ou atualiza o progresso
-    const progress = await prisma.userProgress.upsert({
-      where: {
-        userId_pillId: {
-          userId: user.id,
-          pillId: pillId
-        }
-      },
-      update: {
-        score: score || undefined,
-        completedAt: new Date()
-      },
-      create: {
-        userId: user.id,
-        pillId: pillId,
-        score: score || 0,
-        completedAt: new Date()
-      }
-    });
-
-    // Verifica conquistas
-    const completedPills = await prisma.userProgress.count({
-      where: { userId: user.id }
-    });
-
-    // Exemplo de verificação de conquista por número de pílulas completadas
-    if (completedPills === 1) {
-      const achievement = await prisma.achievement.findFirst({
-        where: {
-          name: 'Jurista Iniciante'
-        }
-      });
-
-      if (achievement) {
-        await prisma.userAchievement.create({
-          data: {
-            userId: user.id,
-            achievementId: achievement.id
-          }
-        });
-      }
-    }
+    // Simular registro de progresso
+    const progress = {
+      id: Date.now().toString(),
+      userId: '1',
+      pillId,
+      score: score || 0,
+      completedAt: new Date().toISOString()
+    };
 
     return NextResponse.json(progress);
   } catch (error) {
-    console.error('Erro ao registrar progresso:', error);
+    console.error('❌ Erro ao registrar progresso:', error);
     return NextResponse.json(
       { error: 'Erro ao registrar progresso' },
       { status: 500 }
@@ -101,45 +28,39 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const session = await getAuthSession();
-    
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Não autorizado' },
-        { status: 401 }
-      );
-    }
-
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email }
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Usuário não encontrado' },
-        { status: 404 }
-      );
-    }
-
-    const progress = await prisma.userProgress.findMany({
-      where: { userId: user.id },
-      include: {
+    // Simular dados de progresso
+    const progress = [
+      {
+        id: '1',
+        userId: '1',
+        pillId: '1',
+        completedAt: '2024-01-15T10:30:00Z',
+        score: 95,
         pill: {
-          select: {
-            title: true,
-            module: {
-              select: {
-                title: true
-              }
-            }
+          title: 'Conceitos Básicos',
+          module: {
+            title: 'Introdução ao Direito'
+          }
+        }
+      },
+      {
+        id: '2',
+        userId: '1',
+        pillId: '2',
+        completedAt: '2024-01-16T14:20:00Z',
+        score: 88,
+        pill: {
+          title: 'Fontes do Direito',
+          module: {
+            title: 'Introdução ao Direito'
           }
         }
       }
-    });
+    ];
 
     return NextResponse.json(progress);
   } catch (error) {
-    console.error('Erro ao buscar progresso:', error);
+    console.error('❌ Erro ao buscar progresso:', error);
     return NextResponse.json(
       { error: 'Erro ao buscar progresso' },
       { status: 500 }

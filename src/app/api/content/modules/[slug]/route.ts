@@ -1,32 +1,17 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { findModuleBySlug } from '@/lib/mockData';
 
 export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
   try {
-    console.log(`🔍 Buscando módulo: ${params.slug}`);
+    console.log(`🔍 Buscando módulo: ${params.slug} (dados mockados)`);
     
-    const moduleData = await prisma.module.findUnique({
-      where: {
-        slug: params.slug,
-      },
-      include: {
-        pills: {
-          select: {
-            id: true,
-            title: true,
-            slug: true,
-            order: true,
-            videoUrl: true,
-          },
-          orderBy: {
-            order: 'asc',
-          },
-        },
-      },
-    });
+    // Simular delay de rede
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    const moduleData = findModuleBySlug(params.slug);
 
     if (!moduleData) {
       console.log(`❌ Módulo não encontrado: ${params.slug}`);

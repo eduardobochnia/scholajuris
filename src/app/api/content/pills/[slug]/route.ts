@@ -1,40 +1,17 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { findPillBySlug } from '@/lib/mockData';
 
 export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
   try {
-    console.log(`🔍 Buscando pílula: ${params.slug}`);
+    console.log(`🔍 Buscando pílula: ${params.slug} (dados mockados)`);
     
-    const pill = await prisma.pill.findUnique({
-      where: {
-        slug: params.slug,
-      },
-      include: {
-        module: {
-          select: {
-            id: true,
-            title: true,
-            slug: true,
-          },
-        },
-        quizzes: {
-          include: {
-            questions: {
-              select: {
-                id: true,
-                text: true,
-                type: true,
-                options: true,
-                explanation: true,
-              },
-            },
-          },
-        },
-      },
-    });
+    // Simular delay de rede
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    const pill = findPillBySlug(params.slug);
 
     if (!pill) {
       console.log(`❌ Pílula não encontrada: ${params.slug}`);
