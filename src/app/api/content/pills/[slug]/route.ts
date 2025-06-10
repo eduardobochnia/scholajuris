@@ -3,27 +3,28 @@ import { findPillBySlug } from '@/lib/mockData';
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    console.log(`🔍 Buscando pílula: ${params.slug} (dados mockados)`);
+    const { slug } = await params;
+    console.log(`🔍 Buscando pílula: ${slug} (dados mockados)`);
     
     // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 200));
     
-    const pill = findPillBySlug(params.slug);
+    const pillData = findPillBySlug(slug);
 
-    if (!pill) {
-      console.log(`❌ Pílula não encontrada: ${params.slug}`);
+    if (!pillData) {
+      console.log(`❌ Pílula não encontrada: ${slug}`);
       return NextResponse.json(
         { error: 'Pílula não encontrada' },
         { status: 404 }
       );
     }
 
-    console.log(`✅ Pílula encontrada: ${pill.title}`);
+    console.log(`✅ Pílula encontrada: ${pillData.title}`);
     
-    return NextResponse.json(pill);
+    return NextResponse.json(pillData);
   } catch (error) {
     console.error('❌ Erro ao buscar pílula:', error);
     return NextResponse.json(

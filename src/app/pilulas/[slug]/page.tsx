@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -9,7 +9,8 @@ import Link from 'next/link';
 import { RichContent, ContentType } from '@/components/content/RichContent';
 import { findPillBySlug, MockPill } from '@/lib/mockData';
 
-export default function PillPage({ params }: { params: { slug: string } }) {
+export default function PillPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
   const [pill, setPill] = useState<MockPill | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,7 +24,7 @@ export default function PillPage({ params }: { params: { slug: string } }) {
   useEffect(() => {
     const fetchPill = async () => {
       try {
-        const foundPill = findPillBySlug(params.slug);
+        const foundPill = findPillBySlug(slug);
         if (foundPill) {
           setPill(foundPill);
         } else {
@@ -37,7 +38,7 @@ export default function PillPage({ params }: { params: { slug: string } }) {
     };
 
     fetchPill();
-  }, [params.slug]);
+  }, [slug]);
 
   const handleNextSection = () => {
     if (pill && Array.isArray(pill.content) && currentSection < pill.content.length - 1) {
@@ -122,10 +123,10 @@ export default function PillPage({ params }: { params: { slug: string } }) {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-4 mb-4">
             <Link 
-              href="/formacoes"
+              href={pill.module ? `/modulos/${pill.module.slug}` : "/formacoes"}
               className="text-[#0071e3] hover:text-[#0077ED] font-medium text-sm transition-colors duration-200"
             >
-              ← Voltar
+              ← {pill.module ? pill.module.title : 'Voltar'}
             </Link>
             {pill.subject && (
               <div className="flex items-center space-x-2">
@@ -298,10 +299,10 @@ export default function PillPage({ params }: { params: { slug: string } }) {
                         : 'Continue estudando para melhorar sua pontuação.'}
                     </p>
                     <div className="flex justify-center space-x-4">
-                      <Link href="/formacoes">
+                      <Link href={pill.module ? `/modulos/${pill.module.slug}` : "/formacoes"}>
                         <Button variant="outline" className="flex items-center space-x-2">
                           <BookOpen className="w-4 h-4" />
-                          <span>Voltar às Formações</span>
+                          <span>{pill.module ? 'Voltar ao Módulo' : 'Voltar às Formações'}</span>
                         </Button>
                       </Link>
                       <Link href="/formacoes">

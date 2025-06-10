@@ -53,6 +53,11 @@ export interface MockPill {
     slug: string;
     color: string;
   };
+  module?: {
+    id: string;
+    title: string;
+    slug: string;
+  };
 }
 
 export interface MockQuiz {
@@ -405,6 +410,11 @@ mockFormations.forEach(formation => {
           slug: subject.slug,
           color: subject.color
         };
+        pill.module = {
+          id: module.id,
+          title: module.title,
+          slug: module.slug
+        };
       });
     });
   });
@@ -468,7 +478,23 @@ export function findPillBySlug(slug: string): MockPill | undefined {
     for (const module of formation.modules) {
       for (const subject of module.subjects) {
         const pill = subject.pills.find(pill => pill.slug === slug);
-        if (pill) return pill;
+        if (pill) {
+          // Ensure the pill has both subject and module references
+          return {
+            ...pill,
+            subject: {
+              id: subject.id,
+              title: subject.title,
+              slug: subject.slug,
+              color: subject.color
+            },
+            module: {
+              id: module.id,
+              title: module.title,
+              slug: module.slug
+            }
+          };
+        }
       }
     }
   }

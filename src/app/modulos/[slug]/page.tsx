@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { BookOpen, ChevronRight, Lock, CheckCircle, Clock, Target, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import { findModuleBySlug, MockModule } from '@/lib/mockData';
 
-export default function ModulePage({ params }: { params: { slug: string } }) {
+export default function ModulePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
   const [module, setModule] = useState<MockModule | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,7 @@ export default function ModulePage({ params }: { params: { slug: string } }) {
   useEffect(() => {
     const fetchModule = async () => {
       try {
-        const foundModule = findModuleBySlug(params.slug);
+        const foundModule = findModuleBySlug(slug);
         if (foundModule) {
           setModule(foundModule);
         } else {
@@ -29,7 +30,7 @@ export default function ModulePage({ params }: { params: { slug: string } }) {
     };
 
     fetchModule();
-  }, [params.slug]);
+  }, [slug]);
 
   if (loading) {
     return (

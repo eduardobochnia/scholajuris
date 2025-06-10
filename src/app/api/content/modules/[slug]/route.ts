@@ -3,25 +3,27 @@ import { findModuleBySlug } from '@/lib/mockData';
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    console.log(`🔍 Buscando módulo: ${params.slug} (dados mockados)`);
+    const { slug } = await params;
+    console.log(`🔍 Buscando módulo: ${slug} (dados mockados)`);
     
     // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 200));
     
-    const moduleData = findModuleBySlug(params.slug);
+    const moduleData = findModuleBySlug(slug);
 
     if (!moduleData) {
-      console.log(`❌ Módulo não encontrado: ${params.slug}`);
+      console.log(`❌ Módulo não encontrado: ${slug}`);
       return NextResponse.json(
         { error: 'Módulo não encontrado' },
         { status: 404 }
       );
     }
 
-    console.log(`✅ Módulo encontrado: ${moduleData.title} com ${moduleData.pills.length} pílulas`);
+    const totalPills = moduleData.subjects.reduce((acc, subject) => acc + subject.pills.length, 0);
+    console.log(`✅ Módulo encontrado: ${moduleData.title} com ${totalPills} pílulas`);
     
     return NextResponse.json(moduleData);
   } catch (error) {
