@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authOptions } from '@/lib/authOptions';
 import { prisma } from '@/lib/prisma';
 import { Achievement, UserAchievement } from '@prisma/client';
 
@@ -67,4 +67,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-} 
+}
