@@ -82,10 +82,10 @@ export default function Navbar() {
                 <Link href="#pilulas" className="nav-link">
                   Pílulas
                 </Link>
-                <Link href="/login" className="nav-link">
+                <Link href="/auth/login" className="nav-link">
                   Entrar
                 </Link>
-                <Link href="/register" className="bg-[#0071e3] text-white px-6 py-2 rounded-full font-medium hover:bg-[#0077ED] transition-colors duration-200">
+                <Link href="/auth/register" className="bg-[#0071e3] text-white px-6 py-2 rounded-full font-medium hover:bg-[#0077ED] transition-colors duration-200">
                   Registrar
                 </Link>
               </>

@@ -44,7 +44,7 @@ export default function RegisterForm() {
         throw new Error(data.error || 'Erro ao criar conta');
       }
 
-      router.push('/login?registered=true');
+      router.push('/auth/login?registered=true');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

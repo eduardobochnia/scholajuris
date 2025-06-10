@@ -29,7 +29,7 @@ export default function Home() {
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
-              href="/register" 
+              href="/auth/register" 
               className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200"
             >
               Comece Agora
@@ -112,7 +112,7 @@ export default function Home() {
               Acesse todos os módulos e acompanhe seu progresso com uma conta gratuita.
             </p>
             <Link 
-              href="/register" 
+              href="/auth/register" 
               className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
             >
               Criar Conta Gratuita
@@ -225,7 +225,7 @@ export default function Home() {
               Mais de 50 pílulas de conhecimento esperando por você. Comece sua jornada hoje!
             </p>
             <Link 
-              href="/register" 
+              href="/auth/register" 
               className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
             >
               Começar Agora
@@ -294,7 +294,7 @@ export default function Home() {
             <p className="text-lg text-[#86868b] mb-10 max-w-xl mx-auto font-['Inter']">
               Junte-se a milhares de profissionais do direito que já transformaram suas carreiras com a Schola Juris.
             </p>
-            <Link href="/register" className="btn-primary text-lg font-semibold px-8 py-3">
+            <Link href="/auth/register" className="btn-primary text-lg font-semibold px-8 py-3">
               Criar Conta Gratuita
             </Link>
           </div>
