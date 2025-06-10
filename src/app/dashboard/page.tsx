@@ -33,6 +33,10 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (status === 'loading') {
+      return; // Ainda carregando
+    }
+
     if (status === 'unauthenticated') {
       router.push('/login');
       return;
@@ -66,14 +70,19 @@ export default function DashboardPage() {
     }
   }, [status, session, router]);
 
+  // Mostrar loading enquanto verifica autenticação
   if (status === 'loading' || loading) {
     return (
       <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0071e3]"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0071e3] mx-auto mb-4"></div>
+          <p className="text-[#86868b]">Carregando...</p>
+        </div>
       </div>
     );
   }
 
+  // Se não autenticado, não renderizar nada (redirecionamento já foi feito)
   if (status === 'unauthenticated') {
     return null;
   }

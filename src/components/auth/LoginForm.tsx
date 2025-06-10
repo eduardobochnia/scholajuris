@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
@@ -31,10 +31,20 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        router.push('/dashboard');
-        router.refresh();
+        // Aguardar um pouco para garantir que a sessão foi criada
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Verificar se a sessão foi criada corretamente
+        const session = await getSession();
+        if (session) {
+          router.push('/dashboard');
+          router.refresh();
+        } else {
+          setError('Erro ao criar sessão. Tente novamente.');
+        }
       }
     } catch (error) {
+      console.error('Erro no login:', error);
       setError('Ocorreu um erro ao fazer login');
     } finally {
       setIsLoading(false);
@@ -56,10 +66,20 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        router.push('/dashboard');
-        router.refresh();
+        // Aguardar um pouco para garantir que a sessão foi criada
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Verificar se a sessão foi criada corretamente
+        const session = await getSession();
+        if (session) {
+          router.push('/dashboard');
+          router.refresh();
+        } else {
+          setError('Erro ao criar sessão de desenvolvimento. Tente novamente.');
+        }
       }
     } catch (error) {
+      console.error('Erro no login de desenvolvimento:', error);
       setError('Ocorreu um erro ao fazer login');
     } finally {
       setIsLoading(false);

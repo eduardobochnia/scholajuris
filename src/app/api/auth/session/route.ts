@@ -1,17 +1,30 @@
 import { NextResponse } from 'next/server';
-import { getAuthSession } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
 
 export async function GET() {
   try {
-    const session = await getAuthSession();
+    const session = await getServerSession();
     
-    if (!session) {
-      return NextResponse.json(null);
-    }
-
-    return NextResponse.json(session);
+    // Sempre retornar um JSON válido
+    return NextResponse.json(session || null, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+      }
+    });
   } catch (error) {
     console.error('Erro ao buscar sessão:', error);
-    return NextResponse.json(null);
+    
+    // Retornar null em caso de erro
+    return NextResponse.json(null, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+      }
+    });
   }
+}
+
+export async function POST() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
 }

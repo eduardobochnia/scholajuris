@@ -14,20 +14,20 @@ const authOptions = {
         password: { label: "Senha", type: "password" }
       },
       async authorize(credentials) {
-        // Modo de desenvolvimento: permite login sem credenciais
-        if (process.env.NODE_ENV === "development" && !credentials?.email && !credentials?.password) {
-          return {
-            id: "dev-user-1",
-            name: "Usuário de Desenvolvimento",
-            email: "dev@example.com",
-          };
-        }
-
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-
         try {
+          // Modo de desenvolvimento: permite login sem credenciais
+          if (process.env.NODE_ENV === "development" && !credentials?.email && !credentials?.password) {
+            return {
+              id: "dev-user-1",
+              name: "Usuário de Desenvolvimento",
+              email: "dev@example.com",
+            };
+          }
+
+          if (!credentials?.email || !credentials?.password) {
+            return null;
+          }
+
           const user = await prisma.user.findUnique({
             where: { email: credentials.email }
           });
@@ -67,20 +67,43 @@ const authOptions = {
   },
   callbacks: {
     async session({ session, token }: any) {
-      if (token && session?.user) {
-        session.user.id = token.sub;
+      try {
+        if (token && session?.user) {
+          session.user.id = token.sub;
+        }
+        return session;
+      } catch (error) {
+        console.error("Erro no callback de sessão:", error);
+        return session;
       }
-      return session;
     },
     async jwt({ token, user }: any) {
-      if (user) {
-        token.sub = user.id;
+      try {
+        if (user) {
+          token.sub = user.id;
+        }
+        return token;
+      } catch (error) {
+        console.error("Erro no callback JWT:", error);
+        return token;
       }
-      return token;
     }
   },
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
+  logger: {
+    error(code: any, metadata: any) {
+      console.error("NextAuth Error:", code, metadata);
+    },
+    warn(code: any) {
+      console.warn("NextAuth Warning:", code);
+    },
+    debug(code: any, metadata: any) {
+      if (process.env.NODE_ENV === "development") {
+        console.log("NextAuth Debug:", code, metadata);
+      }
+    }
+  }
 };
 
 const handler = NextAuth(authOptions);
