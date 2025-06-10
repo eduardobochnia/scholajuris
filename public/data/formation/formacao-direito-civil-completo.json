@@ -1,0 +1,212 @@
+{
+  "id": "formacao-direito-civil-completo",
+  "mnemonic": "FORMATION",
+  "version": "1.0.0",
+  "createdAt": "2024-01-15T10:00:00Z",
+  "updatedAt": "2024-01-15T10:00:00Z",
+  "metadata": {
+    "title": "Formação Completa em Direito Civil",
+    "description": "Formação abrangente e aprofundada em direito civil brasileiro, cobrindo desde os conceitos fundamentais até os aspectos mais avançados da matéria.",
+    "tags": ["direito civil", "formação completa", "código civil", "jurisprudência", "doutrina"],
+    "difficulty": "INTERMEDIATE",
+    "estimatedTime": 2160,
+    "author": "Equipe Schola Juris",
+    "reviewer": "Conselho Acadêmico",
+    "status": "PUBLISHED"
+  },
+  "structure": {
+    "level": "INTERMEDIATE",
+    "duration": "36 meses",
+    "totalModules": 12,
+    "totalHours": 720,
+    "certification": {
+      "name": "Especialista em Direito Civil",
+      "requirements": [
+        "Conclusão de todos os 12 módulos",
+        "Aprovação em todas as avaliações com nota mínima 7,0",
+        "Elaboração de trabalho de conclusão",
+        "Participação em pelo menos 80% das atividades práticas"
+      ],
+      "validity": "Certificação permanente com atualizações anuais"
+    }
+  },
+  "modules": [
+    {
+      "id": "modulo-01-parte-geral",
+      "order": 1,
+      "title": "Parte Geral do Direito Civil",
+      "description": "Fundamentos do direito civil: pessoas, bens e fatos jurídicos",
+      "duration": "3 meses",
+      "subjects": [
+        "direito-civil-pessoas-naturais",
+        "direito-civil-pessoas-juridicas",
+        "direito-civil-bens",
+        "direito-civil-fatos-juridicos"
+      ]
+    },
+    {
+      "id": "modulo-02-obrigacoes",
+      "order": 2,
+      "title": "Direito das Obrigações",
+      "description": "Teoria geral das obrigações e suas modalidades",
+      "duration": "3 meses",
+      "subjects": [
+        "obrigacoes-teoria-geral",
+        "obrigacoes-modalidades",
+        "obrigacoes-transmissao",
+        "obrigacoes-extincao"
+      ]
+    },
+    {
+      "id": "modulo-03-contratos",
+      "order": 3,
+      "title": "Direito dos Contratos",
+      "description": "Teoria geral dos contratos e contratos em espécie",
+      "duration": "3 meses",
+      "subjects": [
+        "contratos-teoria-geral",
+        "contratos-formacao",
+        "contratos-efeitos",
+        "contratos-especies"
+      ]
+    },
+    {
+      "id": "modulo-04-responsabilidade-civil",
+      "order": 4,
+      "title": "Responsabilidade Civil",
+      "description": "Teoria geral da responsabilidade civil e suas aplicações",
+      "duration": "3 meses",
+      "subjects": [
+        "responsabilidade-civil-teoria",
+        "responsabilidade-civil-subjetiva",
+        "responsabilidade-civil-objetiva",
+        "responsabilidade-civil-danos"
+      ]
+    },
+    {
+      "id": "modulo-05-direitos-reais",
+      "order": 5,
+      "title": "Direitos Reais",
+      "description": "Posse, propriedade e direitos reais sobre coisa alheia",
+      "duration": "3 meses",
+      "subjects": [
+        "direitos-reais-posse",
+        "direitos-reais-propriedade",
+        "direitos-reais-superficie",
+        "direitos-reais-garantia"
+      ]
+    },
+    {
+      "id": "modulo-06-familia",
+      "order": 6,
+      "title": "Direito de Família",
+      "description": "Relações familiares, casamento, união estável e filiação",
+      "duration": "3 meses",
+      "subjects": [
+        "familia-casamento",
+        "familia-uniao-estavel",
+        "familia-filiacao",
+        "familia-poder-familiar"
+      ]
+    },
+    {
+      "id": "modulo-07-sucessoes",
+      "order": 7,
+      "title": "Direito das Sucessões",
+      "description": "Sucessão legítima, testamentária e inventário",
+      "duration": "3 meses",
+      "subjects": [
+        "sucessoes-teoria-geral",
+        "sucessoes-legitima",
+        "sucessoes-testamentaria",
+        "sucessoes-inventario"
+      ]
+    },
+    {
+      "id": "modulo-08-empresa",
+      "order": 8,
+      "title": "Direito de Empresa",
+      "description": "Teoria geral do direito empresarial no Código Civil",
+      "duration": "3 meses",
+      "subjects": [
+        "empresa-empresario",
+        "empresa-sociedades",
+        "empresa-estabelecimento",
+        "empresa-titulos-credito"
+      ]
+    },
+    {
+      "id": "modulo-09-registros-publicos",
+      "order": 9,
+      "title": "Registros Públicos",
+      "description": "Sistema registral brasileiro e suas implicações",
+      "duration": "3 meses",
+      "subjects": [
+        "registros-teoria-geral",
+        "registros-imobiliarios",
+        "registros-pessoas-juridicas",
+        "registros-titulos-documentos"
+      ]
+    },
+    {
+      "id": "modulo-10-processo-civil",
+      "order": 10,
+      "title": "Processo Civil Aplicado",
+      "description": "Aspectos processuais do direito civil",
+      "duration": "3 meses",
+      "subjects": [
+        "processo-civil-teoria",
+        "processo-civil-procedimentos",
+        "processo-civil-execucao",
+        "processo-civil-recursos"
+      ]
+    },
+    {
+      "id": "modulo-11-direito-digital",
+      "order": 11,
+      "title": "Direito Civil Digital",
+      "description": "Aplicação do direito civil no ambiente digital",
+      "duration": "3 meses",
+      "subjects": [
+        "direito-digital-contratos",
+        "direito-digital-responsabilidade",
+        "direito-digital-dados-pessoais",
+        "direito-digital-propriedade-intelectual"
+      ]
+    },
+    {
+      "id": "modulo-12-pratica-avancada",
+      "order": 12,
+      "title": "Prática Avançada em Direito Civil",
+      "description": "Casos complexos e tendências contemporâneas",
+      "duration": "3 meses",
+      "subjects": [
+        "pratica-casos-complexos",
+        "pratica-jurisprudencia-atual",
+        "pratica-tendencias-futuras",
+        "pratica-trabalho-conclusao"
+      ]
+    }
+  ],
+  "pricing": {
+    "currency": "BRL",
+    "amount": 8400,
+    "installments": {
+      "count": 36,
+      "amount": 233.33
+    }
+  },
+  "requirements": {
+    "prerequisites": [
+      "Conhecimentos básicos de direito",
+      "Ensino superior completo ou cursando",
+      "Familiaridade com a Constituição Federal"
+    ],
+    "technicalRequirements": [
+      "Computador ou tablet com acesso à internet",
+      "Navegador atualizado",
+      "Capacidade de download para materiais complementares"
+    ],
+    "timeCommitment": "20 horas semanais de estudo dedicado"
+  }
+}

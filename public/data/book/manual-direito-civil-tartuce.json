@@ -1,0 +1,191 @@
+{
+  "id": "manual-direito-civil-tartuce",
+  "mnemonic": "BOOK",
+  "version": "1.0.0",
+  "createdAt": "2024-01-15T10:00:00Z",
+  "updatedAt": "2024-01-15T10:00:00Z",
+  "metadata": {
+    "title": "Manual de Direito Civil - Volume Único",
+    "description": "Obra completa e atualizada sobre direito civil brasileiro, abordando desde a parte geral até os contratos e responsabilidade civil.",
+    "tags": ["direito civil", "manual", "código civil", "doutrina", "jurisprudência"],
+    "difficulty": "INTERMEDIATE",
+    "estimatedTime": 2400,
+    "author": "Flávio Tartuce",
+    "reviewer": "Comissão Editorial Método",
+    "status": "PUBLISHED"
+  },
+  "bibliographic": {
+    "isbn": "978-85-309-8756-4",
+    "author": "Flávio Tartuce",
+    "publisher": "Método",
+    "publishedYear": 2021,
+    "edition": 11,
+    "pages": 1248,
+    "language": "português",
+    "category": "Direito Civil"
+  },
+  "content": {
+    "synopsis": {
+      "overview": "O Manual de Direito Civil de Flávio Tartuce representa uma das mais completas e atualizadas obras sobre direito civil brasileiro. Com linguagem clara e didática, o autor apresenta todos os institutos fundamentais do direito civil, desde os conceitos básicos da parte geral até os aspectos mais complexos dos contratos e da responsabilidade civil. A obra se destaca pela constante atualização jurisprudencial e pela abordagem prática dos temas, tornando-se referência obrigatória para estudantes, concurseiros e profissionais do direito.",
+      "mainConcepts": [
+        "Personalidade jurídica e capacidade civil como fundamentos do direito das pessoas",
+        "Teoria geral dos bens e sua classificação no ordenamento jurídico brasileiro",
+        "Fatos, atos e negócios jurídicos como fontes das relações jurídicas",
+        "Prescrição e decadência como institutos de estabilização das relações jurídicas",
+        "Direitos reais e suas modalidades no sistema brasileiro",
+        "Teoria geral das obrigações e sua evolução doutrinária",
+        "Contratos e sua função social no direito contemporâneo",
+        "Responsabilidade civil e os novos paradigmas da reparação de danos",
+        "Direito de família e as transformações sociais contemporâneas",
+        "Direito das sucessões e a transmissão do patrimônio"
+      ],
+      "practicalImplications": [
+        "Fornece base sólida para a prática advocatícia em todas as áreas do direito civil",
+        "Orienta a elaboração de contratos e instrumentos jurídicos diversos",
+        "Auxilia na compreensão e aplicação da jurisprudência dos tribunais superiores",
+        "Oferece subsídios para a resolução de casos complexos envolvendo direitos reais",
+        "Esclarece questões práticas sobre responsabilidade civil e reparação de danos",
+        "Atualiza sobre as mudanças legislativas e suas implicações práticas"
+      ],
+      "criticalAnalysis": "A obra de Flávio Tartuce se destaca no cenário doutrinário brasileiro pela sua capacidade de conciliar rigor técnico com clareza didática. O autor demonstra profundo conhecimento da matéria, apresentando não apenas a doutrina tradicional, mas também as tendências mais modernas do direito civil. A constante atualização jurisprudencial é um dos pontos fortes da obra, permitindo ao leitor compreender como os tribunais têm aplicado os institutos civis na prática. A abordagem crítica do autor, especialmente em temas controversos, estimula a reflexão e o desenvolvimento do pensamento jurídico. Contudo, a extensão da obra pode ser intimidadora para iniciantes, sendo mais adequada para leitores com conhecimento básico prévio.",
+      "recommendations": "Esta obra é altamente recomendada para estudantes de direito a partir do segundo ano, concurseiros que buscam aprovação em certames de alto nível, advogados que atuam em direito civil e magistrados que necessitam de fonte confiável para fundamentação de decisões. A linguagem acessível e a organização didática tornam a leitura proveitosa mesmo para profissionais experientes que buscam atualização. Para iniciantes absolutos, recomenda-se a leitura prévia de obras introdutórias antes de abordar este manual."
+    },
+    "chapters": [
+      {
+        "id": "cap-01",
+        "number": 1,
+        "title": "Introdução ao Direito Civil",
+        "summary": "Apresenta os conceitos fundamentais do direito civil, sua evolução histórica e posição no ordenamento jurídico brasileiro.",
+        "keyPoints": [
+          "Conceito e características do direito civil",
+          "Evolução histórica do direito civil brasileiro",
+          "Fontes do direito civil",
+          "Princípios fundamentais do direito civil contemporâneo",
+          "Relação entre direito civil e Constituição Federal"
+        ]
+      },
+      {
+        "id": "cap-02",
+        "number": 2,
+        "title": "Das Pessoas Naturais",
+        "summary": "Estuda a personalidade jurídica, capacidade civil e os direitos da personalidade.",
+        "keyPoints": [
+          "Personalidade jurídica: conceito e características",
+          "Início e fim da personalidade jurídica",
+          "Capacidade civil e suas limitações",
+          "Direitos da personalidade",
+          "Ausência e morte presumida"
+        ]
+      },
+      {
+        "id": "cap-03",
+        "number": 3,
+        "title": "Das Pessoas Jurídicas",
+        "summary": "Analisa a teoria geral das pessoas jurídicas, sua classificação e funcionamento.",
+        "keyPoints": [
+          "Conceito e natureza jurídica das pessoas jurídicas",
+          "Classificação das pessoas jurídicas",
+          "Constituição e extinção das pessoas jurídicas",
+          "Responsabilidade das pessoas jurídicas",
+          "Desconsideração da personalidade jurídica"
+        ]
+      },
+      {
+        "id": "cap-04",
+        "number": 4,
+        "title": "Dos Bens",
+        "summary": "Examina a teoria geral dos bens e sua classificação no direito civil.",
+        "keyPoints": [
+          "Conceito jurídico de bem",
+          "Classificação dos bens",
+          "Bens públicos e privados",
+          "Patrimônio e sua composição",
+          "Bem de família"
+        ]
+      },
+      {
+        "id": "cap-05",
+        "number": 5,
+        "title": "Dos Fatos Jurídicos",
+        "summary": "Estuda a teoria geral dos fatos jurídicos, atos jurídicos e negócios jurídicos.",
+        "keyPoints": [
+          "Teoria geral dos fatos jurídicos",
+          "Atos jurídicos lícitos e ilícitos",
+          "Negócios jurídicos: conceito e elementos",
+          "Defeitos dos negócios jurídicos",
+          "Invalidade dos negócios jurídicos"
+        ]
+      }
+    ]
+  },
+  "analysis": {
+    "targetAudience": [
+      "Estudantes de direito (2º ao 5º ano)",
+      "Concurseiros de nível superior",
+      "Advogados civilistas",
+      "Magistrados e membros do Ministério Público",
+      "Professores de direito civil",
+      "Pesquisadores em direito privado"
+    ],
+    "practicalApplications": [
+      "Elaboração de peças processuais em ações cíveis",
+      "Redação de contratos e instrumentos jurídicos",
+      "Consultoria jurídica em direito civil",
+      "Fundamentação de decisões judiciais",
+      "Preparação para concursos públicos",
+      "Pesquisa acadêmica em direito civil"
+    ],
+    "legislationCovered": [
+      "Código Civil (Lei 10.406/2002)",
+      "Código de Processo Civil (Lei 13.105/2015)",
+      "Estatuto da Criança e do Adolescente (Lei 8.069/1990)",
+      "Código de Defesa do Consumidor (Lei 8.078/1990)",
+      "Lei de Registros Públicos (Lei 6.015/1973)",
+      "Marco Civil da Internet (Lei 12.965/2014)"
+    ],
+    "jurisprudenceReferences": [
+      "STF - RE 878.694/MG (Direito ao esquecimento)",
+      "STJ - REsp 1.540.580/DF (Responsabilidade civil por abandono afetivo)",
+      "STJ - REsp 1.629.255/RJ (Multipropriedade imobiliária)",
+      "STF - RE 646.721/RS (Repercussão geral - Responsabilidade civil do Estado)",
+      "STJ - REsp 1.642.997/RJ (Direito à desconexão digital)"
+    ],
+    "keyTopics": [
+      "Personalidade jurídica",
+      "Capacidade civil",
+      "Direitos da personalidade",
+      "Pessoas jurídicas",
+      "Bens e patrimônio",
+      "Negócios jurídicos",
+      "Prescrição e decadência",
+      "Direitos reais",
+      "Obrigações",
+      "Contratos",
+      "Responsabilidade civil",
+      "Direito de família",
+      "Sucessões"
+    ],
+    "strengths": [
+      "Linguagem clara e didática",
+      "Atualização jurisprudencial constante",
+      "Abordagem crítica dos institutos",
+      "Exemplos práticos abundantes",
+      "Organização lógica e sistemática",
+      "Referências doutrinárias atualizadas"
+    ],
+    "limitations": [
+      "Extensão pode intimidar iniciantes",
+      "Alguns temas poderiam ser mais aprofundados",
+      "Foco predominante no direito brasileiro",
+      "Preço elevado para estudantes",
+      "Peso físico considerável do volume único"
+    ]
+  },
+  "metrics": {
+    "rating": 4.8,
+    "reviews": 1247,
+    "readingTime": 2400,
+    "complexity": 7,
+    "relevance": 9
+  }
+}
