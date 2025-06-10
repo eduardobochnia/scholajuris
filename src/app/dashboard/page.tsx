@@ -3,7 +3,6 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { BookOpen, Trophy, Clock, TrendingUp, ChevronRight } from 'lucide-react';
 
@@ -36,11 +35,10 @@ export default function DashboardPage() {
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/login');
+      return;
     }
-  }, [status, router]);
 
-  useEffect(() => {
-    if (session) {
+    if (status === 'authenticated' && session) {
       // Simular dados para demonstração
       setProgress({
         totalPills: 50,
@@ -54,19 +52,19 @@ export default function DashboardPage() {
           id: '1',
           type: 'pill_completed',
           title: 'Conceitos Básicos do Direito',
-          timestamp: '2024-01-15T10:30:00Z'
+          timestamp: new Date().toISOString()
         },
         {
           id: '2',
           type: 'achievement_unlocked',
           title: 'Jurista Iniciante',
-          timestamp: '2024-01-14T15:45:00Z'
+          timestamp: new Date(Date.now() - 86400000).toISOString()
         }
       ]);
       
       setLoading(false);
     }
-  }, [session]);
+  }, [status, session, router]);
 
   if (status === 'loading' || loading) {
     return (
@@ -76,7 +74,7 @@ export default function DashboardPage() {
     );
   }
 
-  if (!session) {
+  if (status === 'unauthenticated') {
     return null;
   }
 
@@ -91,12 +89,12 @@ export default function DashboardPage() {
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">
-                  {session.user?.name?.[0]?.toUpperCase() || 'U'}
+                  {session?.user?.name?.[0]?.toUpperCase() || 'U'}
                 </span>
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-[#1d1d1f]">
-                  Bem-vindo, {session.user?.name?.split(' ')[0] || 'Usuário'}!
+                  Bem-vindo, {session?.user?.name?.split(' ')[0] || 'Usuário'}!
                 </h1>
                 <p className="text-[#86868b]">
                   Continue sua jornada de aprendizado jurídico
