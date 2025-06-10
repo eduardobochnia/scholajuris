@@ -6,6 +6,8 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
+    console.log(`🔍 Buscando módulo: ${params.slug}`);
+    
     const moduleData = await prisma.module.findUnique({
       where: {
         slug: params.slug,
@@ -27,17 +29,20 @@ export async function GET(
     });
 
     if (!moduleData) {
+      console.log(`❌ Módulo não encontrado: ${params.slug}`);
       return NextResponse.json(
         { error: 'Módulo não encontrado' },
         { status: 404 }
       );
     }
 
+    console.log(`✅ Módulo encontrado: ${moduleData.title} com ${moduleData.pills.length} pílulas`);
+    
     return NextResponse.json(moduleData);
   } catch (error) {
-    console.error('Erro ao buscar módulo:', error);
+    console.error('❌ Erro ao buscar módulo:', error);
     return NextResponse.json(
-      { error: 'Erro ao buscar módulo' },
+      { error: 'Erro ao buscar módulo', details: error instanceof Error ? error.message : 'Erro desconhecido' },
       { status: 500 }
     );
   }
