@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: Request) {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     if (!session) {
       return new NextResponse('Não autorizado', { status: 401 });
     }
@@ -37,9 +37,7 @@ export async function GET(request: Request) {
     // Buscar em pílulas
     const pills = await prisma.pill.findMany({
       where: {
-        OR: [
-          { title: { contains: query, mode: 'insensitive' } },
-        ],
+        title: { contains: query, mode: 'insensitive' }
       },
       include: {
         module: {
@@ -54,10 +52,7 @@ export async function GET(request: Request) {
     // Buscar em quizzes
     const quizzes = await prisma.quiz.findMany({
       where: {
-        OR: [
-          { questions: { some: { text: { contains: query, mode: 'insensitive' } } } },
-          { questions: { some: { explanation: { contains: query, mode: 'insensitive' } } } },
-        ],
+        questions: { some: { text: { contains: query, mode: 'insensitive' } } }
       },
       include: {
         pill: {

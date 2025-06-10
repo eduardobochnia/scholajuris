@@ -1,6 +1,23 @@
 import { getServerSession } from "next-auth";
 
-// Helper function to get server session without importing authOptions
+// Helper function to get server session safely
 export async function getAuthSession() {
-  return await getServerSession();
+  try {
+    return await getServerSession();
+  } catch (error) {
+    console.error("Erro ao obter sessão:", error);
+    return null;
+  }
+}
+
+// Helper function to check if user is authenticated
+export async function isAuthenticated() {
+  const session = await getAuthSession();
+  return !!session?.user;
+}
+
+// Helper function to get user ID safely
+export async function getCurrentUserId() {
+  const session = await getAuthSession();
+  return session?.user?.id || null;
 }

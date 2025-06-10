@@ -1,11 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { Achievement, UserAchievement } from '@prisma/client';
 
 export async function GET() {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     
     if (!session?.user?.email) {
       return NextResponse.json(
@@ -43,9 +42,9 @@ export async function GET() {
     });
 
     // Mapear conquistas disponíveis vs conquistadas
-    const achievementsWithStatus = allAchievements.map((achievement: Achievement) => {
+    const achievementsWithStatus = allAchievements.map((achievement) => {
       const userAchievement = achievements.find(
-        (ua: UserAchievement & { achievement: Achievement }) => ua.achievementId === achievement.id
+        (ua) => ua.achievementId === achievement.id
       );
       
       return {

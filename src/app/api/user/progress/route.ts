@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     
     if (!session?.user?.email) {
       return NextResponse.json(
@@ -99,58 +99,9 @@ export async function POST(request: Request) {
   }
 }
 
-async function checkAndAwardAchievements(userId: string) {
-  const newAchievements = [];
-
-  // Buscar progresso do usuário
-  const userProgress = await prisma.userProgress.findMany({
-    where: { userId },
-  });
-
-  // Verificar conquistas baseadas em pílulas completadas
-  const pillsCompleted = userProgress.length;
-  const achievements = await prisma.achievement.findMany({
-    where: {
-      criteria: {
-        path: ['type'],
-        equals: 'pillsCompleted',
-      },
-    },
-  });
-
-  for (const achievement of achievements) {
-    const criteria = achievement.criteria as { count: number };
-    
-    if (pillsCompleted >= criteria.count) {
-      // Verificar se o usuário já tem esta conquista
-      const existingAchievement = await prisma.userAchievement.findUnique({
-        where: {
-          userId_achievementId: {
-            userId,
-            achievementId: achievement.id,
-          },
-        },
-      });
-
-      if (!existingAchievement) {
-        // Conceder conquista
-        const userAchievement = await prisma.userAchievement.create({
-          data: {
-            userId,
-            achievementId: achievement.id,
-          },
-        });
-        newAchievements.push(userAchievement);
-      }
-    }
-  }
-
-  return newAchievements;
-}
-
 export async function GET() {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     
     if (!session?.user?.email) {
       return NextResponse.json(

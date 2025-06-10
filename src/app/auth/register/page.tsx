@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import { RegisterForm } from '@/components/auth/RegisterForm';
+import RegisterForm from '@/components/auth/RegisterForm';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Registro | Schola Juris',
@@ -10,36 +11,46 @@ export const metadata: Metadata = {
 };
 
 export default async function RegisterPage() {
-  const session = await getServerSession();
+  const session = await getAuthSession();
 
   if (session) {
     redirect('/dashboard');
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-aurora-primary to-aurora-secondary dark:from-nox-primary dark:to-nox-secondary">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg rounded-xl shadow-2xl">
-        <div className="text-center">
-          <h1 className="text-4xl font-serif font-bold text-aurora-accent dark:text-nox-accent">
+    <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <Image
+            src="/images/logo.png"
+            alt="Schola Juris Logo"
+            width={80}
+            height={80}
+            className="mx-auto mb-6 drop-shadow-lg"
+            priority
+          />
+          <h1 className="text-4xl font-bold tracking-tight mb-4 bg-gradient-to-r from-[#FF2D55] via-[#5856D6] to-[#007AFF] bg-clip-text text-transparent">
             Schola Juris
           </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Crie sua conta para começar sua jornada jurídica
+          <p className="text-lg text-[#86868b]">
+            Crie sua conta para começar sua jornada
           </p>
         </div>
 
-        <RegisterForm />
-
-        <div className="text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Já tem uma conta?{' '}
-            <Link
-              href="/auth/login"
-              className="font-medium text-aurora-accent dark:text-nox-accent hover:underline"
-            >
-              Faça login
-            </Link>
-          </p>
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <RegisterForm />
+          
+          <div className="mt-6 text-center">
+            <p className="text-sm text-[#86868b]">
+              Já tem uma conta?{" "}
+              <Link 
+                href="/login" 
+                className="text-[#0071e3] hover:text-[#0077ED] font-medium transition-colors duration-200"
+              >
+                Faça login
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

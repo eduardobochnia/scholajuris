@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: Request) {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     if (!session) {
       return new NextResponse('Não autorizado', { status: 401 });
     }
@@ -12,24 +12,6 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('q');
     const letter = searchParams.get('letter');
-
-    let whereClause = {};
-
-    if (query) {
-      whereClause = {
-        OR: [
-          { term: { contains: query, mode: 'insensitive' } },
-          { definition: { contains: query, mode: 'insensitive' } },
-        ],
-      };
-    } else if (letter) {
-      whereClause = {
-        term: {
-          startsWith: letter.toLowerCase(),
-          mode: 'insensitive',
-        },
-      };
-    }
 
     // Como não temos tabela de glossário ainda, retornar array vazio
     const terms = [];
@@ -43,7 +25,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession();
+    const session = await getAuthSession();
     if (!session?.user?.email) {
       return new NextResponse('Não autorizado', { status: 401 });
     }
