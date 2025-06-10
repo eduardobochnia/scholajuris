@@ -22,59 +22,44 @@ import {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f5f5f7] relative overflow-hidden">
-      {/* Canvas para efeitos prismáticos */}
-      <canvas 
-        id="prismCanvas" 
-        className="absolute inset-0 w-full h-full pointer-events-none z-0"
-        style={{ background: 'transparent' }}
-      />
-      
-      {/* Efeitos de vidro de fundo */}
-      <div className="absolute inset-0 z-0">
-        {/* Formas geométricas de vidro */}
-        <div className="absolute top-20 left-10 w-64 h-64 glass-prism rotate-45 opacity-30"></div>
-        <div className="absolute top-40 right-20 w-48 h-48 glass-prism-secondary -rotate-12 opacity-25"></div>
-        <div className="absolute bottom-32 left-1/4 w-56 h-56 glass-prism-tertiary rotate-12 opacity-20"></div>
-        
-        {/* Reflexos de luz */}
-        <div className="absolute top-0 left-1/3 w-2 h-full bg-gradient-to-b from-transparent via-white/10 to-transparent transform -skew-x-12 light-ray"></div>
-        <div className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-transparent via-blue-200/20 to-transparent transform skew-x-6 light-ray-blue"></div>
-      </div>
-
+    <main className="min-h-screen bg-[#f5f5f7]">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 z-10">
+      <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Logo com reflexo */}
-          <div className="mb-16 relative">
-            <div className="logo-container">
+          {/* Logo */}
+          <div className="mb-12">
+            <div className="relative inline-block">
               <Image
                 src="/images/logo.png"
                 alt="Schola Juris Logo"
-                width={120}
-                height={120}
-                className="mx-auto mb-4 drop-shadow-xl filter brightness-110 logo-main"
+                width={200}
+                height={200}
+                className="mx-auto mb-6 drop-shadow-xl filter brightness-110"
                 priority
               />
               {/* Reflexo do logo */}
-              <div className="logo-reflection">
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-30">
                 <Image
                   src="/images/logo.png"
                   alt=""
-                  width={120}
-                  height={120}
-                  className="mx-auto opacity-30 transform scale-y-[-1]"
+                  width={200}
+                  height={200}
+                  className="transform scale-y-[-1] blur-sm"
+                  style={{
+                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 70%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 70%)'
+                  }}
                 />
               </div>
             </div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-10 hero-title">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-10 bg-gradient-to-r from-[#0071e3] via-[#007AFF] to-[#34C759] bg-clip-text text-transparent">
             Schola Juris
           </h1>
           
-          <div className="glass-content-box mb-8">
-            <p className="text-xl md:text-2xl text-[#1d1d1f]/90 max-w-2xl mx-auto mb-6 leading-relaxed font-normal">
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 mb-8 shadow-lg border border-white/20">
+            <p className="text-xl md:text-2xl text-[#1d1d1f] max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
               A plataforma de microlearning jurídico mais avançada do Brasil.
             </p>
             
@@ -82,7 +67,7 @@ export default function Home() {
               Transforme sua carreira jurídica com trilhas personalizadas, gamificação inteligente e conteúdo de alta qualidade.
             </p>
             
-            <p className="text-base text-[#86868b] max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-base text-[#86868b] max-w-2xl mx-auto mb-8 leading-relaxed">
               Nossa metodologia revolucionária combina neurociência, tecnologia de ponta e expertise jurídica para acelerar seu aprendizado em até 3x. 
               Estude onde quiser, quando quiser, com conteúdo validado por especialistas renomados.
             </p>
@@ -91,33 +76,33 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <Link 
               href="/trilhas" 
-              className="btn-primary-glass"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full bg-[#0071e3] text-white hover:bg-[#0077ED] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Começar Gratuitamente
             </Link>
             <Link 
               href="#demo" 
-              className="btn-secondary-glass"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-full border-2 border-[#0071e3] text-[#0071e3] hover:bg-[#0071e3] hover:text-white transition-all duration-300"
             >
               <Play className="mr-2 h-5 w-5" />
               Ver Demo
             </Link>
           </div>
 
-          {/* Social Proof com efeito de vidro */}
-          <div className="social-proof-glass">
+          {/* Social Proof */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-white/30">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-[#86868b]">
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5" />
-                <span>+10.000 estudantes</span>
+                <span className="font-medium">+10.000 estudantes</span>
               </div>
               <div className="flex items-center gap-2">
                 <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                <span>4.9/5 avaliação</span>
+                <span className="font-medium">4.9/5 avaliação</span>
               </div>
               <div className="flex items-center gap-2">
                 <Trophy className="h-5 w-5 text-yellow-600" />
-                <span>Premiado 2024</span>
+                <span className="font-medium">Premiado 2024</span>
               </div>
             </div>
           </div>
@@ -125,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* Benefícios Principais */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white/80 backdrop-blur-sm relative z-10">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
@@ -144,72 +129,72 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Benefício 1 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#0071e3] to-[#007AFF]">
-                <Zap className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Zap className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Aprendizado Acelerado</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Aprendizado Acelerado</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 Metodologia de microlearning que acelera a absorção de conhecimento em até 3x através de técnicas 
                 baseadas em neurociência e repetição espaçada inteligente.
               </p>
             </div>
 
             {/* Benefício 2 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#34C759] to-[#30D158]">
-                <Target className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#34C759] to-[#30D158] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Trilhas Personalizadas</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Trilhas Personalizadas</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 IA que adapta o conteúdo ao seu nível e objetivos profissionais específicos, criando um caminho 
                 de aprendizado único e otimizado para seu perfil.
               </p>
             </div>
 
             {/* Benefício 3 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#FF9500] to-[#FFCC02]">
-                <Trophy className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FF9500] to-[#FFCC02] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Trophy className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Gamificação Avançada</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Gamificação Avançada</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 Sistema de conquistas e rankings baseado em psicologia comportamental que mantém você motivado 
                 e engajado durante toda sua jornada de aprendizado.
               </p>
             </div>
 
             {/* Benefício 4 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#5856D6] to-[#8B7CF6]">
-                <Shield className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#5856D6] to-[#8B7CF6] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Conteúdo Certificado</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Conteúdo Certificado</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 Material desenvolvido por especialistas renomados e validado por instituições de ensino superior, 
                 garantindo qualidade acadêmica e aplicabilidade prática.
               </p>
             </div>
 
             {/* Benefício 5 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B]">
-                <Smartphone className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Smartphone className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Multiplataforma</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Multiplataforma</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 Estude onde quiser: web, mobile, tablet. Sincronização automática em tempo real permite 
                 continuidade perfeita entre dispositivos.
               </p>
             </div>
 
             {/* Benefício 6 */}
-            <div className="benefit-card">
-              <div className="benefit-icon bg-gradient-to-br from-[#007AFF] to-[#40A9FF]">
-                <Globe className="w-10 h-10 text-white" />
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#40A9FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Globe className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f]">Acesso Global</h3>
-              <p className="text-[#86868b] leading-relaxed">
+              <h3 className="text-xl font-semibold mb-4 text-[#1d1d1f] text-center">Acesso Global</h3>
+              <p className="text-[#86868b] leading-relaxed text-center">
                 Estude offline, sincronize online. Acesso 24/7 de qualquer lugar do mundo com tecnologia 
                 de cache inteligente para máxima disponibilidade.
               </p>
@@ -219,7 +204,7 @@ export default function Home() {
       </section>
 
       {/* Planos e Preços */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white/90 backdrop-blur-md relative z-10">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
@@ -237,7 +222,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Plano Gratuito */}
-            <div className="pricing-card">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-[#1d1d1f] mb-2">Gratuito</h3>
                 <div className="text-4xl font-bold text-[#1d1d1f] mb-2">R$ 0</div>
@@ -277,7 +262,7 @@ export default function Home() {
             </div>
 
             {/* Plano Premium */}
-            <div className="pricing-card-featured">
+            <div className="bg-gradient-to-br from-[#0071e3] to-[#007AFF] p-8 rounded-2xl shadow-xl text-white relative transform scale-105">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-[#FF9500] text-white px-4 py-2 rounded-full text-sm font-medium">
                   Mais Popular
@@ -326,7 +311,7 @@ export default function Home() {
             </div>
 
             {/* Plano Educacional */}
-            <div className="pricing-card">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-[#1d1d1f] mb-2">Educacional</h3>
                 <div className="text-4xl font-bold text-[#1d1d1f] mb-2">R$ 99,90</div>
@@ -377,93 +362,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Resto das seções... */}
-      {/* (Mantendo as outras seções existentes) */}
-
-      {/* Script para efeitos prismáticos */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('prismCanvas');
-            if (!canvas) return;
+      {/* Call to Action Final */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-[#0071e3] via-[#007AFF] to-[#34C759] p-12 rounded-3xl text-white shadow-2xl">
+            <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+              <Heart className="w-10 h-10 text-white" />
+            </div>
             
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            <h2 className="text-4xl font-bold mb-6">
+              Comece Sua Jornada Hoje
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Transforme sua carreira jurídica com o método mais avançado e eficaz do Brasil. 
+              Junte-se a milhares de profissionais que já revolucionaram seus conhecimentos.
+            </p>
+            <p className="text-lg text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Nossa plataforma oferece uma experiência de aprendizado única, combinando rigor acadêmico 
+              com inovação tecnológica. Seja você um estudante iniciante ou um profissional experiente 
+              buscando especialização, temos o caminho ideal para acelerar seu crescimento na carreira jurídica.
+            </p>
             
-            // Partículas de luz
-            const particles = [];
-            
-            class LightParticle {
-              constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
-                this.color = \`hsl(\${Math.random() * 60 + 200}, 70%, 70%)\`;
-              }
-              
-              update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-                
-                this.opacity = Math.sin(Date.now() * 0.001 + this.x * 0.01) * 0.3 + 0.4;
-              }
-              
-              draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-              }
-            }
-            
-            // Criar partículas
-            for (let i = 0; i < 50; i++) {
-              particles.push(new LightParticle());
-            }
-            
-            // Função de animação
-            function animate() {
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              
-              // Gradiente de fundo sutil
-              const gradient = ctx.createRadialGradient(
-                canvas.width / 2, canvas.height / 2, 0,
-                canvas.width / 2, canvas.height / 2, canvas.width / 2
-              );
-              gradient.addColorStop(0, 'rgba(0, 113, 227, 0.02)');
-              gradient.addColorStop(1, 'rgba(52, 199, 89, 0.01)');
-              ctx.fillStyle = gradient;
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-              
-              // Atualizar e desenhar partículas
-              particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-              });
-              
-              requestAnimationFrame(animate);
-            }
-            
-            animate();
-            
-            // Redimensionar canvas
-            window.addEventListener('resize', () => {
-              canvas.width = window.innerWidth;
-              canvas.height = window.innerHeight;
-            });
-          });
-        `
-      }} />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/formacoes">
+                <button className="bg-white text-[#0071e3] hover:bg-gray-50 px-8 py-4 text-lg font-semibold rounded-xl transition-colors duration-200 shadow-lg">
+                  <BookOpen className="w-6 h-6 mr-3 inline" />
+                  Explorar Formações
+                </button>
+              </Link>
+              <Link href="/biblioteca">
+                <button className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-xl transition-colors duration-200 backdrop-blur-sm">
+                  <Target className="w-6 h-6 mr-3 inline" />
+                  Ver Conteúdo Gratuito
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
