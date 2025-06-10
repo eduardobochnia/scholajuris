@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { getUserByEmail, verifyPassword } from "@/lib/auth";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -22,11 +23,15 @@ export const authOptions: NextAuthOptions = {
 
           // Em produção, implementar validação real aqui
           if (credentials?.email && credentials?.password) {
-            return {
-              id: "1",
-              name: "Usuário Teste",
-              email: credentials.email,
-            };
+            const user = await getUserByEmail(credentials.email);
+            
+            if (user && await verifyPassword(credentials.password, user.password)) {
+              return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+              };
+            }
           }
 
           return null;
@@ -42,8 +47,8 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 dias
   },
   pages: {
-    signIn: "/login",
-    error: "/login",
+    signIn: "/auth/login",
+    error: "/auth/login",
   },
   callbacks: {
     async session({ session, token }) {
