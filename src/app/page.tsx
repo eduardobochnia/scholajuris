@@ -29,23 +29,99 @@ export default function Home() {
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
-              href="/dashboard" 
+              href="/trilhas" 
               className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200"
             >
-              Começar Agora
+              Explorar Trilhas
             </Link>
             <Link 
               href="#modulos" 
               className="border-2 border-[#0071e3] text-[#0071e3] text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0071e3]/10 transition-colors duration-200"
             >
-              Explorar Conteúdo
+              Ver Conteúdo
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Trilhas Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
+              Trilhas de Aprendizado
+            </h2>
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+              Siga trilhas estruturadas e personalizadas para acelerar seu aprendizado jurídico.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {/* Trilha 1 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Fundamentos do Direito</h3>
+              <p className="text-[#86868b] mb-4">
+                Trilha completa para iniciantes, cobrindo todos os conceitos fundamentais.
+              </p>
+              <div className="text-sm text-[#0071e3] font-medium">
+                8 semanas • Nível Iniciante
+              </div>
+            </div>
+
+            {/* Trilha 2 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#34C759] to-[#30D158] rounded-2xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Empresarial</h3>
+              <p className="text-[#86868b] mb-4">
+                Especialização em direito empresarial com foco em aplicações práticas.
+              </p>
+              <div className="text-sm text-[#0071e3] font-medium">
+                10 semanas • Nível Intermediário
+              </div>
+            </div>
+
+            {/* Trilha 3 */}
+            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-2xl flex items-center justify-center mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-[#1d1d1f]">Direito Penal Avançado</h3>
+              <p className="text-[#86868b] mb-4">
+                Aprofundamento em direito penal com análise de casos complexos.
+              </p>
+              <div className="text-sm text-[#0071e3] font-medium">
+                12 semanas • Nível Avançado
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-lg text-[#86868b] mb-8">
+              Escolha sua trilha e comece sua jornada de aprendizado estruturado.
+            </p>
+            <Link 
+              href="/trilhas" 
+              className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
+            >
+              Ver Todas as Trilhas
             </Link>
           </div>
         </div>
       </section>
 
       {/* Módulos Section */}
-      <section id="modulos" className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+      <section id="modulos" className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#1d1d1f]">
@@ -59,7 +135,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Módulo 1 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF2D55] to-[#FF6B6B] rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -75,7 +151,7 @@ export default function Home() {
             </div>
 
             {/* Módulo 2 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-[#5856D6] to-[#8B7CF6] rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -91,7 +167,7 @@ export default function Home() {
             </div>
 
             {/* Módulo 3 */}
-            <div className="bg-[#f5f5f7] rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
+            <div className="bg-white rounded-2xl p-8 hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#40A9FF] rounded-2xl flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -112,17 +188,17 @@ export default function Home() {
               Acesse todos os módulos e acompanhe seu progresso.
             </p>
             <Link 
-              href="/dashboard" 
+              href="/modulos" 
               className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block"
             >
-              Acessar Dashboard
+              Explorar Módulos
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-['Inter'] font-semibold text-center mb-20">
             Recursos Principais
@@ -172,7 +248,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-white">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 w-full bg-[#f5f5f7]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center">
             <h2 className="text-3xl font-['Inter'] font-semibold mb-6 text-[#1d1d1f]">
@@ -181,8 +257,8 @@ export default function Home() {
             <p className="text-lg text-[#86868b] mb-10 max-w-xl mx-auto font-['Inter']">
               Junte-se a milhares de profissionais do direito que já transformaram suas carreiras com a Schola Juris.
             </p>
-            <Link href="/dashboard" className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block">
-              Acessar Dashboard
+            <Link href="/trilhas" className="bg-[#0071e3] text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-[#0077ED] transition-colors duration-200 inline-block">
+              Explorar Trilhas
             </Link>
           </div>
         </div>

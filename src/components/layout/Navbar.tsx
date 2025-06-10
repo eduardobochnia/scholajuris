@@ -15,6 +15,9 @@ export default function Navbar() {
             <Link href="/dashboard" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
               Dashboard
             </Link>
+            <Link href="/trilhas" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
+              Trilhas
+            </Link>
             <Link href="/modulos" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
               Módulos
             </Link>
