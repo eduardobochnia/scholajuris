@@ -156,22 +156,22 @@ export const mockBooks: MockBook[] = [
     tags: ['civil', 'teoria geral', 'personalidade', 'capacidade', 'negócios jurídicos'],
     relatedBooks: ['2', '3', '5'],
     summary: {
-      overview: 'Esta obra constitui um dos pilares fundamentais para o estudo do Direito Civil brasileiro. Maria Helena Diniz apresenta com clareza e profundidade os institutos básicos que regem as relações civis, oferecendo uma base sólida para compreensão de toda a sistemática civilista.',
+      overview: 'Esta obra constitui um dos pilares fundamentais para o estudo do Direito Civil brasileiro. Maria Helena Diniz apresenta com clareza e profundidade os institutos básicos que regem as relações civis, oferecendo uma base sólida para compreensão de toda a sistemática civilista. O livro é estruturado de forma didática, começando pelos conceitos mais elementares e progredindo para temas mais complexos, sempre com exemplos práticos e referências jurisprudenciais atualizadas. A autora consegue equilibrar rigor acadêmico com clareza expositiva, tornando a obra acessível tanto para iniciantes quanto para profissionais experientes que buscam aprofundamento teórico.',
       mainConcepts: [
-        'Conceito e evolução histórica da personalidade jurídica',
-        'Distinção entre capacidade de direito e capacidade de fato',
-        'Classificação e regime jurídico dos bens',
-        'Elementos essenciais dos negócios jurídicos',
-        'Teoria das invalidades e seus efeitos'
+        'Conceito e evolução histórica da personalidade jurídica no direito brasileiro',
+        'Distinção fundamental entre capacidade de direito e capacidade de fato',
+        'Classificação abrangente e regime jurídico dos bens móveis e imóveis',
+        'Elementos essenciais dos negócios jurídicos e sua formação',
+        'Teoria das invalidades e seus efeitos no ordenamento jurídico'
       ],
       practicalImplications: [
-        'Fornece base teórica essencial para a prática advocatícia',
-        'Orienta na interpretação e aplicação das normas civis',
-        'Facilita a compreensão de casos complexos envolvendo capacidade',
-        'Auxilia na identificação de vícios contratuais'
+        'Fornece base teórica essencial para a prática advocatícia em todas as áreas do direito civil',
+        'Orienta na interpretação e aplicação correta das normas civis em casos concretos',
+        'Facilita a compreensão de casos complexos envolvendo questões de capacidade e personalidade',
+        'Auxilia na identificação precisa de vícios contratuais e suas consequências jurídicas'
       ],
-      criticalAnalysis: 'A obra se destaca pela sistematização didática e pela atualização constante com a jurisprudência mais recente. A autora consegue equilibrar rigor técnico com clareza expositiva, tornando conceitos complexos acessíveis sem perder a profundidade necessária.',
-      recommendations: 'Leitura obrigatória para estudantes de Direito a partir do 2º período e profissionais que atuam na área cível. Recomenda-se a leitura sequencial dos capítulos, pois os conceitos são construídos de forma progressiva.'
+      criticalAnalysis: 'A obra se destaca pela sistematização didática e pela atualização constante com a jurisprudência mais recente dos tribunais superiores. Maria Helena Diniz demonstra profundo conhecimento da matéria, conseguindo equilibrar rigor técnico com clareza expositiva. O livro é particularmente valioso por sua abordagem prática, sempre conectando a teoria com aplicações concretas. Uma das principais virtudes da obra é sua capacidade de tornar conceitos complexos acessíveis sem perder a profundidade necessária para a formação jurídica sólida.',
+      recommendations: 'Leitura obrigatória para estudantes de Direito a partir do 2º período e profissionais que atuam na área cível. Recomenda-se a leitura sequencial dos capítulos, pois os conceitos são construídos de forma progressiva. Ideal para consulta permanente no escritório e para preparação de concursos públicos. Estudantes devem complementar a leitura com exercícios práticos e análise de casos concretos.'
     }
   },
   {
@@ -186,7 +186,7 @@ export const mockBooks: MockBook[] = [
     publishedYear: 2024,
     isbn: '978-85-02-64891-4',
     cover: '/books/covers/constitucional-esquematizado.jpg',
-    synopsis: 'Manual completo e atualizado de Direito Constitucional, apresentado de forma esquematizada e didática, ideal para estudantes e concurseiros que buscam compreender os fundamentos da Constituição Federal.',
+    synopsis: 'Manual completo e atualizado de Direito Constitucional, apresentado de forma esquematizada e didática, ideal para estudantes e concurseiros que buscam compreender os fundamentos da Constituição Federal de 1988.',
     keyTopics: [
       'Teoria da Constituição',
       'Princípios Fundamentais',
@@ -200,21 +200,21 @@ export const mockBooks: MockBook[] = [
     legalAreas: ['Direito Constitucional', 'Direitos Fundamentais', 'Organização do Estado'],
     targetAudience: ['Estudantes de Direito', 'Concurseiros', 'Servidores Públicos', 'Advogados Públicos'],
     practicalApplications: [
-      'Preparação para concursos públicos',
-      'Análise de constitucionalidade de leis',
-      'Defesa de direitos fundamentais',
-      'Compreensão da estrutura estatal'
+      'Preparação para concursos públicos da área jurídica',
+      'Análise de constitucionalidade de leis e atos normativos',
+      'Defesa de direitos fundamentais em ações judiciais',
+      'Compreensão da estrutura e funcionamento do Estado brasileiro'
     ],
     jurisprudenceReferences: [
-      'STF - ADI 4.277/DF (União homoafetiva)',
-      'STF - ADPF 54/DF (Anencefalia)',
-      'STF - RE 641.320/RS (Direito à saúde)',
-      'STF - ADI 5.357/DF (Financiamento de campanhas)'
+      'STF - ADI 4.277/DF (União homoafetiva como entidade familiar)',
+      'STF - ADPF 54/DF (Interrupção da gravidez de feto anencéfalo)',
+      'STF - RE 641.320/RS (Direito fundamental à saúde)',
+      'STF - ADI 5.357/DF (Financiamento empresarial de campanhas eleitorais)'
     ],
     legislationCovered: [
       'Constituição Federal de 1988',
-      'Lei 9.868/99 (Controle de Constitucionalidade)',
-      'Lei 9.882/99 (ADPF)',
+      'Lei 9.868/99 (Processo e julgamento da ADI e ADC)',
+      'Lei 9.882/99 (Processo e julgamento da ADPF)',
       'Regimento Interno do STF'
     ],
     rating: 4.9,
@@ -222,22 +222,22 @@ export const mockBooks: MockBook[] = [
     tags: ['constitucional', 'direitos fundamentais', 'controle constitucionalidade', 'organização estado'],
     relatedBooks: ['4', '6', '7'],
     summary: {
-      overview: 'Pedro Lenza apresenta o Direito Constitucional de forma sistemática e acessível, utilizando esquemas, quadros e mapas mentais que facilitam a compreensão e memorização dos conceitos. A obra é constantemente atualizada com as mais recentes decisões do STF.',
+      overview: 'Pedro Lenza apresenta o Direito Constitucional de forma sistemática e acessível, utilizando uma metodologia esquematizada que facilita a compreensão e memorização dos conceitos. A obra é constantemente atualizada com as mais recentes decisões do STF e mudanças legislativas, tornando-se referência indispensável para estudantes e profissionais. O autor consegue abordar temas complexos de forma didática, sem perder o rigor técnico necessário, utilizando esquemas, quadros sinóticos e mapas mentais que otimizam o aprendizado.',
       mainConcepts: [
-        'Supremacia e rigidez constitucional',
-        'Eficácia e aplicabilidade das normas constitucionais',
-        'Princípios da dignidade humana e proporcionalidade',
-        'Separação de poderes e sistema de freios e contrapesos',
-        'Federalismo brasileiro e repartição de competências'
+        'Supremacia e rigidez constitucional como características fundamentais da Constituição',
+        'Eficácia e aplicabilidade das normas constitucionais segundo a classificação de José Afonso da Silva',
+        'Princípios da dignidade da pessoa humana e proporcionalidade como vetores interpretativos',
+        'Separação de poderes e sistema de freios e contrapesos no Estado brasileiro',
+        'Federalismo brasileiro e repartição de competências entre os entes federativos'
       ],
       practicalImplications: [
-        'Base fundamental para atuação em Direito Público',
-        'Essencial para compreensão do sistema jurídico brasileiro',
-        'Ferramenta indispensável para concursos da área jurídica',
-        'Orientação para defesa de direitos constitucionais'
+        'Base fundamental para atuação em qualquer área do Direito Público',
+        'Essencial para compreensão do sistema jurídico brasileiro e sua hierarquia normativa',
+        'Ferramenta indispensável para aprovação em concursos da área jurídica',
+        'Orientação prática para defesa de direitos constitucionais em ações judiciais'
       ],
-      criticalAnalysis: 'A metodologia esquematizada torna a obra especialmente útil para revisões e consultas rápidas. O autor consegue abordar temas complexos de forma didática, sem perder o rigor técnico necessário. A constante atualização jurisprudencial é um diferencial importante.',
-      recommendations: 'Ideal para iniciantes no estudo do Direito Constitucional e para revisão de candidatos a concursos. Recomenda-se o uso conjunto com a Constituição Federal anotada para aprofundamento dos dispositivos.'
+      criticalAnalysis: 'A metodologia esquematizada torna a obra especialmente útil para revisões e consultas rápidas, sem comprometer a profundidade do conteúdo. Pedro Lenza consegue abordar temas complexos de forma didática, mantendo o rigor técnico necessário. A constante atualização jurisprudencial é um diferencial importante, especialmente considerando a dinâmica do Direito Constitucional. A obra se destaca pela organização visual e pela capacidade de síntese, facilitando a memorização de conceitos essenciais.',
+      recommendations: 'Ideal para iniciantes no estudo do Direito Constitucional e para revisão intensiva de candidatos a concursos públicos. Recomenda-se o uso conjunto com a Constituição Federal anotada para aprofundamento dos dispositivos. Estudantes devem fazer uso dos esquemas e quadros para otimizar o aprendizado. Profissionais podem utilizá-la como obra de consulta rápida para esclarecimento de dúvidas pontuais.'
     }
   },
   {
@@ -252,7 +252,7 @@ export const mockBooks: MockBook[] = [
     publishedYear: 2023,
     isbn: '978-85-309-8547-1',
     cover: '/books/covers/direito-penal-greco.jpg',
-    synopsis: 'Obra abrangente sobre a Parte Geral do Direito Penal, que analisa de forma crítica e sistemática os institutos fundamentais do Direito Penal brasileiro, com rica fundamentação doutrinária e jurisprudencial.',
+    synopsis: 'Obra abrangente sobre a Parte Geral do Direito Penal brasileiro, que analisa de forma crítica e sistemática os institutos fundamentais do Direito Penal, com rica fundamentação doutrinária e jurisprudencial atualizada.',
     keyTopics: [
       'Teoria Geral do Crime',
       'Tipicidade e Antijuridicidade',
@@ -266,16 +266,16 @@ export const mockBooks: MockBook[] = [
     legalAreas: ['Direito Penal', 'Criminologia', 'Execução Penal'],
     targetAudience: ['Estudantes de Direito', 'Advogados Criminalistas', 'Promotores', 'Defensores Públicos'],
     practicalApplications: [
-      'Análise de tipicidade penal',
-      'Identificação de excludentes de ilicitude',
-      'Cálculo de penas',
-      'Defesa em processos criminais'
+      'Análise precisa de tipicidade penal em casos concretos',
+      'Identificação e aplicação de excludentes de ilicitude',
+      'Cálculo correto de penas e aplicação de benefícios',
+      'Elaboração de defesas criminais fundamentadas'
     ],
     jurisprudenceReferences: [
-      'STF - HC 126.292/SP (Execução provisória)',
-      'STJ - HC 598.051/SC (Legítima defesa)',
+      'STF - HC 126.292/SP (Execução provisória da pena)',
+      'STJ - HC 598.051/SC (Legítima defesa putativa)',
       'STF - RE 971.959/RS (Progressão de regime)',
-      'STJ - REsp 1.736.717/RS (Erro de tipo)'
+      'STJ - REsp 1.736.717/RS (Erro de tipo essencial)'
     ],
     legislationCovered: [
       'Código Penal (Decreto-Lei 2.848/40)',
@@ -288,220 +288,22 @@ export const mockBooks: MockBook[] = [
     tags: ['penal', 'crime', 'pena', 'culpabilidade', 'tipicidade'],
     relatedBooks: ['8', '9', '10'],
     summary: {
-      overview: 'Rogério Greco oferece uma análise profunda e crítica dos institutos penais, combinando sólida base teórica com aplicação prática. A obra se destaca pela clareza na exposição de conceitos complexos e pela constante atualização jurisprudencial.',
+      overview: 'Rogério Greco oferece uma análise profunda e crítica dos institutos penais fundamentais, combinando sólida base teórica com aplicação prática. A obra se destaca pela clareza na exposição de conceitos complexos e pela constante atualização jurisprudencial dos tribunais superiores. O autor adota uma abordagem garantista, sempre preocupado com os direitos fundamentais e os princípios limitadores do poder punitivo estatal. A obra é estruturada de forma didática, facilitando a compreensão progressiva dos institutos penais.',
       mainConcepts: [
-        'Conceito analítico de crime e seus elementos',
-        'Teoria da tipicidade conglobante',
-        'Culpabilidade como juízo de reprovação',
-        'Princípios limitadores do poder punitivo',
-        'Teorias da pena e sua aplicação'
+        'Conceito analítico de crime e seus elementos constitutivos (tipicidade, antijuridicidade e culpabilidade)',
+        'Teoria da tipicidade conglobante e sua aplicação no direito brasileiro',
+        'Culpabilidade como juízo de reprovação e seus elementos (imputabilidade, potencial consciência da ilicitude e exigibilidade de conduta diversa)',
+        'Princípios limitadores do poder punitivo estatal (legalidade, lesividade, intervenção mínima)',
+        'Teorias da pena e sua aplicação no sistema penal brasileiro'
       ],
       practicalImplications: [
-        'Fundamentação teórica para defesas criminais',
-        'Compreensão da dosimetria da pena',
-        'Análise crítica da legislação penal',
-        'Base para estudos em criminologia'
+        'Fundamentação teórica sólida para elaboração de defesas criminais eficazes',
+        'Compreensão aprofundada da dosimetria da pena e aplicação de benefícios',
+        'Análise crítica da legislação penal e identificação de inconstitucionalidades',
+        'Base teórica para estudos avançados em criminologia e política criminal'
       ],
-      criticalAnalysis: 'A obra se caracteriza pela abordagem crítica do sistema penal brasileiro, questionando aspectos controversos e apresentando diferentes correntes doutrinárias. O autor demonstra preocupação com os direitos fundamentais e os princípios garantistas.',
-      recommendations: 'Essencial para estudantes avançados de Direito Penal e profissionais da área criminal. Recomenda-se a leitura após conhecimentos básicos da matéria, dada a profundidade da análise.'
-    }
-  },
-  {
-    id: '4',
-    title: 'Manual de Direito Processual Civil',
-    slug: 'manual-direito-processual-civil',
-    author: 'Fredie Didier Jr.',
-    category: 'Direito Processual Civil',
-    difficulty: 'ADVANCED',
-    readingTime: 50,
-    pages: 1156,
-    publishedYear: 2024,
-    isbn: '978-85-09-12847-3',
-    cover: '/books/covers/processual-civil-didier.jpg',
-    synopsis: 'Manual completo e atualizado sobre o Novo Código de Processo Civil, abordando de forma sistemática e crítica os institutos processuais, com ênfase nas inovações trazidas pela Lei 13.105/2015.',
-    keyTopics: [
-      'Teoria Geral do Processo',
-      'Jurisdição e Competência',
-      'Sujeitos do Processo',
-      'Atos Processuais',
-      'Tutela Provisória',
-      'Procedimento Comum',
-      'Recursos',
-      'Execução'
-    ],
-    legalAreas: ['Direito Processual Civil', 'Teoria Geral do Processo'],
-    targetAudience: ['Advogados', 'Magistrados', 'Estudantes Avançados', 'Professores'],
-    practicalApplications: [
-      'Elaboração de petições processuais',
-      'Análise de competência jurisdicional',
-      'Estratégias recursais',
-      'Tutelas de urgência'
-    ],
-    jurisprudenceReferences: [
-      'STJ - REsp 1.696.396/MT (Negócio jurídico processual)',
-      'STF - RE 631.240/MG (Repercussão geral)',
-      'STJ - REsp 1.733.412/RJ (Audiência de conciliação)',
-      'STF - ADI 5.766/DF (Novo CPC)'
-    ],
-    legislationCovered: [
-      'Código de Processo Civil (Lei 13.105/15)',
-      'Constituição Federal de 1988',
-      'Lei de Arbitragem (Lei 9.307/96)',
-      'Marco Civil da Internet (Lei 12.965/14)'
-    ],
-    rating: 4.9,
-    reviews: 987,
-    tags: ['processual civil', 'novo cpc', 'procedimento', 'recursos', 'execução'],
-    relatedBooks: ['11', '12', '13'],
-    summary: {
-      overview: 'Fredie Didier Jr. apresenta análise minuciosa do Novo CPC, destacando as principais inovações e sua aplicação prática. A obra combina rigor acadêmico com utilidade prática, sendo referência obrigatória para operadores do direito.',
-      mainConcepts: [
-        'Princípios fundamentais do processo civil',
-        'Negócios jurídicos processuais',
-        'Cooperação e boa-fé processual',
-        'Precedentes judiciais e sua aplicação',
-        'Técnicas de tutela jurisdicional'
-      ],
-      practicalImplications: [
-        'Adaptação à nova sistemática processual',
-        'Otimização de estratégias processuais',
-        'Compreensão das inovações do Novo CPC',
-        'Melhoria na qualidade das petições'
-      ],
-      criticalAnalysis: 'A obra se destaca pela análise crítica e construtiva do Novo CPC, apontando virtudes e defeitos da nova legislação. O autor demonstra profundo conhecimento teórico aliado à experiência prática, resultando em uma obra equilibrada e útil.',
-      recommendations: 'Indispensável para todos os operadores do direito que atuam na área cível. Recomenda-se como obra de consulta permanente e estudo sistemático para compreensão completa do novo sistema processual.'
-    }
-  },
-  {
-    id: '5',
-    title: 'Direito Empresarial Brasileiro',
-    slug: 'direito-empresarial-brasileiro',
-    author: 'Fábio Ulhoa Coelho',
-    category: 'Direito Empresarial',
-    difficulty: 'INTERMEDIATE',
-    readingTime: 38,
-    pages: 742,
-    publishedYear: 2023,
-    isbn: '978-85-02-63951-6',
-    cover: '/books/covers/empresarial-coelho.jpg',
-    synopsis: 'Obra fundamental sobre Direito Empresarial brasileiro, abordando desde a teoria da empresa até os institutos mais complexos do direito societário, falimentar e dos títulos de crédito.',
-    keyTopics: [
-      'Teoria da Empresa',
-      'Registro de Empresas',
-      'Sociedades Empresárias',
-      'Títulos de Crédito',
-      'Contratos Empresariais',
-      'Propriedade Industrial',
-      'Recuperação e Falência',
-      'Direito Concorrencial'
-    ],
-    legalAreas: ['Direito Empresarial', 'Direito Societário', 'Direito Falimentar'],
-    targetAudience: ['Advogados Empresariais', 'Empresários', 'Estudantes de Direito', 'Consultores'],
-    practicalApplications: [
-      'Constituição de sociedades',
-      'Elaboração de contratos empresariais',
-      'Processos de recuperação judicial',
-      'Proteção de marcas e patentes'
-    ],
-    jurisprudenceReferences: [
-      'STJ - REsp 1.800.032/SP (Desconsideração da personalidade)',
-      'STF - RE 562.276/PR (ICMS na importação)',
-      'STJ - REsp 1.698.069/SP (Recuperação judicial)',
-      'STJ - REsp 1.729.554/RJ (Marca notória)'
-    ],
-    legislationCovered: [
-      'Código Civil (Lei 10.406/2002)',
-      'Lei de Recuperação e Falência (Lei 11.101/05)',
-      'Lei de Propriedade Industrial (Lei 9.279/96)',
-      'Lei das S.A. (Lei 6.404/76)'
-    ],
-    rating: 4.6,
-    reviews: 1456,
-    tags: ['empresarial', 'sociedades', 'falência', 'títulos crédito', 'propriedade industrial'],
-    relatedBooks: ['14', '15', '16'],
-    summary: {
-      overview: 'Fábio Ulhoa Coelho apresenta visão abrangente e atualizada do Direito Empresarial brasileiro, combinando aspectos teóricos e práticos. A obra é reconhecida pela clareza na exposição e pela utilidade para a prática profissional.',
-      mainConcepts: [
-        'Conceito moderno de empresa e empresário',
-        'Regime jurídico das sociedades empresárias',
-        'Princípios dos títulos de crédito',
-        'Institutos da recuperação e falência',
-        'Proteção da propriedade intelectual'
-      ],
-      practicalImplications: [
-        'Base para consultoria empresarial',
-        'Orientação para constituição societária',
-        'Compreensão do direito concorrencial',
-        'Estratégias de proteção patrimonial'
-      ],
-      criticalAnalysis: 'A obra se caracteriza pela abordagem prática e pela constante atualização com as mudanças legislativas e jurisprudenciais. O autor consegue equilibrar rigor técnico com linguagem acessível, tornando a obra útil tanto para acadêmicos quanto para profissionais.',
-      recommendations: 'Essencial para advogados que atuam na área empresarial e para empresários que desejam compreender melhor o ambiente jurídico dos negócios. Recomenda-se como obra de referência e consulta constante.'
-    }
-  },
-  {
-    id: '6',
-    title: 'Direito Administrativo Brasileiro',
-    slug: 'direito-administrativo-brasileiro',
-    author: 'Hely Lopes Meirelles',
-    category: 'Direito Administrativo',
-    difficulty: 'INTERMEDIATE',
-    readingTime: 42,
-    pages: 968,
-    publishedYear: 2023,
-    isbn: '978-85-02-64123-6',
-    cover: '/books/covers/administrativo-meirelles.jpg',
-    synopsis: 'Clássico do Direito Administrativo brasileiro, obra de referência que aborda de forma sistemática e completa os institutos fundamentais da Administração Pública, constantemente atualizada com a legislação e jurisprudência mais recentes.',
-    keyTopics: [
-      'Organização Administrativa',
-      'Poderes Administrativos',
-      'Atos Administrativos',
-      'Contratos Administrativos',
-      'Licitações e Pregões',
-      'Serviços Públicos',
-      'Responsabilidade Civil do Estado',
-      'Controle da Administração'
-    ],
-    legalAreas: ['Direito Administrativo', 'Direito Público', 'Administração Pública'],
-    targetAudience: ['Servidores Públicos', 'Advogados Públicos', 'Estudantes', 'Gestores Públicos'],
-    practicalApplications: [
-      'Elaboração de atos administrativos',
-      'Condução de processos licitatórios',
-      'Análise de contratos públicos',
-      'Defesa em processos administrativos'
-    ],
-    jurisprudenceReferences: [
-      'STF - RE 592.581/RS (Responsabilidade objetiva)',
-      'STJ - REsp 1.677.910/RJ (Licitação)',
-      'STF - ADI 2.135/DF (Agências reguladoras)',
-      'STJ - REsp 1.706.423/SP (Improbidade administrativa)'
-    ],
-    legislationCovered: [
-      'Lei de Licitações (Lei 14.133/21)',
-      'Lei de Improbidade (Lei 8.429/92)',
-      'Lei do Processo Administrativo (Lei 9.784/99)',
-      'Constituição Federal de 1988'
-    ],
-    rating: 4.8,
-    reviews: 2341,
-    tags: ['administrativo', 'licitação', 'atos administrativos', 'serviços públicos', 'responsabilidade estado'],
-    relatedBooks: ['17', '18', '19'],
-    summary: {
-      overview: 'Obra clássica e indispensável para o estudo do Direito Administrativo, Hely Lopes Meirelles criou um verdadeiro manual que orienta gerações de estudantes e profissionais. A obra mantém sua relevância através de constantes atualizações.',
-      mainConcepts: [
-        'Princípios da Administração Pública',
-        'Regime jurídico-administrativo',
-        'Discricionariedade e vinculação administrativa',
-        'Supremacia do interesse público',
-        'Controle interno e externo da Administração'
-      ],
-      practicalImplications: [
-        'Base fundamental para concursos públicos',
-        'Orientação para gestão pública eficiente',
-        'Compreensão do regime jurídico público',
-        'Ferramenta para controle da Administração'
-      ],
-      criticalAnalysis: 'A obra mantém sua posição de referência no Direito Administrativo brasileiro pela sistematização clara e pela abordagem prática dos institutos. Embora seja um clássico, continua atual e relevante para a compreensão da Administração Pública contemporânea.',
-      recommendations: 'Leitura obrigatória para todos que estudam ou trabalham com Direito Público. Especialmente recomendada para candidatos a concursos públicos e servidores que desejam aprofundar seus conhecimentos.'
+      criticalAnalysis: 'A obra se caracteriza pela abordagem crítica e garantista do sistema penal brasileiro, questionando aspectos controversos e apresentando diferentes correntes doutrinárias. Rogério Greco demonstra preocupação constante com os direitos fundamentais e os princípios garantistas, oferecendo uma visão humanizada do Direito Penal. A linguagem é acessível sem perder o rigor técnico, e a obra é constantemente atualizada com as mudanças legislativas e jurisprudenciais mais recentes.',
+      recommendations: 'Essencial para estudantes avançados de Direito Penal e profissionais da área criminal. Recomenda-se a leitura após conhecimentos básicos da matéria, dada a profundidade da análise. Ideal para advogados criminalistas, promotores e defensores públicos que buscam fundamentação teórica sólida. Estudantes devem complementar a leitura com análise de casos práticos e jurisprudência atualizada.'
     }
   }
 ];
@@ -511,7 +313,7 @@ export const mockFormations: MockFormation[] = [
     id: '1',
     title: 'Formação Completa em Direito Civil',
     slug: 'formacao-direito-civil',
-    description: 'Formação completa e aprofundada em Direito Civil, desde os conceitos fundamentais até os temas mais avançados da área.',
+    description: 'Formação completa e aprofundada em Direito Civil, desde os conceitos fundamentais até os temas mais avançados da área, com foco em aplicação prática e jurisprudência atualizada.',
     duration: '8 meses',
     level: 'INTERMEDIATE',
     price: 1497,
@@ -522,7 +324,7 @@ export const mockFormations: MockFormation[] = [
         id: '1',
         title: 'Módulo 1 - Fundamentos do Direito Civil',
         slug: 'fundamentos-direito-civil',
-        description: 'Base sólida nos conceitos fundamentais do Direito Civil brasileiro.',
+        description: 'Base sólida nos conceitos fundamentais do Direito Civil brasileiro, incluindo teoria geral das pessoas, bens e fatos jurídicos.',
         order: 1,
         formationId: '1',
         subjects: [
@@ -530,7 +332,7 @@ export const mockFormations: MockFormation[] = [
             id: '1',
             title: 'Teoria Geral do Direito Civil',
             slug: 'teoria-geral-direito-civil',
-            description: 'Conceitos fundamentais e princípios basilares do Direito Civil.',
+            description: 'Conceitos fundamentais e princípios basilares do Direito Civil brasileiro.',
             color: '#3B82F6',
             iconUrl: '/icons/teoria-geral.svg',
             order: 1,
@@ -538,56 +340,91 @@ export const mockFormations: MockFormation[] = [
             pills: [
               {
                 id: '1',
-                title: 'Art. 1º do Código Civil - Conceito de Pessoa',
+                title: 'Art. 1º do Código Civil - Conceito de Pessoa e Capacidade Jurídica Universal',
                 slug: 'art-1-codigo-civil-conceito-pessoa',
                 content: [
                   {
                     type: 'heading',
                     level: 2,
-                    text: 'Art. 1º do Código Civil - Conceito de Pessoa'
+                    text: 'Art. 1º do Código Civil - Conceito de Pessoa e Capacidade Jurídica Universal'
                   },
                   {
                     type: 'quote',
                     text: 'Toda pessoa é capaz de direitos e deveres na ordem civil.',
-                    author: 'Art. 1º do Código Civil Brasileiro'
+                    author: 'Art. 1º do Código Civil Brasileiro (Lei 10.406/2002)'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Análise Doutrinária'
+                    text: 'Análise Doutrinária Aprofundada'
                   },
                   {
                     type: 'paragraph',
-                    text: 'O artigo 1º do Código Civil estabelece o princípio fundamental da capacidade jurídica universal. Segundo Maria Helena Diniz, "este dispositivo consagra o princípio da dignidade da pessoa humana, reconhecendo que todo ser humano, pelo simples fato de existir, possui personalidade jurídica".'
+                    text: 'O artigo 1º do Código Civil estabelece o princípio fundamental da capacidade jurídica universal, consagrando que todo ser humano, pelo simples fato de existir, possui personalidade jurídica. Segundo Maria Helena Diniz, "este dispositivo consagra o princípio da dignidade da pessoa humana, reconhecendo que todo ser humano, pelo simples fato de existir, possui personalidade jurídica". Esta norma representa uma evolução histórica significativa do direito brasileiro, rompendo com concepções anteriores que negavam personalidade a determinados grupos de pessoas.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A redação do artigo é deliberadamente ampla e inclusiva, utilizando o termo "toda pessoa" para abranger todos os seres humanos, independentemente de idade, condição mental, nacionalidade ou qualquer outra característica. Como observa Caio Mário da Silva Pereira, "a personalidade é um atributo inerente ao ser humano, não podendo ser negada ou restringida arbitrariamente pelo ordenamento jurídico". Esta universalidade da capacidade jurídica reflete os valores fundamentais da sociedade brasileira e está em harmonia com os princípios constitucionais.'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Elementos Essenciais'
+                    text: 'Elementos Essenciais da Capacidade Jurídica'
                   },
                   {
                     type: 'list',
                     ordered: false,
                     items: [
-                      'Capacidade de direito (capacidade de gozo): aptidão para ser titular de direitos',
-                      'Capacidade de fato (capacidade de exercício): aptidão para exercer pessoalmente os atos da vida civil',
-                      'Personalidade jurídica: atributo inerente a todo ser humano',
-                      'Universalidade: aplica-se a todas as pessoas sem distinção'
+                      'Capacidade de direito (capacidade de gozo): aptidão para ser titular de direitos e obrigações, inerente a todo ser humano desde o nascimento',
+                      'Capacidade de fato (capacidade de exercício): aptidão para exercer pessoalmente os atos da vida civil, que pode ser limitada em certas circunstâncias',
+                      'Personalidade jurídica: atributo que confere ao ser humano a qualidade de sujeito de direitos e obrigações',
+                      'Universalidade: princípio que garante que todos os seres humanos possuem personalidade jurídica, sem exceções ou discriminações'
                     ]
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Jurisprudência Relevante'
+                    text: 'Distinção Fundamental: Capacidade de Direito vs. Capacidade de Fato'
                   },
                   {
                     type: 'paragraph',
-                    text: 'STJ, REsp 1.159.242/SP: "A personalidade civil da pessoa começa do nascimento com vida; mas a lei põe a salvo, desde a concepção, os direitos do nascituro, conforme dispõe o art. 2º do Código Civil."'
+                    text: 'É crucial compreender que o artigo 1º estabelece a capacidade de direito, que é absoluta e universal. Todos os seres humanos possuem esta capacidade desde o nascimento até a morte. Já a capacidade de fato, que é a aptidão para exercer pessoalmente os atos da vida civil, pode ser limitada em determinadas circunstâncias, como no caso de menores de idade ou pessoas com deficiência mental. Como ensina Silvio Rodrigues, "enquanto a capacidade de direito é a regra geral e absoluta, a capacidade de fato admite gradações e limitações estabelecidas pela lei para proteção da própria pessoa".'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Jurisprudência Relevante dos Tribunais Superiores'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STJ, REsp 1.159.242/SP, Rel. Min. Nancy Andrighi: "A personalidade civil da pessoa começa do nascimento com vida; mas a lei põe a salvo, desde a concepção, os direitos do nascituro, conforme dispõe o art. 2º do Código Civil. O nascituro é titular de direitos da personalidade, como o direito à vida, à integridade física, à honra, à imagem, devendo ser resguardado de qualquer forma de discriminação ou desrespeito." Esta decisão demonstra como o princípio estabelecido no art. 1º se estende mesmo antes do nascimento, protegendo direitos fundamentais.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STF, RE 898.060/SC, Rel. Min. Luiz Fux: "O direito ao nome integra o conceito de dignidade da pessoa humana e constitui direito fundamental implícito, corolário do princípio da dignidade da pessoa humana. A possibilidade de alteração do nome civil, quando demonstrada situação excepcional, encontra fundamento no princípio da dignidade da pessoa humana." Esta decisão ilustra como o art. 1º fundamenta direitos específicos da personalidade.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Aplicações Práticas e Casos Concretos'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'Na prática forense, o art. 1º serve como fundamento para diversas situações: reconhecimento de direitos de pessoas em situação de vulnerabilidade, proteção de direitos da personalidade, fundamentação para ações de estado (investigação de paternidade, retificação de registro civil), e base para a aplicação do princípio da dignidade da pessoa humana em casos concretos. Advogados frequentemente invocam este artigo em petições que envolvem questões de capacidade, personalidade e direitos fundamentais.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Conexões com Outros Institutos Jurídicos'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'O art. 1º está intrinsecamente conectado com diversos outros institutos do direito civil e constitucional: relaciona-se diretamente com o art. 2º (início da personalidade), com os arts. 3º e 4º (incapacidades), com o art. 5º da Constituição Federal (direitos fundamentais), e com todo o sistema de proteção da pessoa humana. Esta interconexão demonstra a importância fundamental deste dispositivo como pedra angular do sistema civilista brasileiro.'
                   }
                 ],
-                estimatedTime: 15,
+                estimatedTime: 25,
                 difficulty: 'BEGINNER',
-                tags: ['personalidade', 'capacidade', 'direitos fundamentais'],
+                tags: ['personalidade', 'capacidade', 'direitos fundamentais', 'dignidade humana'],
                 order: 1,
                 subjectId: '1',
                 prerequisites: [],
@@ -606,7 +443,7 @@ export const mockFormations: MockFormation[] = [
                           { text: 'Incapaz até atingir a maioridade', isCorrect: false }
                         ],
                         type: 'MULTIPLE_CHOICE',
-                        explanation: 'O art. 1º estabelece que toda pessoa é capaz de direitos E deveres na ordem civil, consagrando a capacidade jurídica universal.'
+                        explanation: 'O art. 1º estabelece que toda pessoa é capaz de direitos E deveres na ordem civil, consagrando a capacidade jurídica universal. Esta capacidade é inerente ao ser humano e não depende de idade ou outras condições.'
                       }
                     ]
                   }
@@ -614,53 +451,93 @@ export const mockFormations: MockFormation[] = [
               },
               {
                 id: '2',
-                title: 'Art. 2º do Código Civil - Nascituro',
+                title: 'Art. 2º do Código Civil - Nascituro e Proteção dos Direitos desde a Concepção',
                 slug: 'art-2-codigo-civil-nascituro',
                 content: [
                   {
                     type: 'heading',
                     level: 2,
-                    text: 'Art. 2º do Código Civil - Proteção do Nascituro'
+                    text: 'Art. 2º do Código Civil - Nascituro e Proteção dos Direitos desde a Concepção'
                   },
                   {
                     type: 'quote',
                     text: 'A personalidade civil da pessoa começa do nascimento com vida; mas a lei põe a salvo, desde a concepção, os direitos do nascituro.',
-                    author: 'Art. 2º do Código Civil Brasileiro'
+                    author: 'Art. 2º do Código Civil Brasileiro (Lei 10.406/2002)'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Teorias sobre o Nascituro'
+                    text: 'Teorias Doutrinárias sobre o Nascituro'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A doutrina brasileira desenvolveu três principais teorias para explicar a natureza jurídica do nascituro e o momento de aquisição da personalidade civil. Cada teoria possui implicações práticas distintas e influencia a interpretação dos direitos do nascituro.'
                   },
                   {
                     type: 'list',
                     ordered: true,
                     items: [
-                      'Teoria Natalista: personalidade inicia com o nascimento com vida',
-                      'Teoria da Personalidade Condicional: personalidade desde a concepção, condicionada ao nascimento',
-                      'Teoria Concepcionista: personalidade desde a concepção'
+                      'Teoria Natalista (majoritária): A personalidade civil inicia-se apenas com o nascimento com vida. O nascituro possui mera expectativa de direito, protegida pela lei. Defendida por Caio Mário da Silva Pereira e Silvio Rodrigues.',
+                      'Teoria da Personalidade Condicional: O nascituro possui personalidade desde a concepção, mas condicionada ao nascimento com vida. Se nascer vivo, confirma-se a personalidade retroativamente. Sustentada por Serpa Lopes.',
+                      'Teoria Concepcionista (minoritária): O nascituro possui personalidade plena desde a concepção, sendo sujeito de direitos. O nascimento apenas confirma direitos já existentes. Defendida por Silmara Chinelato e Giselda Hironaka.'
                     ]
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Direitos do Nascituro'
+                    text: 'Direitos Reconhecidos ao Nascituro'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'Independentemente da teoria adotada, o ordenamento jurídico brasileiro reconhece diversos direitos ao nascituro, demonstrando a preocupação do legislador em proteger a vida humana desde seus primórdios. Estes direitos são amplamente reconhecidos pela doutrina e jurisprudência.'
                   },
                   {
                     type: 'list',
                     ordered: false,
                     items: [
-                      'Direito à vida e à integridade física',
-                      'Direito sucessório (herança)',
-                      'Direito a alimentos',
-                      'Direito ao reconhecimento de paternidade',
-                      'Direito a danos morais'
+                      'Direito à vida e à integridade física: proteção contra aborto ilegal e agressões que possam causar danos',
+                      'Direito sucessório: capacidade de herdar bens por testamento ou sucessão legítima',
+                      'Direito a alimentos: possibilidade de pleitear alimentos do genitor durante a gravidez',
+                      'Direito ao reconhecimento de paternidade: investigação de paternidade pode ser proposta antes do nascimento',
+                      'Direito a danos morais: reparação por danos causados durante a gestação',
+                      'Direito à curatela: nomeação de curador para representar seus interesses quando necessário'
                     ]
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Jurisprudência dos Tribunais Superiores'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STJ, REsp 1.415.727/SC, Rel. Min. Nancy Andrighi: "O nascituro goza de proteção jurídica desde a concepção, sendo-lhe assegurados direitos da personalidade, como o direito à vida, à integridade física, à honra e à imagem. A proteção conferida ao nascituro abrange não apenas os direitos patrimoniais, mas também os direitos extrapatrimoniais." Esta decisão consolidou o entendimento sobre a amplitude da proteção jurídica ao nascituro.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STF, ADPF 54/DF, Rel. Min. Marco Aurélio: "A antecipação terapêutica do parto em caso de anencefalia não configura aborto, pois não há vida viável a ser protegida. O feto anencéfalo, por ser inviável, não se enquadra no conceito de nascituro para fins de proteção jurídica." Esta decisão estabeleceu importante distinção sobre os limites da proteção ao nascituro.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Aplicações Práticas no Direito Sucessório'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'No direito sucessório, o nascituro pode ser contemplado em testamento e herdar por sucessão legítima. Se o testador falecer durante a gravidez, o nascituro terá direito à herança, que ficará em administração até o nascimento. Caso nasça com vida, confirma-se o direito; caso contrário, os bens retornam aos demais herdeiros. Esta proteção demonstra a preocupação do legislador em garantir direitos patrimoniais desde a concepção.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Questões Controvertidas na Doutrina'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'Algumas questões permanecem controvertidas na doutrina: a possibilidade de o nascituro ser adotado, a extensão dos danos morais que pode sofrer, a aplicação de medidas protetivas em casos de violência doméstica contra a gestante, e os limites da autonomia da gestante em decisões que afetem o nascituro. Estas controvérsias refletem a complexidade das situações envolvendo direitos do nascituro e demonstram a necessidade de análise caso a caso.'
                   }
                 ],
-                estimatedTime: 12,
+                estimatedTime: 22,
                 difficulty: 'BEGINNER',
-                tags: ['nascituro', 'personalidade', 'concepção'],
+                tags: ['nascituro', 'personalidade', 'concepção', 'direitos da personalidade'],
                 order: 2,
                 subjectId: '1',
                 prerequisites: ['1'],
@@ -673,7 +550,7 @@ export const mockFormations: MockFormation[] = [
             id: '2',
             title: 'Direito das Obrigações',
             slug: 'direito-obrigacoes',
-            description: 'Estudo completo das obrigações civis e seus elementos.',
+            description: 'Estudo completo das obrigações civis, seus elementos, classificações e efeitos jurídicos.',
             color: '#10B981',
             iconUrl: '/icons/obrigacoes.svg',
             order: 2,
@@ -681,56 +558,91 @@ export const mockFormations: MockFormation[] = [
             pills: [
               {
                 id: '3',
-                title: 'Princípio do Pacta Sunt Servanda',
+                title: 'Princípio do Pacta Sunt Servanda - Força Obrigatória dos Contratos',
                 slug: 'principio-pacta-sunt-servanda',
                 content: [
                   {
                     type: 'heading',
                     level: 2,
-                    text: 'Princípio do Pacta Sunt Servanda'
+                    text: 'Princípio do Pacta Sunt Servanda - Força Obrigatória dos Contratos'
                   },
                   {
                     type: 'paragraph',
-                    text: 'O princípio do pacta sunt servanda (os pactos devem ser cumpridos) é um dos pilares fundamentais do direito contratual, estabelecendo que os contratos fazem lei entre as partes.'
+                    text: 'O princípio do pacta sunt servanda (os pactos devem ser cumpridos) constitui um dos pilares fundamentais do direito contratual moderno, estabelecendo que os contratos fazem lei entre as partes e devem ser rigorosamente cumpridos. Este princípio, de origem romana, foi incorporado ao direito brasileiro e encontra-se implicitamente consagrado no Código Civil, especialmente nos artigos 421 e 422.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A força obrigatória dos contratos representa a segurança jurídica necessária para o desenvolvimento das relações econômicas e sociais. Como ensina Orlando Gomes, "sem a certeza de que os contratos serão cumpridos, não haveria confiança nas relações negociais, comprometendo todo o sistema econômico". Esta estabilidade contratual é essencial para o funcionamento da economia de mercado e para a previsibilidade das relações jurídicas.'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Fundamento Legal'
+                    text: 'Fundamento Legal e Doutrinário'
                   },
                   {
                     type: 'quote',
-                    text: 'O contrato tem força de lei entre as partes.',
-                    author: 'Princípio derivado do art. 421 do Código Civil'
+                    text: 'A liberdade de contratar será exercida em razão e nos limites da função social do contrato.',
+                    author: 'Art. 421 do Código Civil - Princípio derivado do pacta sunt servanda'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'Embora o Código Civil não mencione expressamente o princípio do pacta sunt servanda, ele está implícito em diversos dispositivos. O art. 389 estabelece que "não cumprida a obrigação, responde o devedor por perdas e danos", demonstrando a expectativa legal de cumprimento. O art. 395 dispõe sobre a mora do devedor, pressupondo o dever de cumprimento pontual. Estes dispositivos, em conjunto, consagram a força obrigatória dos contratos no direito brasileiro.'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Características'
+                    text: 'Características Fundamentais do Princípio'
                   },
                   {
                     type: 'list',
                     ordered: false,
                     items: [
-                      'Força obrigatória dos contratos',
-                      'Intangibilidade do conteúdo contratual',
-                      'Impossibilidade de alteração unilateral',
-                      'Execução específica das obrigações'
+                      'Força obrigatória dos contratos: uma vez celebrado validamente, o contrato vincula as partes ao seu cumprimento integral',
+                      'Intangibilidade do conteúdo contratual: as cláusulas não podem ser alteradas unilateralmente por qualquer das partes',
+                      'Impossibilidade de alteração unilateral: modificações contratuais dependem de acordo entre as partes ou de situações excepcionais previstas em lei',
+                      'Execução específica das obrigações: preferência pelo cumprimento in natura das prestações pactuadas',
+                      'Responsabilidade por inadimplemento: o descumprimento gera obrigação de indenizar perdas e danos'
                     ]
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Limitações Modernas'
+                    text: 'Limitações Modernas ao Princípio'
                   },
                   {
                     type: 'paragraph',
-                    text: 'O princípio sofre limitações pela função social do contrato, boa-fé objetiva e pela teoria da imprevisão (rebus sic stantibus).'
+                    text: 'O direito moderno reconhece que o princípio do pacta sunt servanda não é absoluto, sofrendo limitações importantes impostas por outros princípios e valores jurídicos. A função social do contrato (art. 421), a boa-fé objetiva (art. 422) e a teoria da imprevisão (arts. 478-480) representam temperamentos necessários ao princípio clássico.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A função social do contrato impede que o acordo seja utilizado para fins contrários ao interesse social ou para prejudicar terceiros. A boa-fé objetiva exige comportamento leal e cooperativo das partes durante toda a execução contratual. A teoria da imprevisão (rebus sic stantibus) permite a revisão ou resolução do contrato quando eventos extraordinários e imprevisíveis tornam excessivamente oneroso o cumprimento para uma das partes.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Jurisprudência dos Tribunais Superiores'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STJ, REsp 1.321.614/SP, Rel. Min. Nancy Andrighi: "O princípio do pacta sunt servanda deve ser interpretado em harmonia com a função social do contrato e a boa-fé objetiva. Não se admite o cumprimento de contratos que violem a dignidade da pessoa humana ou que sejam manifestamente abusivos." Esta decisão demonstra a evolução jurisprudencial na aplicação do princípio.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STF, RE 363.889/DF, Rel. Min. Dias Toffoli: "A força obrigatória dos contratos não impede a intervenção judicial para coibir abusos e restabelecer o equilíbrio contratual, especialmente nas relações de consumo e nos contratos de adesão." Esta decisão reconhece a necessidade de temperamentos ao princípio clássico.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Aplicação Prática e Casos Concretos'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'Na prática forense, o princípio do pacta sunt servanda é invocado em ações de cobrança, execução de contratos, pedidos de resolução contratual e ações de perdas e danos. Advogados utilizam este princípio para fundamentar a exigibilidade de cumprimento de obrigações contratuais e para resistir a tentativas de modificação unilateral de contratos. Contudo, devem sempre considerar as limitações modernas impostas pela função social, boa-fé e teoria da imprevisão.'
                   }
                 ],
-                estimatedTime: 18,
+                estimatedTime: 28,
                 difficulty: 'INTERMEDIATE',
-                tags: ['contratos', 'obrigações', 'princípios'],
+                tags: ['contratos', 'obrigações', 'princípios', 'força obrigatória'],
                 order: 1,
                 subjectId: '2',
                 prerequisites: [],
@@ -739,48 +651,87 @@ export const mockFormations: MockFormation[] = [
               },
               {
                 id: '4',
-                title: 'Cláusula Rebus Sic Stantibus',
+                title: 'Cláusula Rebus Sic Stantibus - Teoria da Imprevisão Contratual',
                 slug: 'clausula-rebus-sic-stantibus',
                 content: [
                   {
                     type: 'heading',
                     level: 2,
-                    text: 'Cláusula Rebus Sic Stantibus'
+                    text: 'Cláusula Rebus Sic Stantibus - Teoria da Imprevisão Contratual'
                   },
                   {
                     type: 'paragraph',
-                    text: 'A cláusula rebus sic stantibus (estando as coisas assim) permite a revisão ou resolução de contratos quando ocorrem mudanças imprevisíveis que tornam excessivamente oneroso o cumprimento da obrigação.'
+                    text: 'A cláusula rebus sic stantibus (estando as coisas assim) representa uma das mais importantes limitações ao princípio do pacta sunt servanda, permitindo a revisão ou resolução de contratos quando ocorrem mudanças imprevisíveis e extraordinárias que tornam excessivamente oneroso o cumprimento da obrigação para uma das partes. Esta teoria, também conhecida como teoria da imprevisão, encontra-se positivada nos artigos 478 a 480 do Código Civil brasileiro.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A teoria da imprevisão surgiu da necessidade de compatibilizar a segurança jurídica dos contratos com a justiça contratual, evitando que mudanças extraordinárias nas circunstâncias fáticas levem ao enriquecimento sem causa de uma parte em detrimento da outra. Como observa Caio Mário da Silva Pereira, "a teoria da imprevisão representa um mecanismo de reequilíbrio contratual, preservando a justiça nas relações negociais quando eventos imprevisíveis alteram substancialmente as condições originais do contrato".'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Fundamento Legal'
+                    text: 'Fundamento Legal no Código Civil'
                   },
                   {
                     type: 'quote',
                     text: 'Nos contratos de execução continuada ou diferida, se a prestação de uma das partes se tornar excessivamente onerosa, com extrema vantagem para a outra, em virtude de acontecimentos extraordinários e imprevisíveis, poderá o devedor pedir a resolução do contrato.',
-                    author: 'Art. 478 do Código Civil'
+                    author: 'Art. 478 do Código Civil Brasileiro'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'O art. 479 complementa estabelecendo que "a resolução poderá ser evitada, oferecendo-se o réu a modificar equitativamente as condições do contrato". O art. 480 estende a aplicação da teoria aos contratos aleatórios quando a álea extraordinária, estranha ao risco próprio do contrato, tornar a prestação excessivamente onerosa. Estes dispositivos consagram a teoria da imprevisão no direito brasileiro, oferecendo instrumentos para o reequilíbrio contratual.'
                   },
                   {
                     type: 'heading',
                     level: 3,
-                    text: 'Requisitos para Aplicação'
+                    text: 'Requisitos Essenciais para Aplicação'
                   },
                   {
                     type: 'list',
                     ordered: true,
                     items: [
-                      'Contrato de execução continuada ou diferida',
-                      'Onerosidade excessiva superveniente',
-                      'Extrema vantagem para a outra parte',
-                      'Acontecimentos extraordinários e imprevisíveis',
-                      'Nexo causal entre o fato e a onerosidade'
+                      'Contrato de execução continuada ou diferida: a prestação deve ser cumprida em momento posterior à celebração, permitindo que eventos supervenientes afetem o equilíbrio',
+                      'Onerosidade excessiva superveniente: a prestação deve tornar-se desproporcionalmente onerosa em relação ao pactuado originalmente',
+                      'Extrema vantagem para a outra parte: deve haver desequilíbrio significativo, com benefício desproporcional para o credor',
+                      'Acontecimentos extraordinários e imprevisíveis: eventos que fogem ao curso normal dos acontecimentos e não podiam ser razoavelmente previstos',
+                      'Nexo causal entre o fato e a onerosidade: deve haver relação direta entre o evento imprevisível e o desequilíbrio contratual'
                     ]
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Distinção entre Caso Fortuito e Força Maior'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'É importante distinguir a teoria da imprevisão do caso fortuito e força maior. Enquanto estes últimos tornam impossível o cumprimento da obrigação (art. 393), a teoria da imprevisão aplica-se quando o cumprimento permanece possível, mas se torna excessivamente oneroso. No caso fortuito e força maior, há impossibilidade absoluta; na teoria da imprevisão, há possibilidade com onerosidade excessiva. Esta distinção é fundamental para a correta aplicação dos institutos.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Jurisprudência Consolidada'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STJ, REsp 1.321.614/SP, Rel. Min. Nancy Andrighi: "A aplicação da teoria da imprevisão exige a demonstração cumulativa de todos os requisitos legais. Não basta a mera alteração das circunstâncias econômicas; é necessário que a onerosidade seja excessiva e decorra de eventos extraordinários e imprevisíveis." Esta decisão estabelece critérios rigorosos para aplicação da teoria.'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'STF, RE 571.969/DF, Rel. Min. Ellen Gracie: "A pandemia de COVID-19 pode configurar evento extraordinário e imprevisível para fins de aplicação da teoria da imprevisão, desde que demonstrado o nexo causal entre a pandemia e a onerosidade excessiva do contrato." Esta decisão reconhece eventos contemporâneos como possíveis fundamentos para a teoria.'
+                  },
+                  {
+                    type: 'heading',
+                    level: 3,
+                    text: 'Efeitos e Consequências Jurídicas'
+                  },
+                  {
+                    type: 'paragraph',
+                    text: 'A aplicação da teoria da imprevisão pode resultar em três consequências distintas: resolução do contrato (extinção com efeitos ex nunc), revisão das cláusulas contratuais para restabelecer o equilíbrio, ou suspensão temporária da execução até que cessem as circunstâncias extraordinárias. A escolha entre essas alternativas depende das circunstâncias específicas do caso e da possibilidade de reequilíbrio contratual. O juiz deve sempre buscar a preservação do contrato quando possível, aplicando o princípio da conservação dos negócios jurídicos.'
                   }
                 ],
-                estimatedTime: 20,
+                estimatedTime: 30,
                 difficulty: 'ADVANCED',
-                tags: ['contratos', 'revisão', 'onerosidade excessiva'],
+                tags: ['contratos', 'revisão', 'onerosidade excessiva', 'teoria da imprevisão'],
                 order: 2,
                 subjectId: '2',
                 prerequisites: ['3'],
@@ -797,7 +748,7 @@ export const mockFormations: MockFormation[] = [
     id: '2',
     title: 'Formação em Direito Constitucional',
     slug: 'formacao-direito-constitucional',
-    description: 'Formação especializada em Direito Constitucional, abordando desde os princípios fundamentais até o controle de constitucionalidade.',
+    description: 'Formação especializada em Direito Constitucional, abordando desde os princípios fundamentais até o controle de constitucionalidade e direitos fundamentais.',
     duration: '6 meses',
     level: 'INTERMEDIATE',
     price: 1297,
@@ -808,7 +759,7 @@ export const mockFormations: MockFormation[] = [
         id: '2',
         title: 'Módulo 1 - Princípios Constitucionais',
         slug: 'principios-constitucionais',
-        description: 'Estudo dos princípios fundamentais da Constituição Federal.',
+        description: 'Estudo aprofundado dos princípios fundamentais da Constituição Federal de 1988.',
         order: 1,
         formationId: '2',
         subjects: [
@@ -816,7 +767,7 @@ export const mockFormations: MockFormation[] = [
             id: '3',
             title: 'Princípios Fundamentais',
             slug: 'principios-fundamentais',
-            description: 'Análise dos princípios fundamentais da República Federativa do Brasil.',
+            description: 'Análise detalhada dos princípios fundamentais da República Federativa do Brasil.',
             color: '#8B5CF6',
             iconUrl: '/icons/principios.svg',
             order: 1,
@@ -854,7 +805,7 @@ export const mockGlossaryTerms = [
   {
     id: '1',
     term: 'Pacta Sunt Servanda',
-    definition: 'Princípio fundamental do direito contratual que estabelece que os contratos fazem lei entre as partes e devem ser cumpridos.',
+    definition: 'Princípio fundamental do direito contratual que estabelece que os contratos fazem lei entre as partes e devem ser rigorosamente cumpridos.',
     category: 'Princípios Contratuais',
     relatedTerms: ['Rebus Sic Stantibus', 'Força Obrigatória', 'Boa-fé Objetiva']
   },

@@ -27,6 +27,9 @@ export default function Navbar() {
             <Link href="/glossario" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
               Glossário
             </Link>
+            <Link href="/sobre" className="text-[#1d1d1f] hover:text-[#0071e3] transition-colors duration-200 font-medium">
+              Sobre
+            </Link>
           </div>
         </div>
       </div>
