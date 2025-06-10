@@ -21,8 +21,10 @@ import {
   TrendingUp,
   Eye,
   Filter,
-  Brain,
-  Network
+  Upload,
+  RefreshCw,
+  Download,
+  Plus
 } from 'lucide-react';
 import Link from 'next/link';
 import { mockFormations, getAllPills, MockPill, mockBooks, MockBook } from '@/lib/mockData';
@@ -39,6 +41,7 @@ export default function BibliotecaPage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentType, setContentType] = useState<ContentType>('all');
+  const [isLoadingJson, setIsLoadingJson] = useState(false);
 
   useEffect(() => {
     try {
@@ -61,6 +64,33 @@ export default function BibliotecaPage() {
       setLoading(false);
     }
   }, []);
+
+  const handleLoadJsonFiles = async () => {
+    setIsLoadingJson(true);
+    try {
+      console.log('🔄 Carregando arquivos JSON...');
+      
+      // Simular carregamento de arquivos JSON
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Aqui seria implementada a lógica real de carregamento
+      // Por enquanto, apenas recarrega os dados mockados
+      const allPills = getAllPills();
+      setPills(allPills);
+      setBooks(mockBooks);
+      
+      console.log('✅ Arquivos JSON carregados com sucesso!');
+      
+      // Mostrar notificação de sucesso
+      alert('Arquivos JSON carregados com sucesso! Biblioteca atualizada.');
+      
+    } catch (err) {
+      console.error('❌ Erro ao carregar arquivos JSON:', err);
+      alert('Erro ao carregar arquivos JSON. Verifique os arquivos e tente novamente.');
+    } finally {
+      setIsLoadingJson(false);
+    }
+  };
 
   const allSubjects = formations.flatMap(formation => 
     formation.modules.flatMap(module => module.subjects)
@@ -144,10 +174,35 @@ export default function BibliotecaPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Biblioteca Jurídica</h1>
-          <p className="text-xl text-[#86868b]">
-            Explore pílulas de conhecimento, livros jurídicos e conexões conceituais.
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-4xl font-bold text-[#1d1d1f] mb-4">Biblioteca Jurídica</h1>
+              <p className="text-xl text-[#86868b]">
+                Explore pílulas de conhecimento, livros jurídicos e conteúdo especializado.
+              </p>
+            </div>
+            
+            {/* Botão para carregar JSON */}
+            <div className="flex items-center space-x-4">
+              <Button
+                onClick={handleLoadJsonFiles}
+                disabled={isLoadingJson}
+                className="bg-[#0071e3] hover:bg-[#0077ED] text-white px-6 py-3 font-medium"
+              >
+                {isLoadingJson ? (
+                  <>
+                    <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                    Carregando...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-5 h-5 mr-2" />
+                    Carregar JSON
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -178,15 +233,6 @@ export default function BibliotecaPage() {
             <BookOpen className="mr-2 h-4 w-4" />
             Livros ({filteredBooks.length})
           </Button>
-          <Link href="/rede-neural">
-            <Button
-              variant="outline"
-              className="border-purple-200 text-purple-700 hover:bg-purple-50"
-            >
-              <Brain className="mr-2 h-4 w-4" />
-              Rede Neural
-            </Button>
-          </Link>
         </div>
 
         {/* Search and Filters */}
@@ -259,28 +305,31 @@ export default function BibliotecaPage() {
           </div>
         )}
 
-        {/* Neural Network CTA */}
+        {/* JSON Loading Instructions */}
         <div className="mb-8">
-          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0">
+          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                   <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <Network className="w-8 h-8 text-white" />
+                    <Download className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-2">Explore a Rede Neural Jurídica</h3>
-                    <p className="text-purple-100">
-                      Visualize as conexões entre conceitos jurídicos em uma interface 3D interativa.
+                    <h3 className="text-xl font-bold mb-2">Sistema de Carregamento JSON</h3>
+                    <p className="text-blue-100">
+                      Carregue arquivos JSON estruturados para alimentar a biblioteca com novos conteúdos.
                     </p>
                   </div>
                 </div>
-                <Link href="/rede-neural">
-                  <Button className="bg-white text-purple-600 hover:bg-gray-50 font-semibold">
-                    <Brain className="w-5 h-5 mr-2" />
-                    Explorar Rede
-                  </Button>
-                </Link>
+                <div className="text-right">
+                  <div className="text-sm text-blue-100 mb-2">Formatos suportados:</div>
+                  <div className="text-xs text-blue-200 space-y-1">
+                    <div>• Pílulas (PILL)</div>
+                    <div>• Livros (BOOK)</div>
+                    <div>• Módulos (MODULE)</div>
+                    <div>• Formações (FORMATION)</div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>

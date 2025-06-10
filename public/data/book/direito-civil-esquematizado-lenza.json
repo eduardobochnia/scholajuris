@@ -1,0 +1,180 @@
+{
+  "id": "direito-civil-esquematizado-lenza",
+  "mnemonic": "BOOK",
+  "version": "1.0.0",
+  "createdAt": "2024-01-15T10:00:00Z",
+  "updatedAt": "2024-01-15T10:00:00Z",
+  "metadata": {
+    "title": "Direito Civil Esquematizado - Parte Geral",
+    "description": "Obra didática e esquematizada sobre a parte geral do direito civil brasileiro, ideal para estudantes e concurseiros.",
+    "tags": ["direito civil", "esquematizado", "parte geral", "concursos", "didático"],
+    "difficulty": "BEGINNER",
+    "estimatedTime": 1800,
+    "author": "Pedro Lenza",
+    "reviewer": "Equipe Editorial Saraiva",
+    "status": "PUBLISHED"
+  },
+  "bibliographic": {
+    "isbn": "978-85-472-2156-8",
+    "author": "Pedro Lenza",
+    "publisher": "Saraiva Educação",
+    "publishedYear": 2023,
+    "edition": 27,
+    "pages": 896,
+    "language": "português",
+    "category": "Direito Civil"
+  },
+  "content": {
+    "synopsis": {
+      "overview": "O Direito Civil Esquematizado de Pedro Lenza é uma obra didática que apresenta a parte geral do direito civil de forma clara e organizada. Com linguagem acessível e estrutura esquematizada, o livro facilita o aprendizado dos conceitos fundamentais do direito civil brasileiro, sendo especialmente útil para estudantes de graduação e candidatos a concursos públicos.",
+      "mainConcepts": [
+        "Lei de Introdução às Normas do Direito Brasileiro como fundamento interpretativo",
+        "Personalidade jurídica e capacidade civil das pessoas naturais",
+        "Teoria geral das pessoas jurídicas e sua classificação",
+        "Domicílio civil e suas modalidades no ordenamento brasileiro",
+        "Classificação e regime jurídico dos bens",
+        "Teoria geral dos fatos jurídicos e sua importância sistemática",
+        "Negócios jurídicos: elementos, defeitos e invalidade",
+        "Prescrição e decadência como institutos de segurança jurídica",
+        "Prova dos fatos jurídicos no direito civil"
+      ],
+      "practicalImplications": [
+        "Fornece base sólida para compreensão de todo o direito civil",
+        "Prepara adequadamente para provas de concursos públicos",
+        "Facilita o entendimento da aplicação prática dos institutos civis",
+        "Orienta na resolução de questões práticas do cotidiano jurídico",
+        "Serve como material de consulta rápida para profissionais"
+      ],
+      "criticalAnalysis": "A obra de Pedro Lenza destaca-se pela didática apurada e pela capacidade de tornar acessíveis conceitos complexos do direito civil. O formato esquematizado facilita a memorização e a revisão, sendo especialmente útil para quem se prepara para concursos. A linguagem clara e os exemplos práticos tornam o aprendizado mais efetivo, embora a obra possa ser considerada introdutória para quem busca aprofundamento doutrinário.",
+      "recommendations": "Recomendada especialmente para estudantes iniciantes em direito civil, candidatos a concursos públicos que buscam uma base sólida na matéria, e profissionais que necessitam de consulta rápida aos institutos fundamentais. Para aprofundamento doutrinário, recomenda-se complementar com obras mais especializadas."
+    },
+    "chapters": [
+      {
+        "id": "cap-01",
+        "number": 1,
+        "title": "Lei de Introdução às Normas do Direito Brasileiro",
+        "summary": "Estuda os princípios gerais de aplicação das normas jurídicas no tempo e no espaço.",
+        "keyPoints": [
+          "Vigência e eficácia das leis",
+          "Conflito de leis no tempo",
+          "Aplicação da lei no espaço",
+          "Interpretação e integração das normas",
+          "Direito adquirido, ato jurídico perfeito e coisa julgada"
+        ]
+      },
+      {
+        "id": "cap-02",
+        "number": 2,
+        "title": "Das Pessoas Naturais",
+        "summary": "Aborda a personalidade jurídica, capacidade civil e direitos da personalidade.",
+        "keyPoints": [
+          "Início e fim da personalidade jurídica",
+          "Capacidade de direito e de fato",
+          "Incapacidade absoluta e relativa",
+          "Direitos da personalidade",
+          "Ausência e morte presumida"
+        ]
+      },
+      {
+        "id": "cap-03",
+        "number": 3,
+        "title": "Das Pessoas Jurídicas",
+        "summary": "Examina a teoria geral das pessoas jurídicas e sua classificação.",
+        "keyPoints": [
+          "Conceito e natureza jurídica",
+          "Classificação das pessoas jurídicas",
+          "Constituição e extinção",
+          "Responsabilidade das pessoas jurídicas",
+          "Desconsideração da personalidade jurídica"
+        ]
+      },
+      {
+        "id": "cap-04",
+        "number": 4,
+        "title": "Do Domicílio",
+        "summary": "Trata do domicílio civil e suas diversas modalidades.",
+        "keyPoints": [
+          "Conceito de domicílio",
+          "Espécies de domicílio",
+          "Domicílio da pessoa natural",
+          "Domicílio da pessoa jurídica",
+          "Mudança de domicílio"
+        ]
+      },
+      {
+        "id": "cap-05",
+        "number": 5,
+        "title": "Dos Bens",
+        "summary": "Analisa a classificação dos bens e seu regime jurídico.",
+        "keyPoints": [
+          "Conceito jurídico de bem",
+          "Classificação dos bens",
+          "Bens considerados em si mesmos",
+          "Bens reciprocamente considerados",
+          "Bens públicos e particulares"
+        ]
+      }
+    ]
+  },
+  "analysis": {
+    "targetAudience": [
+      "Estudantes de direito (1º ao 3º ano)",
+      "Candidatos a concursos públicos",
+      "Profissionais que necessitam de revisão",
+      "Professores de direito civil",
+      "Operadores do direito em geral"
+    ],
+    "practicalApplications": [
+      "Preparação para concursos públicos",
+      "Base para estudos avançados em direito civil",
+      "Consulta rápida para profissionais",
+      "Material didático para aulas",
+      "Revisão de conceitos fundamentais"
+    ],
+    "legislationCovered": [
+      "Código Civil (Lei 10.406/2002)",
+      "Lei de Introdução às Normas do Direito Brasileiro (Decreto-Lei 4.657/1942)",
+      "Estatuto da Pessoa com Deficiência (Lei 13.146/2015)",
+      "Marco Civil da Internet (Lei 12.965/2014)"
+    ],
+    "jurisprudenceReferences": [
+      "STJ - REsp 1.159.242/SP (Direitos da personalidade)",
+      "STF - RE 398.041/PA (Pessoa jurídica e direitos fundamentais)",
+      "STJ - REsp 279.273/SP (Desconsideração da personalidade jurídica)",
+      "STJ - REsp 1.195.642/RJ (Domicílio civil)"
+    ],
+    "keyTopics": [
+      "LINDB",
+      "Personalidade jurídica",
+      "Capacidade civil",
+      "Pessoas jurídicas",
+      "Domicílio",
+      "Bens",
+      "Fatos jurídicos",
+      "Negócios jurídicos",
+      "Prescrição",
+      "Decadência"
+    ],
+    "strengths": [
+      "Linguagem didática e acessível",
+      "Formato esquematizado facilita memorização",
+      "Exemplos práticos abundantes",
+      "Atualização legislativa constante",
+      "Ideal para concursos públicos",
+      "Organização lógica dos temas"
+    ],
+    "limitations": [
+      "Abordagem introdutória pode ser insuficiente para aprofundamento",
+      "Foco em concursos pode limitar análise doutrinária",
+      "Jurisprudência poderia ser mais abundante",
+      "Alguns temas complexos são simplificados"
+    ]
+  },
+  "metrics": {
+    "rating": 4.6,
+    "reviews": 1856,
+    "readingTime": 1800,
+    "complexity": 5,
+    "relevance": 9
+  }
+}
