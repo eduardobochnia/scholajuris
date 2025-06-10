@@ -23,11 +23,17 @@ export function ProgressOverview() {
   useEffect(() => {
     async function fetchProgress() {
       try {
-        const response = await fetch('/api/user/progress/overview');
-        if (!response.ok) {
-          throw new Error('Erro ao carregar progresso');
-        }
-        const data = await response.json();
+        // Simular dados para demonstração
+        const data: ProgressData = {
+          totalModules: 3,
+          completedModules: 1,
+          totalPills: 25,
+          completedPills: 8,
+          totalAchievements: 10,
+          unlockedAchievements: 3,
+          averageScore: 85
+        };
+        
         setProgress(data);
       } catch (error) {
         setError('Não foi possível carregar o progresso');
@@ -119,4 +125,4 @@ export function ProgressOverview() {
       </div>
     </Card>
   );
-} 
+}

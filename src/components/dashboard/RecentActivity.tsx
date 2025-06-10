@@ -20,11 +20,31 @@ export function RecentActivity() {
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const response = await fetch('/api/user/activities');
-        if (!response.ok) {
-          throw new Error('Erro ao carregar atividades');
-        }
-        const data = await response.json();
+        // Simular dados para demonstração
+        const data: Activity[] = [
+          {
+            id: '1',
+            type: 'pill_completed',
+            title: 'Conceitos Básicos do Direito',
+            description: 'Pílula completada',
+            timestamp: '2024-01-15T10:30:00Z'
+          },
+          {
+            id: '2',
+            type: 'achievement_unlocked',
+            title: 'Jurista Iniciante',
+            description: 'Conquista desbloqueada',
+            timestamp: '2024-01-14T15:45:00Z'
+          },
+          {
+            id: '3',
+            type: 'pill_completed',
+            title: 'Princípios Constitucionais',
+            description: 'Pílula completada',
+            timestamp: '2024-01-13T09:15:00Z'
+          }
+        ];
+        
         setActivities(data);
       } catch (error) {
         setError('Não foi possível carregar as atividades');
@@ -105,4 +125,4 @@ export function RecentActivity() {
       </div>
     </Card>
   );
-} 
+}

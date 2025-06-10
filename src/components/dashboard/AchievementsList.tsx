@@ -20,11 +20,31 @@ export function AchievementsList() {
   useEffect(() => {
     async function fetchAchievements() {
       try {
-        const response = await fetch('/api/user/achievements');
-        if (!response.ok) {
-          throw new Error('Erro ao carregar conquistas');
-        }
-        const data = await response.json();
+        // Simular dados para demonstração
+        const data: Achievement[] = [
+          {
+            id: '1',
+            title: 'Jurista Iniciante',
+            description: 'Complete sua primeira pílula',
+            icon: '🏆',
+            unlockedAt: '2024-01-15T10:30:00Z'
+          },
+          {
+            id: '2',
+            title: 'Estudante Dedicado',
+            description: 'Complete 5 pílulas',
+            icon: '📚',
+            unlockedAt: '2024-01-16T14:20:00Z'
+          },
+          {
+            id: '3',
+            title: 'Mestre do Conhecimento',
+            description: 'Complete um módulo inteiro',
+            icon: '🎓',
+            unlockedAt: null
+          }
+        ];
+        
         setAchievements(data);
       } catch (err) {
         setError('Não foi possível carregar as conquistas');
@@ -107,4 +127,4 @@ export function AchievementsList() {
       </div>
     </Card>
   );
-} 
+}

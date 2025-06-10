@@ -9,6 +9,7 @@ import Link from 'next/link';
 interface Pill {
   id: string;
   title: string;
+  slug: string;
   order: number;
   completed?: boolean;
   locked?: boolean;
@@ -36,30 +37,21 @@ export default function ModulePage({ params }: { params: { id: string } }) {
   useEffect(() => {
     const fetchModule = async () => {
       try {
-        const [moduleResponse, progressResponse] = await Promise.all([
-          fetch(`/api/content/modules/${params.id}`),
-          fetch('/api/user/progress')
-        ]);
+        const response = await fetch(`/api/content/modules/${params.id}`);
 
-        if (!moduleResponse.ok || !progressResponse.ok) {
+        if (!response.ok) {
           throw new Error('Erro ao carregar dados');
         }
 
-        const moduleData = await moduleResponse.json();
-        const progressData = await progressResponse.json();
+        const moduleData = await response.json();
 
-        // Calcular progresso e status das pílulas
-        const completedPillIds = new Set(
-          progressData.map((p: { pillId: string }) => p.pillId)
-        );
+        // Simular progresso para demonstração
+        const completedPillIds = new Set(['1', '2']); // IDs simulados de pílulas completadas
 
-        const pillsWithStatus = moduleData.pills.map((pill: Pill) => ({
+        const pillsWithStatus = moduleData.pills.map((pill: Pill, index: number) => ({
           ...pill,
           completed: completedPillIds.has(pill.id),
-          locked: !completedPillIds.has(pill.id) && 
-            moduleData.pills.some((p: Pill) => 
-              p.order < pill.order && !completedPillIds.has(p.id)
-            )
+          locked: index > 0 && !completedPillIds.has(moduleData.pills[index - 1]?.id)
         }));
 
         setModule({
@@ -131,7 +123,7 @@ export default function ModulePage({ params }: { params: { id: string } }) {
         {module.pills.map((pill) => (
           <Link
             key={pill.id}
-            href={pill.locked ? '#' : `/pilulas/${pill.id}`}
+            href={pill.locked ? '#' : `/pilulas/${pill.slug}`}
             className={`block transition-transform ${
               pill.locked ? 'cursor-not-allowed opacity-50' : 'hover:scale-105'
             }`}
@@ -171,4 +163,4 @@ export default function ModulePage({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-} 
+}

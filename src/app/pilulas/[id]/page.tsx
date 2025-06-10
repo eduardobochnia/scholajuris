@@ -26,14 +26,14 @@ interface Quiz {
 interface Pill {
   id: string;
   title: string;
-  content: {
-    sections: {
-      title: string;
-      content: string;
-    }[];
-  };
+  content: any;
   videoUrl: string | null;
-  quiz: Quiz;
+  quizzes: Quiz[];
+  module: {
+    id: string;
+    title: string;
+    slug: string;
+  };
 }
 
 export default function PillPage({ params }: { params: { id: string } }) {
@@ -67,7 +67,7 @@ export default function PillPage({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   const handleNextSection = () => {
-    if (pill && currentSection < pill.content.sections.length - 1) {
+    if (pill && Array.isArray(pill.content) && currentSection < pill.content.length - 1) {
       setCurrentSection(currentSection + 1);
     } else {
       setShowQuiz(true);
@@ -88,14 +88,14 @@ export default function PillPage({ params }: { params: { id: string } }) {
   };
 
   const handleQuizSubmit = async () => {
-    if (!pill) return;
+    if (!pill || !pill.quizzes[0]) return;
 
-    const correctAnswers = pill.quiz.questions.reduce((acc, question) => {
+    const correctAnswers = pill.quizzes[0].questions.reduce((acc, question) => {
       const correctOption = question.options.find(opt => opt.isCorrect);
       return acc + (selectedAnswers[question.id] === correctOption?.text ? 1 : 0);
     }, 0);
 
-    const score = Math.round((correctAnswers / pill.quiz.questions.length) * 100);
+    const score = Math.round((correctAnswers / pill.quizzes[0].questions.length) * 100);
     setQuizScore(score);
     setQuizCompleted(true);
 
@@ -132,6 +132,9 @@ export default function PillPage({ params }: { params: { id: string } }) {
     );
   }
 
+  const contentSections = Array.isArray(pill.content) ? pill.content : [pill.content];
+  const quiz = pill.quizzes[0];
+
   return (
     <div className="container mx-auto py-8">
       <div className="mb-8">
@@ -141,21 +144,21 @@ export default function PillPage({ params }: { params: { id: string } }) {
           <>
             <div className="mb-6">
               <Progress 
-                value={(currentSection / pill.content.sections.length) * 100} 
+                value={(currentSection / contentSections.length) * 100} 
                 className="mb-2"
               />
               <p className="text-sm text-muted-foreground">
-                Seção {currentSection + 1} de {pill.content.sections.length}
+                Seção {currentSection + 1} de {contentSections.length}
               </p>
             </div>
 
             <Card className="mb-6">
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">
-                  {pill.content.sections[currentSection].title}
-                </h2>
                 <div className="prose max-w-none">
-                  {pill.content.sections[currentSection].content}
+                  {typeof contentSections[currentSection] === 'string' 
+                    ? contentSections[currentSection]
+                    : JSON.stringify(contentSections[currentSection])
+                  }
                 </div>
               </CardContent>
             </Card>
@@ -184,7 +187,7 @@ export default function PillPage({ params }: { params: { id: string } }) {
                 Anterior
               </Button>
               <Button onClick={handleNextSection}>
-                {currentSection === pill.content.sections.length - 1 ? (
+                {currentSection === contentSections.length - 1 ? (
                   'Iniciar Quiz'
                 ) : (
                   <>
@@ -197,35 +200,35 @@ export default function PillPage({ params }: { params: { id: string } }) {
           </>
         ) : (
           <>
-            {!quizCompleted ? (
+            {!quizCompleted && quiz ? (
               <>
                 <div className="mb-6">
                   <Progress 
-                    value={(currentQuestion / pill.quiz.questions.length) * 100} 
+                    value={(currentQuestion / quiz.questions.length) * 100} 
                     className="mb-2"
                   />
                   <p className="text-sm text-muted-foreground">
-                    Questão {currentQuestion + 1} de {pill.quiz.questions.length}
+                    Questão {currentQuestion + 1} de {quiz.questions.length}
                   </p>
                 </div>
 
                 <Card className="mb-6">
                   <CardContent className="p-6">
                     <h2 className="text-xl font-semibold mb-4">
-                      {pill.quiz.questions[currentQuestion].text}
+                      {quiz.questions[currentQuestion].text}
                     </h2>
                     <div className="space-y-4">
-                      {pill.quiz.questions[currentQuestion].options.map((option, index) => (
+                      {quiz.questions[currentQuestion].options.map((option, index) => (
                         <Button
                           key={index}
                           variant={
-                            selectedAnswers[pill.quiz.questions[currentQuestion].id] === option.text
+                            selectedAnswers[quiz.questions[currentQuestion].id] === option.text
                               ? 'default'
                               : 'outline'
                           }
                           className="w-full justify-start"
                           onClick={() => handleAnswerSelect(
-                            pill.quiz.questions[currentQuestion].id,
+                            quiz.questions[currentQuestion].id,
                             option.text
                           )}
                         >
@@ -247,14 +250,14 @@ export default function PillPage({ params }: { params: { id: string } }) {
                   </Button>
                   <Button
                     onClick={() => {
-                      if (currentQuestion === pill.quiz.questions.length - 1) {
+                      if (currentQuestion === quiz.questions.length - 1) {
                         handleQuizSubmit();
                       } else {
                         setCurrentQuestion(prev => prev + 1);
                       }
                     }}
                   >
-                    {currentQuestion === pill.quiz.questions.length - 1 ? (
+                    {currentQuestion === quiz.questions.length - 1 ? (
                       'Finalizar Quiz'
                     ) : (
                       <>
