@@ -21,13 +21,28 @@ import {
   TrendingUp,
   Eye,
   Filter,
-  RefreshCw
+  RefreshCw,
+  CheckCircle,
+  XCircle
 } from 'lucide-react';
 import Link from 'next/link';
 import { mockFormations, getAllPills, MockPill, mockBooks, MockBook } from '@/lib/mockData';
 import { dataLoader } from '@/lib/dataLoader';
 
 type ContentType = 'all' | 'pills' | 'books';
+
+interface UpdateResult {
+  success: boolean;
+  message: string;
+  details?: {
+    pills: number;
+    books: number;
+    modules: number;
+    formations: number;
+    subjects: number;
+  };
+  errors?: string[];
+}
 
 export default function BibliotecaPage() {
   const [formations, setFormations] = useState(mockFormations);
@@ -39,7 +54,8 @@ export default function BibliotecaPage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentType, setContentType] = useState<ContentType>('all');
-  const [isUpdatingJson, setIsUpdatingJson] = useState(false);
+  const [isUpdatingLibrary, setIsUpdatingLibrary] = useState(false);
+  const [updateResult, setUpdateResult] = useState<UpdateResult | null>(null);
 
   const loadContent = async () => {
     try {
@@ -98,7 +114,34 @@ export default function BibliotecaPage() {
         const jsonPills = await dataLoader.loadPills();
         if (jsonPills.length > 0) {
           console.log(`✅ Carregadas ${jsonPills.length} pílulas dos arquivos JSON`);
-          // Aqui você pode converter e adicionar as pílulas JSON se necessário
+          
+          // Converter pílulas JSON para formato MockPill
+          const convertedPills: MockPill[] = jsonPills.map(pill => ({
+            id: pill.id,
+            title: pill.metadata.title,
+            slug: pill.metadata.title.toLowerCase().replace(/\s+/g, '-'),
+            content: pill.content,
+            estimatedTime: pill.metadata.estimatedTime || 30,
+            difficulty: pill.metadata.difficulty,
+            tags: pill.metadata.tags,
+            order: 1,
+            subjectId: pill.relationships?.subjectId,
+            moduleId: pill.relationships?.moduleId,
+            subject: pill.relationships?.subjectId ? {
+              id: pill.relationships.subjectId,
+              title: 'Matéria',
+              color: '#3B82F6'
+            } : undefined,
+            module: pill.relationships?.moduleId ? {
+              id: pill.relationships.moduleId,
+              title: 'Módulo',
+              slug: 'modulo'
+            } : undefined,
+            quizzes: []
+          }));
+          
+          // Combinar pílulas mockadas com pílulas dos arquivos JSON
+          setPills([...allPills, ...convertedPills]);
         }
       } catch (jsonError) {
         console.warn('⚠️ Não foi possível carregar pílulas dos arquivos JSON:', jsonError);
@@ -106,8 +149,8 @@ export default function BibliotecaPage() {
       
       console.log('✅ Biblioteca carregada:', { 
         formations: mockFormations.length, 
-        pills: allPills.length,
-        books: mockBooks.length 
+        pills: pills.length,
+        books: books.length 
       });
     } catch (err) {
       console.error('❌ Erro ao carregar biblioteca:', err);
@@ -121,25 +164,105 @@ export default function BibliotecaPage() {
     loadContent();
   }, []);
 
-  const handleUpdateJson = async () => {
-    setIsUpdatingJson(true);
+  const handleUpdateLibrary = async () => {
+    setIsUpdatingLibrary(true);
+    setUpdateResult(null);
+    
     try {
-      console.log('🔄 Atualizando arquivos JSON...');
+      console.log('🔄 Iniciando atualização da biblioteca...');
+      console.log('📁 Verificando pastas: public/data/pill, public/data/book, public/data/module, public/data/formation, public/data/subject');
       
       // Limpar cache do dataLoader
       dataLoader.clearCache();
       
-      // Recarregar conteúdo
+      const results = {
+        pills: 0,
+        books: 0,
+        modules: 0,
+        formations: 0,
+        subjects: 0
+      };
+      
+      const errors: string[] = [];
+      
+      // Carregar cada tipo de conteúdo das pastas JSON
+      try {
+        const jsonPills = await dataLoader.loadPills();
+        results.pills = jsonPills.length;
+        console.log(`✅ Encontradas ${jsonPills.length} pílulas em public/data/pill/`);
+      } catch (error) {
+        const errorMsg = `Erro ao carregar pílulas: ${error instanceof Error ? error.message : 'Pasta não encontrada'}`;
+        errors.push(errorMsg);
+        console.error('❌', errorMsg);
+      }
+
+      try {
+        const jsonBooks = await dataLoader.loadBooks();
+        results.books = jsonBooks.length;
+        console.log(`✅ Encontrados ${jsonBooks.length} livros em public/data/book/`);
+      } catch (error) {
+        const errorMsg = `Erro ao carregar livros: ${error instanceof Error ? error.message : 'Pasta não encontrada'}`;
+        errors.push(errorMsg);
+        console.error('❌', errorMsg);
+      }
+
+      try {
+        const jsonModules = await dataLoader.loadModules();
+        results.modules = jsonModules.length;
+        console.log(`✅ Encontrados ${jsonModules.length} módulos em public/data/module/`);
+      } catch (error) {
+        const errorMsg = `Erro ao carregar módulos: ${error instanceof Error ? error.message : 'Pasta não encontrada'}`;
+        errors.push(errorMsg);
+        console.error('❌', errorMsg);
+      }
+
+      try {
+        const jsonFormations = await dataLoader.loadFormations();
+        results.formations = jsonFormations.length;
+        console.log(`✅ Encontradas ${jsonFormations.length} formações em public/data/formation/`);
+      } catch (error) {
+        const errorMsg = `Erro ao carregar formações: ${error instanceof Error ? error.message : 'Pasta não encontrada'}`;
+        errors.push(errorMsg);
+        console.error('❌', errorMsg);
+      }
+
+      try {
+        const jsonSubjects = await dataLoader.loadSubjects();
+        results.subjects = jsonSubjects.length;
+        console.log(`✅ Encontradas ${jsonSubjects.length} matérias em public/data/subject/`);
+      } catch (error) {
+        const errorMsg = `Erro ao carregar matérias: ${error instanceof Error ? error.message : 'Pasta não encontrada'}`;
+        errors.push(errorMsg);
+        console.error('❌', errorMsg);
+      }
+      
+      // Recarregar conteúdo na interface
       await loadContent();
       
-      console.log('✅ Arquivos JSON atualizados com sucesso!');
-      alert('Arquivos JSON atualizados com sucesso! Biblioteca atualizada.');
+      const totalFound = Object.values(results).reduce((sum, count) => sum + count, 0);
+      
+      const result: UpdateResult = {
+        success: errors.length === 0,
+        message: errors.length === 0 
+          ? `Biblioteca atualizada com sucesso! ${totalFound} arquivos JSON encontrados e carregados.`
+          : `Atualização parcial: ${totalFound} arquivos carregados com ${errors.length} erros.`,
+        details: results,
+        errors: errors.length > 0 ? errors : undefined
+      };
+      
+      setUpdateResult(result);
+      console.log('✅ Atualização da biblioteca concluída:', result);
       
     } catch (err) {
-      console.error('❌ Erro ao atualizar arquivos JSON:', err);
-      alert('Erro ao atualizar arquivos JSON. Verifique os arquivos e tente novamente.');
+      console.error('❌ Erro geral na atualização:', err);
+      const result: UpdateResult = {
+        success: false,
+        message: `Erro na atualização: ${err instanceof Error ? err.message : 'Erro desconhecido'}`,
+        errors: [err instanceof Error ? err.message : 'Erro desconhecido']
+      };
+      setUpdateResult(result);
     } finally {
-      setIsUpdatingJson(false);
+      setIsUpdatingLibrary(false);
     }
   };
 
@@ -233,14 +356,14 @@ export default function BibliotecaPage() {
               </p>
             </div>
             
-            {/* Botão para atualizar JSON */}
+            {/* Botão para atualizar biblioteca */}
             <div className="flex items-center space-x-4">
               <Button
-                onClick={handleUpdateJson}
-                disabled={isUpdatingJson}
+                onClick={handleUpdateLibrary}
+                disabled={isUpdatingLibrary}
                 className="bg-[#0071e3] hover:bg-[#0077ED] text-white px-6 py-3 font-medium"
               >
-                {isUpdatingJson ? (
+                {isUpdatingLibrary ? (
                   <>
                     <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
                     Atualizando...
@@ -248,12 +371,56 @@ export default function BibliotecaPage() {
                 ) : (
                   <>
                     <RefreshCw className="w-5 h-5 mr-2" />
-                    Atualizar JSON
+                    Atualizar Biblioteca
                   </>
                 )}
               </Button>
             </div>
           </div>
+
+          {/* Resultado da atualização */}
+          {updateResult && (
+            <div className={`mb-4 p-4 rounded-lg border ${
+              updateResult.success 
+                ? 'bg-green-50 border-green-200 text-green-800' 
+                : 'bg-red-50 border-red-200 text-red-800'
+            }`}>
+              <div className="flex items-start space-x-3">
+                {updateResult.success ? (
+                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                ) : (
+                  <XCircle className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                )}
+                <div className="flex-1">
+                  <p className="font-medium">{updateResult.message}</p>
+                  
+                  {updateResult.details && (
+                    <div className="mt-2 text-sm">
+                      <p>Arquivos encontrados:</p>
+                      <ul className="list-disc list-inside ml-4 mt-1">
+                        <li>Pílulas: {updateResult.details.pills}</li>
+                        <li>Livros: {updateResult.details.books}</li>
+                        <li>Módulos: {updateResult.details.modules}</li>
+                        <li>Formações: {updateResult.details.formations}</li>
+                        <li>Matérias: {updateResult.details.subjects}</li>
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {updateResult.errors && updateResult.errors.length > 0 && (
+                    <div className="mt-2 text-sm">
+                      <p>Erros encontrados:</p>
+                      <ul className="list-disc list-inside ml-4 mt-1">
+                        {updateResult.errors.map((error, index) => (
+                          <li key={index}>{error}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
