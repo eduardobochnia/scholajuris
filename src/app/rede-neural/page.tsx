@@ -144,11 +144,10 @@ export default function RedeNeuralPage() {
   const sceneRef = useRef<any>(null);
   const rendererRef = useRef<any>(null);
   const cameraRef = useRef<any>(null);
-  const controlsRef = useRef<any>(null);
   const nodesRef = useRef<any[]>([]);
   const connectionsRef = useRef<any[]>([]);
   const animationIdRef = useRef<number>();
-  const threeRef = useRef<any>(null); // Store Three.js library reference
+  const threeRef = useRef<any>(null);
   
   const [selectedConcept, setSelectedConcept] = useState<any>(null);
   const [hoveredConcept, setHoveredConcept] = useState<any>(null);
@@ -166,7 +165,7 @@ export default function RedeNeuralPage() {
       try {
         // Importar Three.js dinamicamente
         const THREE = await import('three');
-        threeRef.current = THREE; // Store the Three.js library reference
+        threeRef.current = THREE;
         
         // Configurar cena
         const scene = new THREE.Scene();
@@ -287,10 +286,6 @@ export default function RedeNeuralPage() {
           });
         });
         
-        // Raycaster para interação
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        
         // Salvar referências
         sceneRef.current = scene;
         rendererRef.current = renderer;
@@ -362,19 +357,25 @@ export default function RedeNeuralPage() {
     const THREE = threeRef.current;
 
     const handleMouseDown = (event: MouseEvent) => {
+      event.preventDefault();
       setIsDragging(true);
       setLastMousePosition({ x: event.clientX, y: event.clientY });
       canvas.style.cursor = 'grabbing';
     };
 
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      event.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      setMousePosition({ 
+        x: event.clientX - rect.left, 
+        y: event.clientY - rect.top 
+      });
 
-      if (isDragging && cameraRef.current) {
+      if (isDragging && camera) {
         const deltaX = event.clientX - lastMousePosition.x;
         const deltaY = event.clientY - lastMousePosition.y;
 
-        // Rotacionar câmera
+        // Rotacionar câmera ao redor do centro
         const spherical = new THREE.Spherical();
         spherical.setFromVector3(camera.position);
         
@@ -386,45 +387,45 @@ export default function RedeNeuralPage() {
         camera.lookAt(0, 0, 0);
 
         setLastMousePosition({ x: event.clientX, y: event.clientY });
-      }
+      } else {
+        // Raycasting para hover apenas quando não está arrastando
+        if (rendererRef.current && nodesRef.current.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          const mouse = new THREE.Vector2();
+          mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+          mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-      // Raycasting para hover
-      if (rendererRef.current && cameraRef.current && nodesRef.current.length > 0) {
-        const rect = canvas.getBoundingClientRect();
-        const mouse = new THREE.Vector2();
-        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+          const raycaster = new THREE.Raycaster();
+          raycaster.setFromCamera(mouse, camera);
 
-        const raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(mouse, camera);
-
-        const intersects = raycaster.intersectObjects(nodesRef.current);
-        
-        if (intersects.length > 0) {
-          const concept = intersects[0].object.userData;
-          setHoveredConcept(concept);
-          canvas.style.cursor = 'pointer';
-        } else {
-          setHoveredConcept(null);
-          canvas.style.cursor = isDragging ? 'grabbing' : 'grab';
+          const intersects = raycaster.intersectObjects(nodesRef.current);
+          
+          if (intersects.length > 0) {
+            const concept = intersects[0].object.userData;
+            setHoveredConcept(concept);
+            canvas.style.cursor = 'pointer';
+          } else {
+            setHoveredConcept(null);
+            canvas.style.cursor = 'grab';
+          }
         }
       }
     };
 
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      canvas.style.cursor = 'grab';
-    };
-
-    const handleClick = (event: MouseEvent) => {
-      if (!isDragging && hoveredConcept) {
-        setSelectedConcept(hoveredConcept);
-        
-        // Animar câmera para o conceito selecionado
-        if (cameraRef.current) {
-          const targetPosition = hoveredConcept.position;
-          const camera = cameraRef.current;
+    const handleMouseUp = (event: MouseEvent) => {
+      event.preventDefault();
+      
+      if (isDragging) {
+        // Se estava arrastando, apenas para o arrasto
+        setIsDragging(false);
+        canvas.style.cursor = 'grab';
+      } else {
+        // Se não estava arrastando, trata como clique
+        if (hoveredConcept) {
+          setSelectedConcept(hoveredConcept);
           
+          // Animar câmera para o conceito selecionado
+          const targetPosition = hoveredConcept.position;
           const startPosition = camera.position.clone();
           const endPosition = new THREE.Vector3(
             targetPosition.x + 8,
@@ -446,10 +447,15 @@ export default function RedeNeuralPage() {
       }
     };
 
+    const handleMouseLeave = () => {
+      setIsDragging(false);
+      setHoveredConcept(null);
+      canvas.style.cursor = 'grab';
+    };
+
     const handleWheel = (event: WheelEvent) => {
       event.preventDefault();
-      if (cameraRef.current) {
-        const camera = cameraRef.current;
+      if (camera) {
         const direction = new THREE.Vector3();
         camera.getWorldDirection(direction);
         
@@ -466,17 +472,19 @@ export default function RedeNeuralPage() {
       }
     };
 
+    // Adicionar event listeners
     canvas.addEventListener('mousedown', handleMouseDown);
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('click', handleClick);
-    canvas.addEventListener('wheel', handleWheel);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+    canvas.addEventListener('wheel', handleWheel, { passive: false });
 
+    // Cleanup
     return () => {
       canvas.removeEventListener('mousedown', handleMouseDown);
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseup', handleMouseUp);
-      canvas.removeEventListener('click', handleClick);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
       canvas.removeEventListener('wheel', handleWheel);
     };
   }, [isDragging, lastMousePosition, hoveredConcept]);
@@ -626,12 +634,12 @@ export default function RedeNeuralPage() {
                   </div>
 
                   {/* Informações de Hover */}
-                  {hoveredConcept && (
+                  {hoveredConcept && !isDragging && (
                     <div 
                       className="absolute bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg pointer-events-none z-10 max-w-xs"
                       style={{
-                        left: mousePosition.x + 10,
-                        top: mousePosition.y - 10,
+                        left: Math.min(mousePosition.x + 10, window.innerWidth - 300),
+                        top: Math.max(mousePosition.y - 10, 10),
                         transform: 'translate(0, -100%)'
                       }}
                     >
