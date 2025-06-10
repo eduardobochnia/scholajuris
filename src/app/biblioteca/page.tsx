@@ -21,13 +21,11 @@ import {
   TrendingUp,
   Eye,
   Filter,
-  Upload,
-  RefreshCw,
-  Download,
-  Plus
+  RefreshCw
 } from 'lucide-react';
 import Link from 'next/link';
 import { mockFormations, getAllPills, MockPill, mockBooks, MockBook } from '@/lib/mockData';
+import { dataLoader } from '@/lib/dataLoader';
 
 type ContentType = 'all' | 'pills' | 'books';
 
@@ -41,16 +39,70 @@ export default function BibliotecaPage() {
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [contentType, setContentType] = useState<ContentType>('all');
-  const [isLoadingJson, setIsLoadingJson] = useState(false);
+  const [isUpdatingJson, setIsUpdatingJson] = useState(false);
 
-  useEffect(() => {
+  const loadContent = async () => {
     try {
-      console.log('🔄 Carregando biblioteca...');
+      console.log('🔄 Carregando conteúdo da biblioteca...');
       
+      // Carregar dados mockados
       const allPills = getAllPills();
       setPills(allPills);
       setFormations(mockFormations);
       setBooks(mockBooks);
+      
+      // Tentar carregar dados dos arquivos JSON
+      try {
+        const jsonBooks = await dataLoader.loadBooks();
+        if (jsonBooks.length > 0) {
+          console.log(`✅ Carregados ${jsonBooks.length} livros dos arquivos JSON`);
+          // Converter para formato MockBook
+          const convertedBooks: MockBook[] = jsonBooks.map(book => ({
+            id: book.id,
+            title: book.metadata.title,
+            slug: book.metadata.title.toLowerCase().replace(/\s+/g, '-'),
+            author: book.bibliographic?.author || book.metadata.author || 'Autor não informado',
+            isbn: book.bibliographic?.isbn || '',
+            publishedYear: book.bibliographic?.publishedYear || new Date().getFullYear(),
+            pages: book.bibliographic?.pages || 0,
+            category: book.bibliographic?.category || 'Direito',
+            difficulty: book.metadata.difficulty,
+            synopsis: book.metadata.description || '',
+            tags: book.metadata.tags,
+            rating: book.metrics?.rating || 4.5,
+            reviews: book.metrics?.reviews || 0,
+            readingTime: book.metadata.estimatedTime || book.metrics?.readingTime || 120,
+            summary: {
+              overview: book.content?.synopsis?.overview || book.metadata.description || '',
+              mainConcepts: book.content?.synopsis?.mainConcepts || [],
+              practicalImplications: book.content?.synopsis?.practicalImplications || [],
+              criticalAnalysis: book.content?.synopsis?.criticalAnalysis || '',
+              recommendations: book.content?.synopsis?.recommendations || ''
+            },
+            keyTopics: book.analysis?.keyTopics || [],
+            targetAudience: book.analysis?.targetAudience || [],
+            practicalApplications: book.analysis?.practicalApplications || [],
+            legislationCovered: book.analysis?.legislationCovered || [],
+            jurisprudenceReferences: book.analysis?.jurisprudenceReferences || []
+          }));
+          
+          // Combinar livros mockados com livros dos arquivos JSON
+          setBooks([...mockBooks, ...convertedBooks]);
+        }
+      } catch (jsonError) {
+        console.warn('⚠️ Não foi possível carregar livros dos arquivos JSON:', jsonError);
+      }
+
+      // Tentar carregar pílulas dos arquivos JSON
+      try {
+        const jsonPills = await dataLoader.loadPills();
+        if (jsonPills.length > 0) {
+          console.log(`✅ Carregadas ${jsonPills.length} pílulas dos arquivos JSON`);
+          // Aqui você pode converter e adicionar as pílulas JSON se necessário
+        }
+      } catch (jsonError) {
+        console.warn('⚠️ Não foi possível carregar pílulas dos arquivos JSON:', jsonError);
+      }
       
       console.log('✅ Biblioteca carregada:', { 
         formations: mockFormations.length, 
@@ -63,32 +115,31 @@ export default function BibliotecaPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    loadContent();
   }, []);
 
-  const handleLoadJsonFiles = async () => {
-    setIsLoadingJson(true);
+  const handleUpdateJson = async () => {
+    setIsUpdatingJson(true);
     try {
-      console.log('🔄 Carregando arquivos JSON...');
+      console.log('🔄 Atualizando arquivos JSON...');
       
-      // Simular carregamento de arquivos JSON
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Limpar cache do dataLoader
+      dataLoader.clearCache();
       
-      // Aqui seria implementada a lógica real de carregamento
-      // Por enquanto, apenas recarrega os dados mockados
-      const allPills = getAllPills();
-      setPills(allPills);
-      setBooks(mockBooks);
+      // Recarregar conteúdo
+      await loadContent();
       
-      console.log('✅ Arquivos JSON carregados com sucesso!');
-      
-      // Mostrar notificação de sucesso
-      alert('Arquivos JSON carregados com sucesso! Biblioteca atualizada.');
+      console.log('✅ Arquivos JSON atualizados com sucesso!');
+      alert('Arquivos JSON atualizados com sucesso! Biblioteca atualizada.');
       
     } catch (err) {
-      console.error('❌ Erro ao carregar arquivos JSON:', err);
-      alert('Erro ao carregar arquivos JSON. Verifique os arquivos e tente novamente.');
+      console.error('❌ Erro ao atualizar arquivos JSON:', err);
+      alert('Erro ao atualizar arquivos JSON. Verifique os arquivos e tente novamente.');
     } finally {
-      setIsLoadingJson(false);
+      setIsUpdatingJson(false);
     }
   };
 
@@ -182,22 +233,22 @@ export default function BibliotecaPage() {
               </p>
             </div>
             
-            {/* Botão para carregar JSON */}
+            {/* Botão para atualizar JSON */}
             <div className="flex items-center space-x-4">
               <Button
-                onClick={handleLoadJsonFiles}
-                disabled={isLoadingJson}
+                onClick={handleUpdateJson}
+                disabled={isUpdatingJson}
                 className="bg-[#0071e3] hover:bg-[#0077ED] text-white px-6 py-3 font-medium"
               >
-                {isLoadingJson ? (
+                {isUpdatingJson ? (
                   <>
                     <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
-                    Carregando...
+                    Atualizando...
                   </>
                 ) : (
                   <>
-                    <Upload className="w-5 h-5 mr-2" />
-                    Carregar JSON
+                    <RefreshCw className="w-5 h-5 mr-2" />
+                    Atualizar JSON
                   </>
                 )}
               </Button>
@@ -304,36 +355,6 @@ export default function BibliotecaPage() {
             ))}
           </div>
         )}
-
-        {/* JSON Loading Instructions */}
-        <div className="mb-8">
-          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                    <Download className="w-8 h-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">Sistema de Carregamento JSON</h3>
-                    <p className="text-blue-100">
-                      Carregue arquivos JSON estruturados para alimentar a biblioteca com novos conteúdos.
-                    </p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm text-blue-100 mb-2">Formatos suportados:</div>
-                  <div className="text-xs text-blue-200 space-y-1">
-                    <div>• Pílulas (PILL)</div>
-                    <div>• Livros (BOOK)</div>
-                    <div>• Módulos (MODULE)</div>
-                    <div>• Formações (FORMATION)</div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* Content Grid */}
         <div className="space-y-12">
