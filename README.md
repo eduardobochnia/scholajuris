@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Schola Juris
 
-## Getting Started
+Plataforma de ensino jurídico gamificada, desenvolvida com Next.js, Prisma e PostgreSQL.
 
-First, run the development server:
+## 🚀 Tecnologias
 
+- Next.js 14
+- TypeScript
+- Prisma
+- PostgreSQL
+- Tailwind CSS
+- NextAuth.js
+- Jest
+- Sentry
+
+## 📋 Pré-requisitos
+
+- Node.js 18+
+- PostgreSQL 12+
+- npm ou yarn
+
+## 🔧 Instalação
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/seu-usuario/schola-juris.git
+cd schola-juris
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Execute as migrações do banco de dados:
+```bash
+npx prisma migrate dev
+```
 
-## Learn More
+5. Popule o banco de dados com dados iniciais:
+```bash
+npm run seed
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Scripts Disponíveis
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria a build de produção
+- `npm start` - Inicia o servidor de produção
+- `npm run lint` - Executa o linter
+- `npm run test` - Executa os testes
+- `npm run seed` - Popula o banco de dados com dados iniciais
+- `npm run backup` - Executa o backup do banco de dados
 
-## Deploy on Vercel
+## 📝 Estrutura do Projeto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+schola-juris/
+├── prisma/           # Configuração do Prisma e migrações
+├── public/           # Arquivos estáticos
+├── src/
+│   ├── app/         # Rotas e páginas (App Router)
+│   ├── components/  # Componentes React
+│   ├── lib/         # Utilitários e configurações
+│   └── styles/      # Estilos globais
+├── tests/           # Testes automatizados
+└── scripts/         # Scripts utilitários
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contribuindo
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🔐 Autenticação
+
+O sistema utiliza NextAuth.js para autenticação, suportando:
+- Login com email/senha
+- Autenticação social (Google, GitHub)
+- Proteção de rotas
+- Gerenciamento de sessão
+
+## 🎨 Temas e Acessibilidade
+
+- Suporte a tema claro/escuro
+- Configurações de acessibilidade:
+  - Tamanho da fonte ajustável
+  - Modo alto contraste
+  - Redução de movimento
+  - Suporte a leitores de tela
+
+## 📱 Responsividade
+
+A aplicação é totalmente responsiva, adaptando-se a:
+- Desktops
+- Tablets
+- Smartphones
+
+## 🚀 Deploy
+
+O projeto está configurado para deploy na Vercel:
+
+1. Conecte seu repositório à Vercel
+2. Configure as variáveis de ambiente
+3. Deploy automático a cada push na branch main
+
+## 📞 Suporte
+
+Para suporte, envie um email para suporte@scholajuris.com ou abra uma issue no GitHub.

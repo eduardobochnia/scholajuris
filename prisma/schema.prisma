@@ -1,0 +1,160 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String? // Se usar credenciais
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  userProgress  UserProgress[]
+  userAchievements UserAchievement[]
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  TUTOR // Para quem cria conteúdo
+}
+
+// Para NextAuth.js
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+// Fim NextAuth.js
+
+model Module {
+  id          String   @id @default(cuid())
+  title       String   @unique
+  slug        String   @unique
+  description String?
+  order       Int?     @unique // Ordem de exibição dos módulos
+  imageUrl    String?
+  pills       Pill[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Pill { // Lição / Pílula
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     Json     // Armazena JSON para conteúdo rico (texto, links, referências a imagens/vídeos)
+  videoUrl    String?
+  order       Int      // Ordem da pílula dentro do módulo
+  moduleId    String
+  module      Module   @relation(fields: [moduleId], references: [id])
+  quizzes     Quiz[]
+  userProgress UserProgress[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([moduleId, order])
+}
+
+model Quiz {
+  id          String    @id @default(cuid())
+  pillId      String
+  pill        Pill      @relation(fields: [pillId], references: [id])
+  questions   Question[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Question {
+  id        String   @id @default(cuid())
+  text      String
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  options   Json     // Ex: [{text: "Opção A", isCorrect: true}, {text: "Opção B", isCorrect: false}]
+  type      QuestionType @default(MULTIPLE_CHOICE) // MULTIPLE_CHOICE, TRUE_FALSE, FILL_IN_THE_BLANK
+  explanation String? // Explicação para a resposta correta
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+  FILL_IN_THE_BLANK
+}
+
+model UserProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  pillId      String
+  pill        Pill     @relation(fields: [pillId], references: [id])
+  completedAt DateTime @default(now())
+  score       Int?     // Pontuação no quiz associado à pílula, se houver
+  streakCount Int      @default(0) // Controlar streak aqui ou no User?
+
+  @@unique([userId, pillId]) // Usuário só completa uma pílula uma vez
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  name        String   @unique // Ex: "Jurista Iniciante", "Mestre das Leis"
+  description String
+  iconUrl     String?  // URL do ícone da láurea
+  criteria    Json     // Ex: {type: "pillsCompleted", count: 10} ou {type: "streak", days: 7}
+  userAchievements UserAchievement[]
+  createdAt   DateTime @default(now())
+}
+
+model UserAchievement {
+  id            String     @id @default(cuid())
+  userId        String
+  user          User       @relation(fields: [userId], references: [id])
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  awardedAt     DateTime   @default(now())
+
+  @@unique([userId, achievementId])
+}
