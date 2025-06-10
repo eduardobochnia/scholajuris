@@ -258,9 +258,15 @@ export default function SobrePage() {
                 Formações Jurídicas
               </span>
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed mb-8">
               Um sistema revolucionário de certificação jurídica que transforma estudantes em 
               verdadeiras autoridades do direito através de um método científico comprovado.
+            </p>
+            <p className="text-lg text-blue-100 max-w-4xl mx-auto leading-relaxed">
+              Nossa plataforma foi desenvolvida com base em anos de pesquisa em neurociência educacional, 
+              combinando as melhores práticas pedagógicas com tecnologia de ponta. Cada elemento foi 
+              cuidadosamente projetado para maximizar sua capacidade de aprendizado e retenção de conhecimento, 
+              transformando o estudo do direito em uma experiência envolvente e altamente eficaz.
             </p>
           </div>
         </div>
@@ -271,9 +277,16 @@ export default function SobrePage() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#1d1d1f] mb-6">Sistema de Certificação</h2>
-            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto mb-8">
               Nosso sistema é baseado em módulos mensais, onde cada módulo representa 30 dias de 
               estudo intensivo e especializado em temas jurídicos específicos.
+            </p>
+            <p className="text-lg text-[#86868b] max-w-4xl mx-auto leading-relaxed">
+              Diferentemente dos métodos tradicionais de ensino jurídico, nossa abordagem fragmenta o conhecimento 
+              em unidades digestíveis e interconectadas. Cada módulo é cuidadosamente estruturado para construir 
+              sobre o conhecimento anterior, criando uma base sólida e progressiva que permite ao estudante 
+              desenvolver expertise real em cada área do direito. Este método, validado por pesquisas em 
+              neurociência, aumenta significativamente a retenção de informações e a capacidade de aplicação prática.
             </p>
           </div>
 
@@ -286,7 +299,7 @@ export default function SobrePage() {
                 <h3 className="text-xl font-bold text-[#1d1d1f] mb-4">1 Módulo = 1 Mês</h3>
                 <p className="text-[#86868b] leading-relaxed">
                   Cada módulo é projetado para ser completado em exatamente 30 dias de estudo 
-                  consistente e focado.
+                  consistente e focado, com carga horária otimizada para máximo aproveitamento.
                 </p>
               </CardContent>
             </Card>
@@ -298,8 +311,8 @@ export default function SobrePage() {
                 </div>
                 <h3 className="text-xl font-bold text-[#1d1d1f] mb-4">Progressão Linear</h3>
                 <p className="text-[#86868b] leading-relaxed">
-                  O conhecimento é construído de forma progressiva, com cada módulo preparando 
-                  para o próximo nível.
+                  O conhecimento é construído de forma progressiva e sistemática, com cada módulo 
+                  preparando cuidadosamente para o próximo nível de complexidade e especialização.
                 </p>
               </CardContent>
             </Card>
@@ -312,10 +325,38 @@ export default function SobrePage() {
                 <h3 className="text-xl font-bold text-[#1d1d1f] mb-4">Certificação Oficial</h3>
                 <p className="text-[#86868b] leading-relaxed">
                   Cada nível concluído garante uma certificação reconhecida no mercado jurídico 
-                  brasileiro.
+                  brasileiro, validada por instituições parceiras e aceita por empregadores.
                 </p>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="text-2xl font-bold text-[#1d1d1f] mb-6 text-center">
+              Diferencial da Nossa Metodologia
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-[#1d1d1f] mb-4">Aprendizado Tradicional</h4>
+                <ul className="space-y-2 text-[#86868b]">
+                  <li>• Conteúdo extenso e denso</li>
+                  <li>• Memorização passiva</li>
+                  <li>• Avaliação pontual</li>
+                  <li>• Pouca aplicação prática</li>
+                  <li>• Ritmo único para todos</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-[#1d1d1f] mb-4">Nossa Metodologia</h4>
+                <ul className="space-y-2 text-[#1d1d1f]">
+                  <li>• Microlearning focado e específico</li>
+                  <li>• Aprendizado ativo e interativo</li>
+                  <li>• Avaliação contínua e adaptativa</li>
+                  <li>• Casos práticos e aplicação real</li>
+                  <li>• Personalização por IA</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -323,8 +364,14 @@ export default function SobrePage() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#1d1d1f] mb-6">Níveis de Certificação</h2>
-            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto mb-8">
               Oito níveis progressivos que levam você desde o básico até se tornar uma lenda do direito.
+            </p>
+            <p className="text-lg text-[#86868b] max-w-4xl mx-auto leading-relaxed">
+              Nosso sistema de certificação foi desenvolvido em parceria com especialistas em recursos humanos 
+              do setor jurídico e reflete as reais demandas do mercado. Cada nível representa não apenas 
+              conhecimento teórico, mas competências práticas validadas e reconhecidas pelos principais 
+              escritórios, empresas e instituições jurídicas do país.
             </p>
           </div>
 
@@ -460,9 +507,15 @@ export default function SobrePage() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#1d1d1f] mb-6">Matérias Incluídas</h2>
-            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto mb-8">
               Cobertura completa de todas as áreas do direito brasileiro, organizadas em sequências 
               progressivas para máximo aproveitamento.
+            </p>
+            <p className="text-lg text-[#86868b] max-w-4xl mx-auto leading-relaxed">
+              Nosso currículo abrange todas as disciplinas fundamentais e especializadas do direito brasileiro, 
+              desde os conceitos básicos até as áreas mais especializadas e emergentes. Cada matéria é dividida 
+              em módulos sequenciais que permitem um aprofundamento gradual e sistemático, garantindo que você 
+              desenvolva não apenas conhecimento superficial, mas verdadeira expertise em cada área.
             </p>
           </div>
 
@@ -486,7 +539,7 @@ export default function SobrePage() {
 
           <div className="text-center mt-8">
             <p className="text-[#86868b] mb-4">
-              E muito mais! Nosso catálogo está em constante expansão.
+              E muito mais! Nosso catálogo está em constante expansão com novas áreas emergentes do direito.
             </p>
             <Link href="/biblioteca">
               <Button className="bg-[#0071e3] hover:bg-[#0077ED] text-white">
@@ -501,9 +554,16 @@ export default function SobrePage() {
         <div className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#1d1d1f] mb-6">Metodologia de Ensino</h2>
-            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
+            <p className="text-xl text-[#86868b] max-w-3xl mx-auto mb-8">
               Nossa abordagem combina neurociência, tecnologia e expertise jurídica para criar 
               a experiência de aprendizado mais eficaz do mercado.
+            </p>
+            <p className="text-lg text-[#86868b] max-w-4xl mx-auto leading-relaxed">
+              Desenvolvemos nossa metodologia com base em décadas de pesquisa em neurociência educacional 
+              e psicologia cognitiva. Cada elemento da nossa plataforma foi cientificamente validado para 
+              maximizar a retenção de informações, acelerar o aprendizado e garantir a aplicação prática 
+              do conhecimento adquirido. O resultado é uma experiência de aprendizado que não apenas ensina, 
+              mas transforma a forma como você pensa e aplica o direito.
             </p>
           </div>
 
@@ -554,6 +614,12 @@ export default function SobrePage() {
                   Todo nosso conteúdo é meticulosamente revisado por uma equipe de especialistas 
                   reconhecidos nas ciências jurídicas e em plataformas educacionais.
                 </p>
+                <p className="text-lg text-blue-100 max-w-4xl mx-auto mb-12 leading-relaxed">
+                  Nossa equipe de revisão inclui alguns dos mais respeitados nomes do direito brasileiro, 
+                  garantindo que cada pílula de conhecimento atenda aos mais altos padrões acadêmicos e 
+                  profissionais. Além disso, contamos com especialistas em pedagogia digital que asseguram 
+                  que o conteúdo seja não apenas preciso, mas também otimizado para o aprendizado online.
+                </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
                   <div className="text-center">
@@ -578,101 +644,6 @@ export default function SobrePage() {
           </Card>
         </div>
 
-        {/* Estrutura das Pílulas */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#1d1d1f] mb-6">Estrutura das Pílulas</h2>
-            <p className="text-xl text-[#86868b] max-w-3xl mx-auto">
-              Cada pílula é uma obra-prima educacional, contendo tudo que você precisa para 
-              dominar completamente um conceito jurídico específico.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-[#1d1d1f] flex items-center">
-                  <FileText className="w-6 h-6 mr-3 text-[#0071e3]" />
-                  Conteúdo Textual Extenso
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#0071e3] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Passagens Completas da Lei</h4>
-                      <p className="text-[#86868b] text-sm">Texto integral dos artigos com análise palavra por palavra</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#0071e3] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Doutrina Aprofundada</h4>
-                      <p className="text-[#86868b] text-sm">Citações e análises dos principais doutrinadores brasileiros</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#0071e3] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Jurisprudência Atualizada</h4>
-                      <p className="text-[#86868b] text-sm">Decisões recentes dos tribunais superiores com análise crítica</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#0071e3] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Parágrafos Densos</h4>
-                      <p className="text-[#86868b] text-sm">Explicações detalhadas com múltiplas perspectivas e exemplos</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white shadow-sm">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-[#1d1d1f] flex items-center">
-                  <Lightbulb className="w-6 h-6 mr-3 text-[#0071e3]" />
-                  Recursos Visuais e Interativos
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#34C759] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Infográficos Explicativos</h4>
-                      <p className="text-[#86868b] text-sm">Diagramas e esquemas para visualizar conceitos complexos</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#34C759] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Mapas Mentais</h4>
-                      <p className="text-[#86868b] text-sm">Conexões visuais entre conceitos relacionados</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#34C759] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Casos Práticos</h4>
-                      <p className="text-[#86868b] text-sm">Situações reais com aplicação prática dos conceitos</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#34C759] rounded-full mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h4 className="font-semibold text-[#1d1d1f] mb-1">Quizzes Interativos</h4>
-                      <p className="text-[#86868b] text-sm">Avaliações imediatas com feedback personalizado</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
         {/* Call to Action */}
         <div className="text-center">
           <Card className="bg-gradient-to-r from-[#0071e3] via-[#007AFF] to-[#34C759] text-white">
@@ -687,6 +658,11 @@ export default function SobrePage() {
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Transforme sua carreira jurídica com o método mais avançado e eficaz do Brasil. 
                 Junte-se a milhares de profissionais que já revolucionaram seus conhecimentos.
+              </p>
+              <p className="text-lg text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Nossa plataforma oferece uma experiência de aprendizado única, combinando rigor acadêmico 
+                com inovação tecnológica. Seja você um estudante iniciante ou um profissional experiente 
+                buscando especialização, temos o caminho ideal para acelerar seu crescimento na carreira jurídica.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
