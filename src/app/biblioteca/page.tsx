@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { mockFormations, getAllPills, MockPill, mockBooks, MockBook } from '@/lib/mockData';
-import { dataLoader } from '@/lib/dataLoader';
+import { clientDataLoader } from '@/lib/clientDataLoader';
 
 type ContentType = 'all' | 'pills' | 'books';
 
@@ -69,7 +69,7 @@ export default function BibliotecaPage() {
       
       // Tentar carregar dados dos arquivos JSON
       try {
-        const jsonBooks = await dataLoader.loadBooks();
+        const jsonBooks = await clientDataLoader.loadBooks();
         if (jsonBooks.length > 0) {
           console.log(`✅ Carregados ${jsonBooks.length} livros dos arquivos JSON`);
           // Converter para formato MockBook
@@ -111,7 +111,7 @@ export default function BibliotecaPage() {
 
       // Tentar carregar pílulas dos arquivos JSON
       try {
-        const jsonPills = await dataLoader.loadPills();
+        const jsonPills = await clientDataLoader.loadPills();
         if (jsonPills.length > 0) {
           console.log(`✅ Carregadas ${jsonPills.length} pílulas dos arquivos JSON`);
           
@@ -173,7 +173,7 @@ export default function BibliotecaPage() {
       console.log('📁 Verificando pastas: public/data/pill, public/data/book, public/data/module, public/data/formation, public/data/subject');
       
       // Limpar cache do dataLoader
-      dataLoader.clearCache();
+      clientDataLoader.clearCache();
       
       const results = {
         pills: 0,
@@ -187,7 +187,7 @@ export default function BibliotecaPage() {
       
       // Carregar cada tipo de conteúdo das pastas JSON
       try {
-        const jsonPills = await dataLoader.loadPills();
+        const jsonPills = await clientDataLoader.loadPills();
         results.pills = jsonPills.length;
         console.log(`✅ Encontradas ${jsonPills.length} pílulas em public/data/pill/`);
       } catch (error) {
@@ -197,7 +197,7 @@ export default function BibliotecaPage() {
       }
 
       try {
-        const jsonBooks = await dataLoader.loadBooks();
+        const jsonBooks = await clientDataLoader.loadBooks();
         results.books = jsonBooks.length;
         console.log(`✅ Encontrados ${jsonBooks.length} livros em public/data/book/`);
       } catch (error) {
@@ -207,7 +207,7 @@ export default function BibliotecaPage() {
       }
 
       try {
-        const jsonModules = await dataLoader.loadModules();
+        const jsonModules = await clientDataLoader.loadModules();
         results.modules = jsonModules.length;
         console.log(`✅ Encontrados ${jsonModules.length} módulos em public/data/module/`);
       } catch (error) {
@@ -217,7 +217,7 @@ export default function BibliotecaPage() {
       }
 
       try {
-        const jsonFormations = await dataLoader.loadFormations();
+        const jsonFormations = await clientDataLoader.loadFormations();
         results.formations = jsonFormations.length;
         console.log(`✅ Encontradas ${jsonFormations.length} formações em public/data/formation/`);
       } catch (error) {
@@ -227,7 +227,7 @@ export default function BibliotecaPage() {
       }
 
       try {
-        const jsonSubjects = await dataLoader.loadSubjects();
+        const jsonSubjects = await clientDataLoader.loadSubjects();
         results.subjects = jsonSubjects.length;
         console.log(`✅ Encontradas ${jsonSubjects.length} matérias em public/data/subject/`);
       } catch (error) {
