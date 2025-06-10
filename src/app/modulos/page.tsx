@@ -12,6 +12,7 @@ interface Module {
   description: string | null;
   imageUrl: string | null;
   order: number | null;
+  slug: string;
   pills: {
     id: string;
     title: string;
@@ -33,29 +34,21 @@ export default function ModulesPage() {
   useEffect(() => {
     const fetchModules = async () => {
       try {
-        const [modulesResponse, progressResponse] = await Promise.all([
-          fetch('/api/content/modules'),
-          fetch('/api/user/progress')
-        ]);
+        const response = await fetch('/api/content/modules');
 
-        if (!modulesResponse.ok || !progressResponse.ok) {
+        if (!response.ok) {
           throw new Error('Erro ao carregar dados');
         }
 
-        const modulesData = await modulesResponse.json();
-        const progressData = await progressResponse.json();
+        const modulesData = await response.json();
 
-        // Calcular progresso por módulo
+        // Simular progresso por módulo
         const progressByModule: Record<string, ModuleProgress> = {};
         modulesData.forEach((module: Module) => {
-          const moduleProgress = progressData.filter((p: { pillId: string }) =>
-            module.pills.some(pill => pill.id === p.pillId)
-          );
-
           progressByModule[module.id] = {
             moduleId: module.id,
             totalPills: module.pills.length,
-            completedPills: moduleProgress.length
+            completedPills: Math.floor(Math.random() * module.pills.length) // Progresso simulado
           };
         });
 
@@ -101,7 +94,7 @@ export default function ModulesPage() {
           return (
             <Link
               key={module.id}
-              href={`/modulos/${module.id}`}
+              href={`/modulos/${module.slug}`}
               className="block transition-transform hover:scale-105"
             >
               <Card className="h-full">

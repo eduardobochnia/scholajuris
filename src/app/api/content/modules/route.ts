@@ -31,5 +31,3 @@ export async function GET() {
     );
   }
 }
-
-// Adicionar outras funções para POST, PUT, DELETE se necessário

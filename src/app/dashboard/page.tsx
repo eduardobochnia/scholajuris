@@ -1,8 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BookOpen, Trophy, Clock, TrendingUp, ChevronRight } from 'lucide-react';
 
@@ -21,71 +19,27 @@ interface RecentActivity {
 }
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
   const [progress, setProgress] = useState<ProgressData>({
-    totalPills: 0,
-    completedPills: 0,
-    averageScore: 0,
-    streak: 0
+    totalPills: 50,
+    completedPills: 12,
+    averageScore: 85,
+    streak: 5
   });
-  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (status === 'loading') {
-      return; // Ainda carregando
+  
+  const [recentActivity] = useState<RecentActivity[]>([
+    {
+      id: '1',
+      type: 'pill_completed',
+      title: 'Conceitos Básicos do Direito',
+      timestamp: new Date().toISOString()
+    },
+    {
+      id: '2',
+      type: 'achievement_unlocked',
+      title: 'Jurista Iniciante',
+      timestamp: new Date(Date.now() - 86400000).toISOString()
     }
-
-    if (status === 'unauthenticated') {
-      router.push('/auth/login');
-      return;
-    }
-
-    if (status === 'authenticated' && session) {
-      // Simular dados para demonstração
-      setProgress({
-        totalPills: 50,
-        completedPills: 12,
-        averageScore: 85,
-        streak: 5
-      });
-      
-      setRecentActivity([
-        {
-          id: '1',
-          type: 'pill_completed',
-          title: 'Conceitos Básicos do Direito',
-          timestamp: new Date().toISOString()
-        },
-        {
-          id: '2',
-          type: 'achievement_unlocked',
-          title: 'Jurista Iniciante',
-          timestamp: new Date(Date.now() - 86400000).toISOString()
-        }
-      ]);
-      
-      setLoading(false);
-    }
-  }, [status, session, router]);
-
-  // Mostrar loading enquanto verifica autenticação
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0071e3] mx-auto mb-4"></div>
-          <p className="text-[#86868b]">Carregando dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Se não autenticado, não renderizar nada (redirecionamento já foi feito)
-  if (status === 'unauthenticated') {
-    return null;
-  }
+  ]);
 
   const progressPercentage = (progress.completedPills / progress.totalPills) * 100;
 
@@ -97,13 +51,11 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-gradient-to-br from-[#0071e3] to-[#007AFF] rounded-2xl flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">
-                  {session?.user?.name?.[0]?.toUpperCase() || 'U'}
-                </span>
+                <span className="text-2xl font-bold text-white">U</span>
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-[#1d1d1f]">
-                  Bem-vindo, {session?.user?.name?.split(' ')[0] || 'Usuário'}!
+                  Bem-vindo, Usuário!
                 </h1>
                 <p className="text-[#86868b]">
                   Continue sua jornada de aprendizado jurídico
