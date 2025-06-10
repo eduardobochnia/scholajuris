@@ -148,6 +148,7 @@ export default function RedeNeuralPage() {
   const nodesRef = useRef<any[]>([]);
   const connectionsRef = useRef<any[]>([]);
   const animationIdRef = useRef<number>();
+  const threeRef = useRef<any>(null); // Store Three.js library reference
   
   const [selectedConcept, setSelectedConcept] = useState<any>(null);
   const [hoveredConcept, setHoveredConcept] = useState<any>(null);
@@ -165,6 +166,7 @@ export default function RedeNeuralPage() {
       try {
         // Importar Three.js dinamicamente
         const THREE = await import('three');
+        threeRef.current = THREE; // Store the Three.js library reference
         
         // Configurar cena
         const scene = new THREE.Scene();
@@ -353,10 +355,11 @@ export default function RedeNeuralPage() {
 
   // Controles de mouse
   useEffect(() => {
-    if (!canvasRef.current || !cameraRef.current) return;
+    if (!canvasRef.current || !cameraRef.current || !threeRef.current) return;
 
     const canvas = canvasRef.current;
     const camera = cameraRef.current;
+    const THREE = threeRef.current;
 
     const handleMouseDown = (event: MouseEvent) => {
       setIsDragging(true);
@@ -372,7 +375,7 @@ export default function RedeNeuralPage() {
         const deltaY = event.clientY - lastMousePosition.y;
 
         // Rotacionar câmera
-        const spherical = new (window as any).THREE.Spherical();
+        const spherical = new THREE.Spherical();
         spherical.setFromVector3(camera.position);
         
         spherical.theta -= deltaX * 0.01;
@@ -388,11 +391,11 @@ export default function RedeNeuralPage() {
       // Raycasting para hover
       if (rendererRef.current && cameraRef.current && nodesRef.current.length > 0) {
         const rect = canvas.getBoundingClientRect();
-        const mouse = new (window as any).THREE.Vector2();
+        const mouse = new THREE.Vector2();
         mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-        const raycaster = new (window as any).THREE.Raycaster();
+        const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouse, camera);
 
         const intersects = raycaster.intersectObjects(nodesRef.current);
@@ -423,7 +426,7 @@ export default function RedeNeuralPage() {
           const camera = cameraRef.current;
           
           const startPosition = camera.position.clone();
-          const endPosition = new (window as any).THREE.Vector3(
+          const endPosition = new THREE.Vector3(
             targetPosition.x + 8,
             targetPosition.y + 5,
             targetPosition.z + 8
@@ -447,7 +450,7 @@ export default function RedeNeuralPage() {
       event.preventDefault();
       if (cameraRef.current) {
         const camera = cameraRef.current;
-        const direction = new (window as any).THREE.Vector3();
+        const direction = new THREE.Vector3();
         camera.getWorldDirection(direction);
         
         const distance = event.deltaY * 0.01;
@@ -489,10 +492,11 @@ export default function RedeNeuralPage() {
 
   // Reset da câmera
   const resetCamera = () => {
-    if (cameraRef.current) {
+    if (cameraRef.current && threeRef.current) {
       const camera = cameraRef.current;
+      const THREE = threeRef.current;
       const startPosition = camera.position.clone();
-      const endPosition = new (window as any).THREE.Vector3(15, 10, 15);
+      const endPosition = new THREE.Vector3(15, 10, 15);
       
       let progress = 0;
       const animateReset = () => {
