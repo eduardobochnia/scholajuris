@@ -11,9 +11,8 @@ export function SessionProvider({ children }: SessionProviderProps) {
   return (
     <NextAuthSessionProvider 
       basePath="/api/auth"
-      refetchInterval={0} // Desabilitar refetch automático
-      refetchOnWindowFocus={false} // Desabilitar refetch no foco
-      refetchWhenOffline={false} // Desabilitar refetch quando offline
+      refetchInterval={5 * 60} // Refetch a cada 5 minutos
+      refetchOnWindowFocus={true}
     >
       {children}
     </NextAuthSessionProvider>

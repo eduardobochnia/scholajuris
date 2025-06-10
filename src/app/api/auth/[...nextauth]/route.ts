@@ -1,10 +1,10 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
@@ -58,7 +58,7 @@ export const authOptions = {
     })
   ],
   session: {
-    strategy: "jwt" as const,
+    strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 dias
   },
   pages: {
@@ -66,10 +66,10 @@ export const authOptions = {
     error: "/login",
   },
   callbacks: {
-    async session({ session, token }: any) {
+    async session({ session, token }) {
       try {
         if (token && session?.user) {
-          session.user.id = token.sub;
+          session.user.id = token.sub as string;
         }
         return session;
       } catch (error) {
@@ -77,7 +77,7 @@ export const authOptions = {
         return session;
       }
     },
-    async jwt({ token, user }: any) {
+    async jwt({ token, user }) {
       try {
         if (user) {
           token.sub = user.id;
@@ -92,13 +92,13 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   debug: process.env.NODE_ENV === "development",
   logger: {
-    error(code: any, metadata: any) {
+    error(code, metadata) {
       console.error("NextAuth Error:", code, metadata);
     },
-    warn(code: any) {
+    warn(code) {
       console.warn("NextAuth Warning:", code);
     },
-    debug(code: any, metadata: any) {
+    debug(code, metadata) {
       if (process.env.NODE_ENV === "development") {
         console.log("NextAuth Debug:", code, metadata);
       }

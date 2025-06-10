@@ -32,13 +32,12 @@ export default function LoginForm() {
 
       if (result?.ok) {
         // Aguardar um pouco para garantir que a sessão foi criada
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Verificar se a sessão foi criada corretamente
         const session = await getSession();
         if (session) {
-          router.push('/dashboard');
-          router.refresh();
+          window.location.href = '/dashboard';
         } else {
           setError('Erro ao criar sessão. Tente novamente.');
         }
@@ -67,13 +66,12 @@ export default function LoginForm() {
 
       if (result?.ok) {
         // Aguardar um pouco para garantir que a sessão foi criada
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Verificar se a sessão foi criada corretamente
         const session = await getSession();
         if (session) {
-          router.push('/dashboard');
-          router.refresh();
+          window.location.href = '/dashboard';
         } else {
           setError('Erro ao criar sessão de desenvolvimento. Tente novamente.');
         }

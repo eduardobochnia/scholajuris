@@ -6,26 +6,26 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     
-    // Sempre retornar um JSON válido
     return NextResponse.json(session || null, {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-store, no-cache, must-revalidate',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       }
     });
   } catch (error) {
     console.error('Erro ao buscar sessão:', error);
     
-    // Retornar null em caso de erro
     return NextResponse.json(null, {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-store, no-cache, must-revalidate',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       }
     });
   }
-}
-
-export async function POST() {
-  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
 }
