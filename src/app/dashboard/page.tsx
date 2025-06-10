@@ -38,7 +38,7 @@ export default function DashboardPage() {
     }
 
     if (status === 'unauthenticated') {
-      router.push('/login');
+      router.push('/auth/login');
       return;
     }
 

@@ -31,8 +31,11 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        router.push('/dashboard');
-        router.refresh();
+        // Aguardar um pouco para garantir que a sessão foi criada
+        setTimeout(() => {
+          router.push('/dashboard');
+          router.refresh();
+        }, 100);
       }
     } catch (error) {
       console.error('Erro no login:', error);
@@ -57,8 +60,11 @@ export default function LoginForm() {
       }
 
       if (result?.ok) {
-        router.push('/dashboard');
-        router.refresh();
+        // Aguardar um pouco para garantir que a sessão foi criada
+        setTimeout(() => {
+          router.push('/dashboard');
+          router.refresh();
+        }, 100);
       }
     } catch (error) {
       console.error('Erro no login de desenvolvimento:', error);

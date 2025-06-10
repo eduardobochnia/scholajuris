@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         try {
           // Modo de desenvolvimento: permite login sem credenciais
-          if (process.env.NODE_ENV === "development") {
+          if (process.env.NODE_ENV === "development" && (!credentials?.email && !credentials?.password)) {
             return {
               id: "dev-user-1",
               name: "Usuário de Desenvolvimento",
@@ -21,11 +21,11 @@ export const authOptions: NextAuthOptions = {
             };
           }
 
-          // Em produção, implementar validação real aqui
+          // Login normal com credenciais
           if (credentials?.email && credentials?.password) {
             const user = await getUserByEmail(credentials.email);
             
-            if (user && await verifyPassword(credentials.password, user.password)) {
+            if (user && user.password && await verifyPassword(credentials.password, user.password)) {
               return {
                 id: user.id,
                 name: user.name,
@@ -54,18 +54,22 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token && session?.user) {
         session.user.id = token.sub as string;
+        session.user.name = token.name;
+        session.user.email = token.email;
       }
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.sub = user.id;
+        token.name = user.name;
+        token.email = user.email;
       }
       return token;
     }
   },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: false, // Desabilitar debug para reduzir logs
+  debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);
