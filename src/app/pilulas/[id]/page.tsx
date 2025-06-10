@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { ChevronLeft, ChevronRight, CheckCircle, XCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import { RichContent, ContentType } from '@/components/content/RichContent';
 
 interface Question {
   id: string;
@@ -26,7 +27,7 @@ interface Quiz {
 interface Pill {
   id: string;
   title: string;
-  content: any;
+  content: ContentType[];
   videoUrl: string | null;
   quizzes: Quiz[];
   module: {
@@ -118,16 +119,23 @@ export default function PillPage({ params }: { params: { id: string } }) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0071e3]"></div>
       </div>
     );
   }
 
   if (error || !pill) {
     return (
-      <div className="p-4 text-red-500">
-        Erro ao carregar pílula: {error || 'Pílula não encontrada'}
+      <div className="min-h-screen bg-[#f5f5f7] flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-lg mb-4">
+            Erro ao carregar pílula: {error || 'Pílula não encontrada'}
+          </div>
+          <Link href="/modulos">
+            <Button>Voltar para Módulos</Button>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -136,41 +144,66 @@ export default function PillPage({ params }: { params: { id: string } }) {
   const quiz = pill.quizzes[0];
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">{pill.title}</h1>
-        
-        {!showQuiz ? (
-          <>
-            <div className="mb-6">
+    <div className="min-h-screen bg-[#f5f5f7]">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center space-x-4 mb-4">
+            <Link 
+              href={`/modulos/${pill.module.slug}`}
+              className="text-[#0071e3] hover:text-[#0077ED] font-medium text-sm transition-colors duration-200"
+            >
+              ← {pill.module.title}
+            </Link>
+          </div>
+          <h1 className="text-3xl font-bold text-[#1d1d1f] mb-2">{pill.title}</h1>
+          
+          {!showQuiz ? (
+            <div className="mb-4">
               <Progress 
                 value={(currentSection / contentSections.length) * 100} 
                 className="mb-2"
               />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[#86868b]">
                 Seção {currentSection + 1} de {contentSections.length}
               </p>
             </div>
+          ) : (
+            quiz && (
+              <div className="mb-4">
+                <Progress 
+                  value={(currentQuestion / quiz.questions.length) * 100} 
+                  className="mb-2"
+                />
+                <p className="text-sm text-[#86868b]">
+                  Questão {currentQuestion + 1} de {quiz.questions.length}
+                </p>
+              </div>
+            )
+          )}
+        </div>
+      </div>
 
-            <Card className="mb-6">
-              <CardContent className="p-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {!showQuiz ? (
+          <>
+            <Card className="mb-8">
+              <CardContent className="p-8">
                 <div className="prose max-w-none">
-                  {typeof contentSections[currentSection] === 'string' 
-                    ? contentSections[currentSection]
-                    : JSON.stringify(contentSections[currentSection])
-                  }
+                  <RichContent content={contentSections[currentSection]} />
                 </div>
               </CardContent>
             </Card>
 
             {pill.videoUrl && (
-              <Card className="mb-6">
+              <Card className="mb-8">
                 <CardContent className="p-6">
-                  <div className="aspect-video">
+                  <div className="aspect-video rounded-lg overflow-hidden">
                     <iframe
                       src={pill.videoUrl}
                       className="w-full h-full"
                       allowFullScreen
+                      title="Vídeo da pílula"
                     />
                   </div>
                 </CardContent>
@@ -182,19 +215,19 @@ export default function PillPage({ params }: { params: { id: string } }) {
                 variant="outline"
                 onClick={handlePreviousSection}
                 disabled={currentSection === 0}
+                className="flex items-center space-x-2"
               >
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Anterior
+                <ChevronLeft className="w-4 h-4" />
+                <span>Anterior</span>
               </Button>
-              <Button onClick={handleNextSection}>
-                {currentSection === contentSections.length - 1 ? (
-                  'Iniciar Quiz'
-                ) : (
-                  <>
-                    Próximo
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </>
-                )}
+              <Button 
+                onClick={handleNextSection}
+                className="flex items-center space-x-2 bg-[#0071e3] hover:bg-[#0077ED]"
+              >
+                <span>
+                  {currentSection === contentSections.length - 1 ? 'Iniciar Quiz' : 'Próximo'}
+                </span>
+                {currentSection !== contentSections.length - 1 && <ChevronRight className="w-4 h-4" />}
               </Button>
             </div>
           </>
@@ -202,19 +235,9 @@ export default function PillPage({ params }: { params: { id: string } }) {
           <>
             {!quizCompleted && quiz ? (
               <>
-                <div className="mb-6">
-                  <Progress 
-                    value={(currentQuestion / quiz.questions.length) * 100} 
-                    className="mb-2"
-                  />
-                  <p className="text-sm text-muted-foreground">
-                    Questão {currentQuestion + 1} de {quiz.questions.length}
-                  </p>
-                </div>
-
-                <Card className="mb-6">
-                  <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold mb-4">
+                <Card className="mb-8">
+                  <CardContent className="p-8">
+                    <h2 className="text-2xl font-bold text-[#1d1d1f] mb-6">
                       {quiz.questions[currentQuestion].text}
                     </h2>
                     <div className="space-y-4">
@@ -226,13 +249,13 @@ export default function PillPage({ params }: { params: { id: string } }) {
                               ? 'default'
                               : 'outline'
                           }
-                          className="w-full justify-start"
+                          className="w-full justify-start text-left p-4 h-auto"
                           onClick={() => handleAnswerSelect(
                             quiz.questions[currentQuestion].id,
                             option.text
                           )}
                         >
-                          {option.text}
+                          <span className="text-wrap">{option.text}</span>
                         </Button>
                       ))}
                     </div>
@@ -244,9 +267,10 @@ export default function PillPage({ params }: { params: { id: string } }) {
                     variant="outline"
                     onClick={() => setCurrentQuestion(prev => prev - 1)}
                     disabled={currentQuestion === 0}
+                    className="flex items-center space-x-2"
                   >
-                    <ChevronLeft className="mr-2 h-4 w-4" />
-                    Anterior
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Anterior</span>
                   </Button>
                   <Button
                     onClick={() => {
@@ -256,45 +280,51 @@ export default function PillPage({ params }: { params: { id: string } }) {
                         setCurrentQuestion(prev => prev + 1);
                       }
                     }}
+                    disabled={!selectedAnswers[quiz.questions[currentQuestion].id]}
+                    className="flex items-center space-x-2 bg-[#0071e3] hover:bg-[#0077ED]"
                   >
-                    {currentQuestion === quiz.questions.length - 1 ? (
-                      'Finalizar Quiz'
-                    ) : (
-                      <>
-                        Próximo
-                        <ChevronRight className="ml-2 h-4 w-4" />
-                      </>
-                    )}
+                    <span>
+                      {currentQuestion === quiz.questions.length - 1 ? 'Finalizar Quiz' : 'Próximo'}
+                    </span>
+                    {currentQuestion !== quiz.questions.length - 1 && <ChevronRight className="w-4 h-4" />}
                   </Button>
                 </div>
               </>
             ) : (
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="p-8">
                   <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">
-                      {quizScore === 100 ? 'Parabéns!' : 'Quiz Concluído!'}
-                    </h2>
-                    <div className="flex justify-center mb-4">
-                      {quizScore === 100 ? (
-                        <CheckCircle className="h-16 w-16 text-green-500" />
+                    <div className="flex justify-center mb-6">
+                      {quizScore && quizScore >= 70 ? (
+                        <CheckCircle className="h-20 w-20 text-green-500" />
                       ) : (
-                        <XCircle className="h-16 w-16 text-yellow-500" />
+                        <XCircle className="h-20 w-20 text-yellow-500" />
                       )}
                     </div>
-                    <p className="text-xl mb-4">
+                    <h2 className="text-3xl font-bold text-[#1d1d1f] mb-4">
+                      {quizScore && quizScore >= 70 ? 'Parabéns!' : 'Quiz Concluído!'}
+                    </h2>
+                    <p className="text-2xl font-semibold text-[#0071e3] mb-4">
                       Sua pontuação: {quizScore}%
                     </p>
-                    <p className="text-muted-foreground mb-6">
-                      {quizScore === 100
-                        ? 'Você acertou todas as questões!'
+                    <p className="text-[#86868b] mb-8 text-lg">
+                      {quizScore && quizScore >= 70
+                        ? 'Você demonstrou excelente compreensão do conteúdo!'
                         : 'Continue estudando para melhorar sua pontuação.'}
                     </p>
-                    <Link href="/modulos">
-                      <Button>
-                        Voltar para Módulos
-                      </Button>
-                    </Link>
+                    <div className="flex justify-center space-x-4">
+                      <Link href={`/modulos/${pill.module.slug}`}>
+                        <Button variant="outline" className="flex items-center space-x-2">
+                          <BookOpen className="w-4 h-4" />
+                          <span>Voltar ao Módulo</span>
+                        </Button>
+                      </Link>
+                      <Link href="/modulos">
+                        <Button className="bg-[#0071e3] hover:bg-[#0077ED]">
+                          Explorar Outros Módulos
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
